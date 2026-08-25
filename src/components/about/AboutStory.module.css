@@ -1,0 +1,143 @@
+.story {
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #f8f8f8;
+
+  padding: 68px 24px 86px;
+
+  border-radius: 28px 28px 0 0;
+}
+
+.storyContent {
+  width: 100%;
+  max-width: 954px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* =========================
+   OUR STORY
+========================= */
+
+.label {
+  display: block;
+
+  margin: 0 0 8px;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+
+  color: #3f3f3f;
+
+  text-align: center;
+}
+
+/* =========================
+   ABOUT INTRO
+========================= */
+
+.description {
+  width: 100%;
+  max-width: 954px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  font-style: normal;
+
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+
+  color: #3f3f3f;
+
+  text-align: center;
+
+  text-wrap: wrap;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+  .story {
+    padding: 36px 24px 72px;
+  }
+
+  .storyContent {
+    max-width: 900px;
+  }
+
+  .label {
+    font-size: 17px;
+  }
+
+  .description {
+    max-width: 900px;
+    font-size: 34px;
+    line-height: 1.08;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .story {
+    padding: 32px 20px 60px;
+  }
+
+  .storyContent {
+    max-width: 100%;
+  }
+
+  .label {
+    margin-bottom: 8px;
+
+    font-size: 15px;
+    line-height: 1.08;
+  }
+
+  .description {
+    max-width: 100%;
+
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .story {
+    padding: 28px 18px 52px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 23px;
+    line-height: 1.12;
+  }
+}

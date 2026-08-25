@@ -1,0 +1,429 @@
+.hero {
+  position: relative;
+
+  width: calc(100% - 48px);
+  height: 807px;
+
+  margin: 24px;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background: #d9d9d9;
+}
+
+
+/* =========================================
+   BACKGROUND VIDEO
+========================================= */
+
+.backgroundVideo {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: -2;
+}
+
+
+/* =========================================
+   VIDEO OVERLAY
+========================================= */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.08);
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.heroContent {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 395px;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.title {
+ 
+  margin: 0;
+
+  max-width: 850px;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 80px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 108%;
+  letter-spacing: -3%;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.description {
+  margin: 22px 0 0;
+
+  max-width: 850px;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 120%;
+  letter-spacing: -3%;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+
+.searchBox {
+  width: 814px;
+  height: 64px;
+
+  margin-top: 22px;
+
+  padding: 0 8px 0 24px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  background: #ffffff;
+
+  border-radius: 32px;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================
+   SEARCH FIELD
+========================================= */
+
+.searchField {
+  height: 42px;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 3px;
+
+  padding: 0 24px 0 12px;
+
+  box-sizing: border-box;
+
+  min-width: 0;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   FIELD LABEL
+========================================= */
+
+.fieldLabel {
+  display: block;
+
+  margin: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 120%;
+
+  color: #252525;
+}
+
+
+/* =========================================
+   FIELD VALUE
+========================================= */
+
+.fieldValue {
+  display: block;
+
+  margin: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 120%;
+
+  color: #a1a1a1;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.divider {
+  width: 1px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  background: #e5e5e5;
+}
+
+
+/* =========================================
+   SEARCH BUTTON
+========================================= */
+
+.searchButton {
+  width: 48px;
+  height: 48px;
+
+  margin-left: 12px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #535442;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+
+.searchButton:hover {
+  opacity: 0.88;
+}
+
+
+.searchButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+  .hero {
+    height: 720px;
+  }
+
+  .heroContent {
+    padding-top: 190px;
+  }
+
+  .title {
+    font-size: 68px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .searchBox {
+    width: min(814px, calc(100% - 80px));
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    width: calc(100% - 32px);
+
+    height: 680px;
+
+    margin: 16px;
+
+    border-radius: 20px;
+  }
+
+  .heroContent {
+    padding-top: 210px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .title {
+    font-size: 52px;
+
+    line-height: 108%;
+
+    max-width: 600px;
+  }
+
+  .description {
+    max-width: 600px;
+
+    margin-top: 18px;
+
+    font-size: 15px;
+  }
+
+  .description br {
+    display: none;
+  }
+
+  .searchBox {
+    width: 100%;
+    max-width: 600px;
+
+    height: 60px;
+
+    padding-left: 18px;
+  }
+
+  .searchField {
+    height: 42px;
+
+    gap: 3px;
+
+    padding-left: 8px;
+    padding-right: 12px;
+  }
+
+  .fieldLabel,
+  .fieldValue {
+    font-size: 11px;
+  }
+
+  .searchButton {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .hero {
+    height: 650px;
+
+    margin: 12px;
+
+    width: calc(100% - 24px);
+
+    border-radius: 18px;
+  }
+
+  .heroContent {
+    padding-top: 190px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .searchBox {
+    height: auto;
+    min-height: 58px;
+
+    padding: 8px 8px 8px 14px;
+  }
+
+  .searchField {
+    height: 42px;
+
+    gap: 2px;
+
+    padding-left: 4px;
+    padding-right: 8px;
+  }
+
+  .fieldLabel,
+  .fieldValue {
+    font-size: 9px;
+  }
+
+  .divider {
+    height: 32px;
+  }
+
+  .searchButton {
+    width: 40px;
+    height: 40px;
+
+    margin-left: 6px;
+  }
+
+  .searchButton svg {
+    width: 17px;
+    height: 17px;
+  }
+}

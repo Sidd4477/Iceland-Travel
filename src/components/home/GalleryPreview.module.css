@@ -1,0 +1,275 @@
+/* =========================================
+   SECTION
+========================================= */
+
+.section {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-top: 48px;
+}
+
+
+/* =========================================
+   HEADING WRAPPER
+========================================= */
+
+.headingWrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 20px;
+  padding: 0;
+}
+
+
+/* =========================================
+   EYEBROW
+   FIGMA:
+   Width: 55px
+   Height: 18px
+   Top: 3645px
+   Left: 693px
+
+   Font: Outfit
+   Weight: 300
+   Size: 18px
+   Line height: 100%
+   Letter spacing: -3%
+========================================= */
+
+.eyebrow {
+  width: 55px;
+  height: 18px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+
+  color: #171717;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   TITLE
+   FIGMA:
+   Width: 753px
+   Height: 62px
+   Top: 3671px
+   Left: 344px
+
+   Font: Outfit
+   Weight: 400
+   Size: 56px
+   Line height: 111%
+   Letter spacing: -3%
+   Horizontal alignment: Center
+========================================= */
+
+.title {
+  width: 753px;
+  height: 62px;
+
+  margin: 8px 0 0;
+  padding: 0;
+  margin-bottom:20px;
+  font-family: "Outfit", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 111%;
+  letter-spacing: -0.03em;
+
+  color: #171717;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   GALLERY VIEWPORT
+========================================= */
+
+.galleryViewport {
+  width: 100%;
+
+  margin-top: 24px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   GALLERY TRACK
+========================================= */
+
+.galleryTrack {
+  width: max-content;
+
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+
+  animation: galleryScroll 32s linear infinite;
+
+  will-change: transform;
+}
+
+
+/* =========================================
+   IMAGE GROUP
+
+   4 IMAGES:
+   4 × 368px
+   3 × 24px
+   = 1544px
+========================================= */
+
+.galleryGroup {
+  width: max-content;
+
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   IMAGE CARD
+   FIGMA:
+   Width: 368px
+   Height: 368px
+   Radius: 24px
+========================================= */
+
+.imageCard {
+  width: 368px;
+  height: 368px;
+
+  flex: 0 0 368px;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.galleryImage {
+  width: 368px;
+  height: 368px;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 24px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   AUTO MOVING ANIMATION
+
+   6 IMAGES:
+   6 × 368 = 2208px
+   5 × 24 = 120px
+
+   ONE GROUP = 2328px
+
+   GROUP GAP = 24px
+
+   TOTAL LOOP DISTANCE = 2352px
+========================================= */
+
+@keyframes galleryScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-2352px);
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .title {
+    width: auto;
+    height: auto;
+
+    font-size: 46px;
+  }
+
+  .galleryViewport {
+    margin-top: 24px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .title {
+    width: auto;
+    height: auto;
+
+    font-size: 40px;
+  }
+
+  .galleryViewport {
+    margin-top: 20px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 34px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+  }
+
+  .galleryViewport {
+    margin-top: 20px;
+  }
+}

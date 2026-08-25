@@ -1,0 +1,708 @@
+/* =========================================
+   SECTION
+========================================= */
+
+.section {
+  width: 100%;
+  margin-top: 48px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   BANNER WRAPPER
+   FIGMA: 1440px × 818px
+========================================= */
+
+.bannerWrapper {
+  position: relative;
+
+  width: 100%;
+  height: 818px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   BANNER
+   FIGMA: 1440px × 818px
+========================================= */
+
+.banner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   BANNER BACKGROUND IMAGE
+========================================= */
+
+.bannerImage {
+  position: absolute;
+
+  inset: 0;
+
+  Width:1,440px;
+
+  Height:818px;
+
+  Top:2718px;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 0;
+}
+
+
+/* =========================================
+   WRAPPER IMAGE
+   SAME SIZE AS BANNER
+   FIGMA: 1440px × 818px
+========================================= */
+
+.wrapperImage {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   HEADING WRAPPER
+========================================= */
+
+.headingWrapper {
+  position: absolute;
+
+  top: 80px;
+  left: 50%;
+
+  width: 717px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   EYEBROW
+   WIDTH: 114px
+   HEIGHT: 14px
+   TOP: 2798px
+   LEFT: 663px
+========================================= */
+
+.eyebrow {
+  width: 114px;
+  height: 14px;
+
+  margin: 0 0 12px;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   MAIN H2
+   WIDTH: 717px
+   HEIGHT: 124px
+   TOP: 2824px
+   LEFT: 362px
+========================================= */
+
+.heading {
+  width: 717px;
+  height: 124px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 111%;
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.mainContent {
+  position: absolute;
+
+  top: 286px;
+  left: 50%;
+
+  width: 1082px;
+  height: 452px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   VAN IMAGE
+   WIDTH: 526px
+   HEIGHT: 452px
+   TOP: 3004px
+   LEFT: 179px
+   RADIUS: 24px
+========================================= */
+
+.vanWrapper {
+  position: relative;
+
+  width: 526px;
+  height: 452px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+}
+
+
+/* =========================================
+   VAN IMAGE
+========================================= */
+
+.vanImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* =========================================
+   BLUR IMAGE CARD
+   WIDTH: 526px
+   HEIGHT: 452px
+   TOP: 3004px
+   LEFT: 735px
+   RADIUS: 24px
+========================================= */
+
+.experienceCard {
+  position: relative;
+
+  width: 526px;
+  height: 452px;
+
+  margin-left: 30px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   BLUR IMAGE
+========================================= */
+
+.blurImage {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 0;
+}
+
+
+/* =========================================
+   CARD OVERLAY
+========================================= */
+
+.cardOverlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background: rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   EXPERIENCE LIST
+========================================= */
+
+.experienceList {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================
+   EXPERIENCE ITEM
+========================================= */
+
+.experienceItem {
+  position: relative;
+
+  width: 100%;
+  height: 113px;
+
+  padding: 0 38px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+/* =========================================
+   ITEM BORDER
+========================================= */
+
+.withBorder::after {
+  content: "";
+
+  position: absolute;
+
+  left: 38px;
+  right: 38px;
+  bottom: 0;
+
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================
+   ICON
+   WIDTH: 32px
+   HEIGHT: 32px
+   TOP: 3046px
+   LEFT: 773px
+========================================= */
+
+.iconWrapper {
+  width: 32px;
+  height: 32px;
+
+  min-width: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+
+.experienceIcon {
+  width: 32px;
+  height: 32px;
+
+  min-width: 32px;
+
+  stroke-width: 1.5;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   EXPERIENCE CONTENT
+========================================= */
+
+.experienceContent {
+  width: 339px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================
+   EXPERIENCE TITLE
+   WIDTH: 222px
+   HEIGHT: 29px
+   TOP: 3036px
+   LEFT: 825px
+========================================= */
+
+.experienceTitle {
+  width: 272px;
+  height: 29px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   EXPERIENCE DESCRIPTION
+   WIDTH: 339px
+   HEIGHT: 14px
+   TOP: 3069px
+   LEFT: 825px
+========================================= */
+
+.experienceDescription {
+  width: 339px;
+  height: 14px;
+
+  margin: 4px 0 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+  .bannerWrapper {
+    height: auto;
+    min-height: 760px;
+  }
+
+  .banner {
+    height: 760px;
+  }
+
+  .headingWrapper {
+    top: 70px;
+
+    width: 90%;
+  }
+
+  .heading {
+    width: 100%;
+    height: auto;
+
+    font-size: 48px;
+  }
+
+  .mainContent {
+    top: 270px;
+
+    width: calc(100% - 80px);
+    height: auto;
+  }
+
+  .vanWrapper,
+  .experienceCard {
+    width: calc(50% - 15px);
+    height: 400px;
+  }
+
+  .experienceCard {
+    margin-left: 30px;
+  }
+
+  .experienceItem {
+    height: 100px;
+
+    padding: 0 28px;
+  }
+
+  .withBorder::after {
+    left: 28px;
+    right: 28px;
+  }
+
+  .experienceContent {
+    width: calc(100% - 46px);
+  }
+
+  .experienceDescription {
+    width: 100%;
+
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .bannerWrapper {
+    height: auto;
+  }
+
+  .banner {
+    height: auto;
+
+    min-height: 0;
+
+    padding: 60px 20px;
+
+    box-sizing: border-box;
+  }
+
+  .wrapperImage {
+    object-fit: cover;
+  }
+
+  .content {
+    height: auto;
+  }
+
+  .headingWrapper {
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    width: 100%;
+
+    transform: none;
+  }
+
+  .eyebrow {
+    width: auto;
+    height: auto;
+
+    font-size: 13px;
+  }
+
+  .heading {
+    width: 100%;
+    height: auto;
+
+    font-size: 40px;
+    line-height: 108%;
+  }
+
+  .mainContent {
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    width: 100%;
+    height: auto;
+
+    transform: none;
+
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vanWrapper {
+    width: 100%;
+    height: 340px;
+
+    border-radius: 20px;
+  }
+
+  .experienceCard {
+    width: 100%;
+    height: auto;
+
+    margin: 20px 0 0;
+
+    border-radius: 20px;
+  }
+
+  .experienceItem {
+    min-height: 105px;
+    height: auto;
+
+    padding: 24px;
+  }
+
+  .withBorder::after {
+    left: 24px;
+    right: 24px;
+  }
+
+  .iconWrapper {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+  }
+
+  .experienceIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .experienceContent {
+    width: calc(100% - 46px);
+  }
+
+  .experienceTitle {
+    width: 100%;
+    height: auto;
+
+    font-size: 21px;
+  }
+
+  .experienceDescription {
+    width: 100%;
+    height: auto;
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    white-space: normal;
+    line-height: 120%;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .banner {
+    padding: 48px 16px;
+  }
+
+  .heading {
+    font-size: 34px;
+  }
+
+  .mainContent {
+    margin-top: 36px;
+  }
+
+  .vanWrapper {
+    height: 280px;
+
+    border-radius: 18px;
+  }
+
+  .experienceCard {
+    border-radius: 18px;
+  }
+
+  .experienceItem {
+    min-height: 100px;
+
+    padding: 20px;
+  }
+
+  .withBorder::after {
+    left: 20px;
+    right: 20px;
+  }
+
+  .experienceTitle {
+    font-size: 19px;
+  }
+
+  .experienceDescription {
+    font-size: 10px;
+  }
+}

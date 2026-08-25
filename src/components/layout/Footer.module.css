@@ -1,0 +1,753 @@
+/* =========================================
+   FOOTER
+   FIGMA:
+   Width: 1440px
+   Height: 1039px
+   Top: 4260px
+========================================= */
+
+.footer {
+  width: 100%;
+  height: 900px;
+
+  /* 48px gap from previous section */
+  margin: 100px 0 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   FOOTER WRAPPER
+   SAME SIZE AS BANNER
+   FIGMA:
+   Width: 1440px
+   Height: 1039px
+========================================= */
+
+.footerWrapper {
+  position: relative;
+
+  width: 100%;
+  height:900px;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   FOOTER BANNER
+   FIGMA:
+   Width: 1440px
+   Height: 1039px
+========================================= */
+
+.footerBanner {
+  position: relative;
+
+  width: 100%;
+  height: 900px;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   FOOTER BANNER IMAGE
+========================================= */
+
+.footerBannerImage {
+  position: absolute !important;
+
+  inset: 0;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: cover;
+
+  z-index: 1;
+}
+
+
+/* =========================================
+   FOOTER WRAPPER IMAGE
+   SAME SIZE AS BANNER
+========================================= */
+
+.footerWrapperImage {
+  position: absolute !important;
+
+  inset: 0;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: cover;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   FOOTER CONTENT
+========================================= */
+
+.footerContent {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  z-index: 3;
+}
+
+
+/* =========================================
+   MAIN PAGE
+   FIGMA:
+   Width: 89px
+   Height: 31px
+   Top: 4588px
+   Left: 128px
+   Font: Outfit
+   Weight: 500
+   Size: 20px
+   Line height: 31px
+   Letter spacing: -3%
+========================================= */
+
+.mainPage {
+  position: absolute;
+
+  top: 300px;
+  left: 128px;
+
+  width: 89px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   COLUMN TITLE
+   FIGMA:
+   Width: 89px
+   Height: 31px
+========================================= */
+
+.columnTitle {
+  width: auto;
+  height: 31px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 31px;
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   FOOTER LINKS
+   FIGMA:
+   Width: 42px
+   Height: 24px
+   Font: Outfit
+   Weight: 300
+   Size: 16px
+   Line height: 24px
+   Letter spacing: -2%
+========================================= */
+
+.footerLinks {
+  width: auto;
+
+  margin-top: 4px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+
+  box-sizing: border-box;
+}
+
+
+.footerLinks a {
+  width: max-content;
+  height: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   CENTER CONTENT
+========================================= */
+
+.centerContent {
+  position: absolute;
+
+  top: 300px;
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   FOOTER H2
+   FIGMA:
+   Width: 549px
+   Height: 120px
+   Top: 4588px
+   Left: 446px
+
+   Font: Outfit
+   Weight: 400
+   Size: 56px
+   Line height: 108%
+   Letter spacing: -3%
+   Alignment: Center
+========================================= */
+
+.footerHeading {
+  width: 549px;
+  height: 120px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 108%;
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   BEGIN YOUR JOURNEY BUTTON
+   FIGMA:
+   Width: 228px
+   Height: 48px
+   Top: 4748px
+   Left: 606px
+   Radius: 32px
+========================================= */
+
+.journeyButton {
+  width: 228px;
+  height: 48px;
+
+  margin-top: 40px;
+  padding: 0 4px 0 30px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 32px;
+
+  background: #ffffff;
+
+  color: #303030;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   BUTTON TEXT
+   FIGMA:
+   Width: 128px
+   Height: 19px
+   Top: 14px
+   Left: 30px
+
+   Font: Outfit
+   Weight: 400
+   Size: 16px
+   Line height: 120%
+   Letter spacing: -3%
+========================================= */
+
+.journeyText {
+  width: 128px;
+  height: 19px;
+
+  display: flex;
+  align-items: center;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+
+  color: #303030;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   BUTTON CIRCLE
+   FIGMA:
+   Width: 40px
+   Height: 40px
+   Top: 4px
+   Left: 183.5px
+   Radius: 20px
+   Padding: 8px
+   Gap: 10px
+========================================= */
+
+.journeyCircle {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 20px;
+
+  background: #4d5038;
+}
+
+
+/* =========================================
+   BUTTON ARROW
+   FIGMA:
+   Width: 13.5px
+   Height: 13.5px
+========================================= */
+
+.journeyIcon {
+  width: 20px !important;
+  height: 20px !important;
+
+  min-width: 20px;
+  min-height: 20px;
+
+  flex-shrink: 0;
+
+  stroke-width: 1.6;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   SOCIAL MEDIA
+========================================= */
+
+.socialMedia {
+  position: absolute;
+
+  top: 300px;
+  right: 128px;
+
+  width: 106px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   SOCIAL LINKS
+========================================= */
+
+.socialLinks {
+  width: 71px;
+
+  margin-top: 4px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+
+  box-sizing: border-box;
+}
+
+
+.socialLinks a {
+  width: 71px;
+  height: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   COPYRIGHT
+   FIGMA:
+   Width: 288px
+   Height: 24px
+   Top: 4915px
+   Left: 128px
+========================================= */
+
+.copyright {
+  position: absolute;
+
+  top: 600px;
+  left: 128px;
+
+  width: 288px;
+  height: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   LEGAL LINKS
+========================================= */
+
+.legalLinks {
+  position: absolute;
+
+  top: 600px;
+  right: 128px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+
+  box-sizing: border-box;
+}
+
+
+.legalLinks a {
+  height: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   BRAND NAME
+   FIGMA:
+   Width: 1198px
+   Height: 65px
+   Top: 5107px
+   Left: 115px
+
+   Font: Inter
+   Weight: 500
+   Size: 150px
+   Line height: 65px
+   Letter spacing: 1%
+========================================= */
+
+.brandName {
+  position: absolute;
+
+  top: 800px;
+  left: 115px;
+
+  width: 1198px;
+  height: 65px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 150px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 65px;
+  letter-spacing: 0.01em;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  white-space: nowrap;
+
+  box-sizing: border-box;
+  margin-bottom:60px;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.journeyButton {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+
+.journeyButton:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .footer {
+    height: auto;
+  }
+
+  .footerWrapper {
+    height: 900px;
+  }
+
+  .footerBanner {
+    height: 900px;
+  }
+
+  .footerHeading {
+    width: auto;
+    height: auto;
+
+    font-size: 46px;
+  }
+
+  .mainPage {
+    left: 64px;
+  }
+
+  .socialMedia {
+    right: 64px;
+  }
+
+  .copyright {
+    left: 64px;
+  }
+
+  .legalLinks {
+    right: 64px;
+  }
+
+  .brandName {
+    left: 64px;
+
+    width: calc(100% - 128px);
+
+    font-size: 100px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .footerWrapper,
+  .footerBanner {
+    height: 850px;
+  }
+
+  .centerContent {
+    top: 220px;
+  }
+
+  .footerHeading {
+    width: calc(100% - 40px);
+    height: auto;
+
+    font-size: 40px;
+  }
+
+  .mainPage {
+    top: 470px;
+    left: 20px;
+  }
+
+  .socialMedia {
+    top: 470px;
+    right: 20px;
+  }
+
+  .copyright {
+    top: 680px;
+    left: 20px;
+  }
+
+  .legalLinks {
+    top: 680px;
+    right: 20px;
+  }
+
+  .brandName {
+    top: 760px;
+    left: 20px;
+
+    width: calc(100% - 40px);
+    height: 50px;
+
+    font-size: 56px;
+    line-height: 50px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .footerWrapper,
+  .footerBanner {
+    height: 820px;
+  }
+
+  .centerContent {
+    top: 180px;
+  }
+
+  .footerHeading {
+    width: calc(100% - 32px);
+
+    font-size: 34px;
+  }
+
+  .journeyButton {
+    width: 228px;
+  }
+
+  .mainPage {
+    top: 430px;
+    left: 16px;
+  }
+
+  .socialMedia {
+    top: 430px;
+    right: 16px;
+  }
+
+  .copyright {
+    top: 650px;
+    left: 16px;
+
+    width: auto;
+  }
+
+  .legalLinks {
+    top: 690px;
+    left: 16px;
+    right: auto;
+  }
+
+  .brandName {
+    top: 750px;
+    left: 16px;
+
+    width: calc(100% - 32px);
+
+    font-size: 42px;
+    line-height: 50px;
+  }
+}
