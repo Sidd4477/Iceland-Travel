@@ -1,17 +1,22 @@
 import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import FAQ from "@/components/about/FAQ";
+import TravelExperiences from "@/components/about/TravelExperiences";
 import WhyChooseUs from "@/components/about/WhyChooseUs";
-import PopularDestinations from "@/components/home/PopularDestinations";
+
+import styles from "../page.module.css";
 
 export default function AboutUsPage() {
   return (
-    <>
-      <AboutHero />
-          <AboutStory />
-          <WhyChooseUs />
-          <PopularDestinations/>
-          <FAQ />
-    </>
+    <main className={styles.aboutPage}>
+      <div className={styles.heroStoryWrapper}>
+        <AboutHero />
+        <AboutStory />
+      </div>
+
+      <WhyChooseUs />
+      <TravelExperiences />
+      <FAQ />
+    </main>
   );
 }

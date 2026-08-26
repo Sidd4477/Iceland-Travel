@@ -83,14 +83,14 @@ const MobileMenu = ({
             Gallery
           </Link>
 
-          {/* About Us */}
-          {/* <Link
+          About Us
+          <Link
             href="/about-us"
             className={styles.navLink}
             onClick={onClose}
           >
             About Us
-          </Link> */}
+          </Link>
 
           <Link
             href="/contact"
