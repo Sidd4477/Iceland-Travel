@@ -1,0 +1,276 @@
+.hero {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  height: 686px;
+
+  overflow: hidden;
+
+  border-radius: 0 0 28px 28px;
+
+  isolation: isolate;
+
+  background: #111;
+
+  z-index: 1;
+}
+
+/* =========================
+   BACKGROUND VIDEO
+========================= */
+
+.heroVideo {
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center center;
+
+  display: block;
+
+  pointer-events: none;
+}
+
+/* =========================
+   VIDEO OVERLAY
+========================= */
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.02) 35%,
+      rgba(0, 0, 0, 0.14) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.heroContent {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 283px;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+}
+
+/* =========================
+   MAIN HEADING
+========================= */
+
+.heading {
+  width: 100%;
+  max-width: 785px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 64px;
+  font-weight: 500;
+  font-style: normal;
+
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+
+  text-wrap: balance;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description {
+  width: 100%;
+  max-width: 622px;
+
+  margin: 18px 0 0;
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.95);
+
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+
+  text-wrap: balance;
+}
+
+/* =========================
+   LARGE DESKTOP
+========================= */
+
+@media (min-width: 1600px) {
+  .hero {
+    height: 720px;
+  }
+
+  .heroContent {
+    padding-top: 295px;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+  .hero {
+    height: 620px;
+
+    border-radius: 0 0 24px 24px;
+  }
+
+  .heroContent {
+    padding-top: 260px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .heading {
+    max-width: 700px;
+    font-size: 52px;
+  }
+
+  .description {
+    max-width: 560px;
+
+    margin-top: 16px;
+
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .hero {
+    height: 560px;
+    min-height: 560px;
+
+    border-radius: 0 0 20px 20px;
+  }
+
+  .heroVideo {
+    object-position: center center;
+  }
+
+  .heroContent {
+    padding-top: 230px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .heading {
+    max-width: 100%;
+
+    font-size: 42px;
+
+    line-height: 1.08;
+
+    letter-spacing: -0.035em;
+  }
+
+  .description {
+    max-width: 90%;
+
+    margin-top: 10px;
+
+    font-size: 15px;
+
+    line-height: 1.25;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .hero {
+    height: 520px;
+    min-height: 520px;
+  }
+
+  .heroContent {
+    padding-top: 220px;
+
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .heading {
+    font-size: 34px;
+    line-height: 1.08;
+  }
+
+  .description {
+    max-width: 95%;
+
+    margin-top: 8px;
+
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroVideo {
+    display: none;
+  }
+
+  .hero {
+    background: #111;
+  }
+}

@@ -53,7 +53,7 @@ const PopularPackages = () => {
       ========================================= */}
       <div className={styles.sectionHeader}>
         <div className={styles.headingWrapper}>
-          <p className={styles.eyebrow}>Popular road routes in Iceland</p>
+          <p className={styles.eyebrow}>Handcrafted Tour Packages</p>
 
           <h2 className={styles.title}>Our Packages</h2>
         </div>

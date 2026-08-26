@@ -1,0 +1,223 @@
+/* =========================================
+   DESTINATION SECTION
+========================================= */
+
+.section {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  padding: 68px 0 110px;
+
+  border-radius: 28px 28px 0 0;
+
+  margin-top: -162px;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.container {
+  width: 100%;
+
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 0 48px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.sectionHeader {
+  width: 100%;
+
+  margin-bottom: 28px;
+}
+
+
+/* =========================================
+   EYEBROW
+========================================= */
+
+.eyebrow {
+  display: block;
+
+  margin: 0 0 6px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.heading {
+  margin: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.02em;
+
+  color: #222222;
+}
+
+
+/* =========================================
+   DESTINATION GRID
+========================================= */
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  width: 100%;
+}
+
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+  .section {
+    margin-top: -24px;
+
+    padding: 36px 0 72px;
+
+    border-radius: 24px 24px 0 0;
+  }
+
+  .container {
+    padding: 0 32px;
+  }
+
+  .heading {
+    font-size: 36px;
+  }
+
+  .eyebrow {
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: -20px;
+
+    padding: 32px 0 60px;
+
+    border-radius: 20px 20px 0 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 22px;
+  }
+
+  .eyebrow {
+    font-size: 15px;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .section {
+    margin-top: -16px;
+
+    padding: 28px 0 52px;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+  }
+
+  .heading {
+    font-size: 30px;
+  }
+}

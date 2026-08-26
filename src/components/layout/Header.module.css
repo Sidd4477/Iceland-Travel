@@ -2,27 +2,32 @@
   position: fixed;
 
   top: 56px;
+
   left: 50%;
 
   width: 251px;
+
   height: 56px;
 
   box-sizing: border-box;
 
   transform: translateX(-50%);
 
-  z-index: 1000;
+  z-index: 9999;
 
   border: 1px solid rgba(255, 255, 255, 0.35);
+
   border-radius: 12px;
 
   background: rgba(255, 255, 255, 0.18);
 
   backdrop-filter: blur(10px);
+
   -webkit-backdrop-filter: blur(10px);
 
   box-shadow:
     0 4px 18px rgba(0, 0, 0, 0.08),
+
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
   overflow: hidden;
@@ -32,9 +37,11 @@
   position: relative;
 
   width: 100%;
+
   height: 100%;
 
   display: flex;
+
   align-items: center;
 
   padding: 0;
@@ -49,14 +56,17 @@
   position: absolute;
 
   left: 7px;
+
   top: 50%;
 
   width: 205px;
+
   height: 46px;
 
   transform: translateY(-50%);
 
   display: flex;
+
   align-items: center;
 
   flex-shrink: 0;
@@ -66,11 +76,13 @@
 
 .logo {
   width: 205px;
+
   height: 46px;
 
   display: block;
 
   object-fit: contain;
+
   object-position: left center;
 }
 
@@ -83,17 +95,21 @@
   position: absolute;
 
   right: 18px;
+
   top: 50%;
 
   width: 40px;
+
   height: 32px;
 
   padding: 0;
+
   margin: 0;
 
   transform: translateY(-50%);
 
   border: 0;
+
   outline: none;
 
   background: transparent;
@@ -101,6 +117,8 @@
   cursor: pointer;
 
   flex-shrink: 0;
+
+  z-index: 2;
 }
 
 
@@ -112,9 +130,11 @@
   position: absolute;
 
   width: 33px;
+
   height: 2px;
 
   margin: 0;
+
   padding: 0;
 
   border-radius: 999px;
@@ -122,6 +142,18 @@
   background: #ffffff;
 
   left: 50%;
+
+  /*
+    Keep the original white hamburger.
+    text-shadow creates visibility on
+    light/white sections without changing
+    the original size or position.
+  */
+
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.55);
+
+  z-index: 3;
 }
 
 

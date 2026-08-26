@@ -1,0 +1,534 @@
+/* =========================================
+   PARISIENNE FONT
+========================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Parisienne&display=swap");
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.section {
+  position: relative;
+
+  width: 100%;
+  margin-top: -90px;
+
+  /* Reduced bottom space */
+  padding: 0 48px 40px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow: visible;
+}
+
+
+/* =========================================
+   BANNER
+   FIGMA:
+   Width: 1344px
+   Height: 524px
+   Radius: 24px
+========================================= */
+
+.banner {
+  position: relative;
+
+  width: 100%;
+  max-width: 1344px;
+
+  height: 524px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  background: #1f2929;
+}
+
+
+/* =========================================
+   BANNER IMAGE
+========================================= */
+
+.bannerImage {
+  position: absolute !important;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  z-index: 0;
+}
+
+
+/* =========================================
+   DARK OVERLAY
+========================================= */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.24) 35%,
+      rgba(0, 0, 0, 0.04) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding-left: 57px;
+  padding-top: 89px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+
+/* =========================================
+   MAIN HEADING
+   FIGMA:
+   Width: 432px
+   Height: 120px
+   Font: Outfit
+   Weight: 500
+   Size: 56px
+   Line-height: 108%
+   Letter-spacing: -2%
+========================================= */
+
+.heading {
+  width: 432px;
+  height: 120px;
+
+  margin: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 56px;
+  font-weight: 500;
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   SCRIPT TEXT
+   FIGMA:
+   Width: 329px
+   Height: 60px
+   Font: Parisienne
+   Weight: 400
+   Size: 56px
+   Line-height: 108%
+   Letter-spacing: -2%
+========================================= */
+
+.scriptText {
+  width: 329px;
+  height: 60px;
+
+  margin: 16px 0 0;
+
+  font-family: "Parisienne", cursive;
+
+  font-size: 56px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   BUTTON
+   FIGMA:
+   Width: 228px
+   Height: 48px
+   Radius: 32px
+========================================= */
+
+.button {
+  width: 228px;
+  height: 48px;
+
+  margin-top: 40px;
+
+  padding: 4px 4px 4px 23px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  border-radius: 32px;
+
+  background: #ffffff;
+
+  text-decoration: none;
+
+  color: #292929;
+
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   BUTTON TEXT
+   FIGMA:
+   Width: 144px
+   Height: 19px
+   Font: Outfit
+   Weight: 400
+   Size: 16px
+========================================= */
+
+.buttonText {
+  width: 144px;
+  height: 19px;
+
+  display: flex;
+  align-items: center;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   BUTTON CIRCLE
+   FIGMA:
+   Width: 40px
+   Height: 40px
+   Radius: 20px
+========================================= */
+
+.buttonCircle {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border-radius: 50%;
+
+  background: #4d5038;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   BUTTON ARROW
+   FIGMA:
+   24px × 24px
+========================================= */
+
+.arrow {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 22px;
+  font-weight: 300;
+
+  line-height: 1;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+  .section {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 40px;
+  }
+
+  .banner {
+    height: 500px;
+  }
+
+  .content {
+    padding-left: 48px;
+    padding-top: 82px;
+  }
+
+  .heading {
+    font-size: 52px;
+  }
+
+  .scriptText {
+    font-size: 52px;
+  }
+}
+
+
+/* =========================================
+   TABLET SMALL
+========================================= */
+
+@media (max-width: 900px) {
+  .section {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 40px;
+  }
+
+  .banner {
+    height: 460px;
+
+    border-radius: 22px;
+  }
+
+  .content {
+    padding-left: 40px;
+    padding-top: 72px;
+  }
+
+  .heading {
+    width: 390px;
+    height: auto;
+
+    font-size: 48px;
+  }
+
+  .scriptText {
+    width: 329px;
+    height: 60px;
+
+    margin-top: 12px;
+
+    font-size: 48px;
+  }
+
+  .button {
+    margin-top: 32px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .section {
+    padding: 0 20px 40px;
+  }
+
+  .banner {
+    height: 430px;
+
+    border-radius: 20px;
+  }
+
+  .bannerImage {
+    object-position: center;
+  }
+
+  .content {
+    padding-left: 28px;
+    padding-top: 64px;
+  }
+
+  .heading {
+    width: 300px;
+    height: auto;
+
+    font-size: 40px;
+
+    line-height: 108%;
+  }
+
+  .scriptText {
+    width: 290px;
+    height: auto;
+
+    margin-top: 12px;
+
+    font-size: 42px;
+
+    line-height: 108%;
+
+    white-space: normal;
+  }
+
+  .button {
+    width: 210px;
+    height: 46px;
+
+    margin-top: 28px;
+
+    padding-left: 18px;
+  }
+
+  .buttonText {
+    width: auto;
+
+    font-size: 15px;
+  }
+
+  .buttonCircle {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .section {
+    padding: 0 16px 30px;
+  }
+
+  .banner {
+    height: 390px;
+
+    border-radius: 18px;
+  }
+
+  .content {
+    padding-left: 24px;
+    padding-top: 54px;
+  }
+
+  .heading {
+    width: 270px;
+
+    font-size: 36px;
+  }
+
+  .scriptText {
+    width: 270px;
+
+    font-size: 38px;
+  }
+
+  .button {
+    width: 200px;
+    height: 44px;
+
+    margin-top: 24px;
+
+    padding-left: 16px;
+  }
+
+  .buttonText {
+    font-size: 14px;
+  }
+
+  .buttonCircle {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+  }
+
+  .arrow {
+    font-size: 20px;
+  }
+}
