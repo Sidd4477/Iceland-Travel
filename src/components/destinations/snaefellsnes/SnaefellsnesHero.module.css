@@ -1,0 +1,173 @@
+/* ========================================= 
+   HERO 
+========================================= */ 
+ 
+.hero { 
+  position: relative; 
+ 
+  width: calc(100% - 48px); 
+  height: 682px; 
+ 
+  margin: 24px; 
+ 
+  overflow: hidden; 
+ 
+  border-radius: 24px; 
+ 
+  box-sizing: border-box; 
+} 
+ 
+ 
+/* ========================================= 
+   HERO IMAGE 
+========================================= */ 
+ 
+.heroImage { 
+  object-fit: cover; 
+  object-position: center; 
+} 
+ 
+ 
+/* ========================================= 
+   OVERLAY 
+========================================= */ 
+ 
+.overlay { 
+  position: absolute; 
+ 
+  inset: 0; 
+ 
+  z-index: 1; 
+ 
+  background: linear-gradient( 
+    to bottom, 
+    rgba(0, 0, 0, 0.03) 0%, 
+    rgba(0, 0, 0, 0) 55%, 
+    rgba(0, 0, 0, 0.18) 100% 
+  ); 
+} 
+ 
+ 
+/* ========================================= 
+   HEADER 
+========================================= */ 
+ 
+.headerWrapper { 
+  position: absolute; 
+ 
+  top: 0; 
+  left: 0; 
+ 
+  width: 100%; 
+ 
+  z-index: 3; 
+} 
+ 
+ 
+/* ========================================= 
+   TITLE 
+========================================= */ 
+ 
+.titleWrapper { 
+  position: absolute; 
+ 
+  left: 40px; 
+  bottom: 84px; 
+ 
+  z-index: 3; 
+} 
+ 
+ 
+.title { 
+  margin: 0; 
+ 
+  font-family: "Outfit", sans-serif; 
+ 
+  font-size: 64px; 
+  font-weight: 600; 
+ 
+  line-height: 108%; 
+ 
+  letter-spacing: -0.02em; 
+ 
+  color: #ffffff; 
+ 
+  text-align: center; 
+ 
+  white-space: nowrap; 
+} 
+ 
+ 
+/* ========================================= 
+   TABLET 
+========================================= */ 
+ 
+@media (max-width: 1024px) { 
+  .hero { 
+    width: calc(100% - 40px); 
+    height: 560px; 
+ 
+    margin: 20px; 
+ 
+    border-radius: 22px; 
+  } 
+ 
+  .titleWrapper { 
+    left: 32px; 
+    bottom: 22px; 
+  } 
+ 
+  .title { 
+    font-size: 52px; 
+  } 
+} 
+ 
+ 
+/* ========================================= 
+   MOBILE 
+========================================= */ 
+ 
+@media (max-width: 768px) { 
+  .hero { 
+    width: calc(100% - 32px); 
+    height: 520px; 
+ 
+    margin: 16px; 
+ 
+    border-radius: 18px; 
+  } 
+ 
+  .titleWrapper { 
+    left: 24px; 
+    bottom: 20px; 
+  } 
+ 
+  .title { 
+    font-size: 42px; 
+  } 
+} 
+ 
+ 
+/* ========================================= 
+   SMALL MOBILE 
+========================================= */ 
+ 
+@media (max-width: 480px) { 
+  .hero { 
+    width: calc(100% - 24px); 
+    height: 440px; 
+ 
+    margin: 12px; 
+ 
+    border-radius: 16px; 
+  } 
+ 
+  .titleWrapper { 
+    left: 20px; 
+    bottom: 18px; 
+  } 
+ 
+  .title { 
+    font-size: 34px; 
+  } 
+}
