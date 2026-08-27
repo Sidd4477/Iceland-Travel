@@ -4,31 +4,37 @@ import styles from "./DestinationGrid.module.css";
 const destinations = [
   {
     name: "Northern Lights",
+    slug: "northern-lights",
     image: "/images/destinations/Aurora%20Borealis.png",
     price: "$100",
   },
   {
     name: "Snaefellsnes",
+    slug: "snaefellsnes",
     image: "/images/destinations/Snaefellsnes.png",
     price: "$100",
   },
   {
     name: "Golden Circle",
+    slug: "golden-circle",
     image: "/images/destinations/Golden%20circle.png",
     price: "$100",
   },
   {
     name: "Landmannalaugar",
+    slug: "landmannalaugar",
     image: "/images/destinations/Landmannalaugar.png",
     price: "$100",
   },
   {
     name: "South Coast",
+    slug: "south-coast",
     image: "/images/destinations/Explore%20the%20Wild%20Side%20of%20Iceland.png",
     price: "$100",
   },
   {
     name: "Thorsmork",
+    slug: "thorsmork",
     image: "/images/destinations/Thorsmörk.png",
     price: "$100",
   },
@@ -53,6 +59,7 @@ const DestinationGrid = () => {
             <DestinationCard
               key={destination.name}
               name={destination.name}
+              slug={destination.slug}
               image={destination.image}
               price={destination.price}
             />
