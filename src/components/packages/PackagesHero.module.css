@@ -1,0 +1,331 @@
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 601px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  background: #111;
+
+  border-radius: 0 0 28px 28px;
+
+  isolation: isolate;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   HERO IMAGE WRAPPER
+   Important:
+   This wrapper is required because Next/Image with fill
+   needs a parent having position absolute/relative/fixed.
+========================================================= */
+
+.heroImageWrapper {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -3;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.heroImage {
+  object-fit: cover;
+
+  object-position: center center;
+
+  display: block;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.02) 35%,
+      rgba(0, 0, 0, 0.14) 100%
+    );
+
+  z-index: -2;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.headerWrapper {
+  position: absolute;
+
+  top: 32px;
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  z-index: 10;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.heroContent {
+  position: absolute;
+
+  top: 267px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+  display: block;
+
+  margin: 0 0 11px;
+
+  color: #ffffff;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.title {
+  width: 756px;
+  max-width: calc(100% - 40px);
+
+  margin: 0;
+  padding: 0;
+
+  color: #ffffff;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 64px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  text-wrap: balance;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+  .hero {
+    height: 601px;
+  }
+
+  .heroContent {
+    top: 267px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  .hero {
+    height: 620px;
+
+    border-radius: 0 0 24px 24px;
+  }
+
+  .headerWrapper {
+    top: 28px;
+  }
+
+  .heroContent {
+    top: 250px;
+  }
+
+  .eyebrow {
+    font-size: 16px;
+  }
+
+  .title {
+    width: 680px;
+
+    font-size: 52px;
+
+    line-height: 108%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    height: 560px;
+
+    min-height: 560px;
+
+    border-radius: 0 0 20px 20px;
+  }
+
+  .headerWrapper {
+    top: 20px;
+  }
+
+  .heroContent {
+    top: 225px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    box-sizing: border-box;
+  }
+
+  .eyebrow {
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    line-height: 120%;
+  }
+
+  .title {
+    width: 100%;
+
+    max-width: 90%;
+
+    font-size: 42px;
+
+    line-height: 108%;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .hero {
+    height: 520px;
+
+    min-height: 520px;
+  }
+
+  .headerWrapper {
+    top: 16px;
+  }
+
+  .heroContent {
+    top: 205px;
+
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+  }
+
+  .title {
+    max-width: 92%;
+
+    font-size: 34px;
+
+    line-height: 108%;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImage {
+    transition: none;
+  }
+}

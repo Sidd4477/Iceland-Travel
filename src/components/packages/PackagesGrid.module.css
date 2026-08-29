@@ -1,0 +1,103 @@
+/* =========================================================
+   PACKAGES SECTION
+========================================================= */
+
+.section {
+  position: relative;
+
+  z-index: 10;
+
+  width: calc(100% + 2px);
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  padding: 80px 48px 60px;
+
+  margin-top: -77px;
+  margin-left: -1px;
+
+  border-radius: 48px 48px 0 0;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   PACKAGES GRID
+========================================================= */
+
+.grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 20px;
+  row-gap: 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  .section {
+    margin-top: -50px;
+
+    padding: 70px 32px 100px;
+
+    border-radius: 40px 40px 0 0;
+  }
+
+  .grid {
+    column-gap: 18px;
+
+    row-gap: 18px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: -40px;
+
+    padding: 55px 20px 80px;
+
+    border-radius: 32px 32px 0 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .section {
+    margin-top: -32px;
+
+    padding: 45px 16px 70px;
+
+    border-radius: 28px 28px 0 0;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+}

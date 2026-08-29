@@ -1,0 +1,1146 @@
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+.section {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-top: -252px;
+
+  padding: 80px 48px 32px;
+
+  background: #f8f8f8;
+
+  border-radius: 48px 48px 0 0;
+}
+
+
+/* =========================================================
+   MAIN CONTACT WRAPPER
+========================================================= */
+
+.contactWrapper {
+  width: 100%;
+
+  max-width: 1344px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 656px 656px;
+
+  column-gap: 32px;
+
+  align-items: start;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.leftContent {
+  width: 656px;
+
+  min-width: 0;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.heading {
+  width: 519px;
+
+  max-width: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.03em;
+
+  color: #1f1f1f;
+}
+
+
+/* =========================================================
+   LEFT DESCRIPTION
+========================================================= */
+
+.description {
+  width: 100%;
+
+  max-width: 623px;
+
+  margin: 12px 0 0;
+
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.03em;
+
+  color: #3f3f3f;
+}
+
+
+/* =========================================================
+   JOURNEY IMAGE
+========================================================= */
+
+.journeyImageWrapper {
+  position: relative;
+
+  width: 623px;
+
+  height: 285px;
+
+  margin-top: 34px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  box-sizing: border-box;
+}
+
+
+.journeyImage {
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+}
+
+
+/* =========================================================
+   REACH OUT TITLE
+========================================================= */
+
+.reachTitle {
+  width: 100%;
+
+  margin: 10px 0 0;
+
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.03em;
+
+  color: #1f1f1f;
+}
+
+
+/* =========================================================
+   CONTACT CARDS
+========================================================= */
+
+.contactCards {
+  width: 623px;
+
+  max-width: 100%;
+
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 193px);
+
+  column-gap: 22px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTACT CARD
+========================================================= */
+
+.contactCard {
+  width: 193px;
+
+  height: 126px;
+
+  box-sizing: border-box;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.iconCircle {
+  width: 40px;
+
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+
+.icon {
+  width: 40px;
+
+  height: 40px;
+
+  display: block;
+
+  color: #171717;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
+
+.cardText {
+  width: 100%;
+
+  margin-top: 12px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  color: #3f3f3f;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   FORM CARD
+   656 x 597
+========================================================= */
+
+.formCard {
+  width: 656px;
+
+  height: 597px;
+
+  box-sizing: border-box;
+
+  padding: 32px 24px;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FORM INNER
+   608px WIDTH
+========================================================= */
+
+.form {
+  width: 608px;
+
+  max-width: 100%;
+
+  height: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+/* =========================================================
+   FORM HEADING
+========================================================= */
+
+.formHeading {
+  width: 92px;
+
+  height: 24px;
+
+  flex: 0 0 24px;
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 22px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.03em;
+
+  color: #1f1f1f;
+
+  text-align: left;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FULL NAME INPUT
+   608 x 66
+========================================================= */
+
+.fullNameInput {
+  display: block;
+
+  width: 608px;
+
+  max-width: 100%;
+
+  height: 66px;
+
+  min-height: 66px;
+
+  box-sizing: border-box;
+
+  margin: 16px 0 0;
+
+  padding: 0 16px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 12px;
+
+  background: #f7f7f7;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  color: #1f1f1f;
+}
+
+
+.fullNameInput:focus {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   CONTACT + EMAIL
+========================================================= */
+
+.twoColumnFields {
+  width: 608px;
+
+  max-width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 294px 294px;
+
+  column-gap: 20px;
+
+  box-sizing: border-box;
+
+  margin-top: 14px;
+}
+
+
+/* =========================================================
+   INDIVIDUAL FIELD
+========================================================= */
+
+.formField {
+  width: 294px;
+
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   FIELD LABEL
+========================================================= */
+
+.fieldLabel {
+  display: block;
+
+  width: 100%;
+
+  height: 24px;
+
+  margin: 0 0 8px;
+
+  padding: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.03em;
+
+  color: #1f1f1f;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTACT / EMAIL INPUT
+   294 x 66
+========================================================= */
+
+.input {
+  display: block;
+
+  width: 294px;
+
+  max-width: 100%;
+
+  height: 66px;
+
+  min-height: 66px;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0 16px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 12px;
+
+  background: #f7f7f7;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  color: #1f1f1f;
+}
+
+
+.input:focus {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   DESCRIPTION FIELD
+========================================================= */
+
+.descriptionField {
+  width: 608px;
+
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin-top: 14px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   608 x 145
+========================================================= */
+
+.textarea {
+  display: block;
+
+  width: 608px;
+
+  max-width: 100%;
+
+  height: 145px;
+
+  min-height: 145px;
+
+  max-height: 145px;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 14px 16px;
+
+  resize: none;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 12px;
+
+  background: #f7f7f7;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  line-height: 1.2;
+
+  color: #1f1f1f;
+}
+
+
+.textarea:focus {
+  outline: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   608 x 48
+========================================================= */
+
+.submitButton {
+  width: 608px;
+
+  max-width: 100%;
+
+  height: 48px;
+
+  min-height: 48px;
+
+  box-sizing: border-box;
+
+  margin: 32px 0 0;
+
+  padding: 9px 106px;
+
+  border: none;
+
+  border-radius: 32px;
+
+  background: #ededed;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  cursor: pointer;
+
+  font-family: "Outfit", sans-serif;
+
+  color: #555555;
+}
+
+
+.submitButton span {
+  display: block;
+
+  width: 95px;
+
+  height: 17px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 1.08;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+.submitButton:hover {
+  background: #e8e8e8;
+}
+
+
+/* =========================================================
+   DESKTOP RESPONSIVE FIX
+   IMPORTANT:
+   1440px Figma layout remains unchanged.
+   Below 1440px the two columns shrink safely.
+========================================================= */
+
+@media (max-width: 1439px) and (min-width: 1201px) {
+
+  .contactWrapper {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    column-gap: 32px;
+
+    max-width: 100%;
+  }
+
+
+  .leftContent,
+  .formCard {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+
+  .journeyImageWrapper {
+    width: 100%;
+  }
+
+
+  .contactCards {
+    width: 100%;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    column-gap: 16px;
+  }
+
+
+  .contactCard {
+    width: 100%;
+  }
+
+
+  .form {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+
+  .fullNameInput,
+  .textarea,
+  .submitButton {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+
+  .twoColumnFields {
+    width: 100%;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    column-gap: 20px;
+  }
+
+
+  .formField,
+  .input {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+
+  .descriptionField {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .section {
+    padding-left: 32px;
+
+    padding-right: 32px;
+  }
+
+
+  .contactWrapper {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    column-gap: 24px;
+  }
+
+
+  .leftContent,
+  .formCard {
+    width: 100%;
+  }
+
+
+  .heading {
+    width: 100%;
+
+    font-size: 36px;
+  }
+
+
+  .journeyImageWrapper {
+    width: 100%;
+  }
+
+
+  .contactCards {
+    width: 100%;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    column-gap: 12px;
+  }
+
+
+  .contactCard {
+    width: 100%;
+  }
+
+
+  .form {
+    width: 100%;
+  }
+
+
+  .fullNameInput,
+  .textarea,
+  .submitButton {
+    width: 100%;
+  }
+
+
+  .twoColumnFields {
+    width: 100%;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    column-gap: 16px;
+  }
+
+
+  .formField,
+  .input {
+    width: 100%;
+  }
+
+
+  .descriptionField {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .section {
+    margin-top: -40px;
+
+    padding: 48px 24px 28px;
+
+    border-radius: 32px 32px 0 0;
+  }
+
+
+  .contactWrapper {
+    grid-template-columns: 1fr;
+
+    row-gap: 28px;
+  }
+
+
+  .leftContent,
+  .formCard {
+    width: 100%;
+  }
+
+
+  .formCard {
+    height: auto;
+
+    min-height: 597px;
+  }
+
+
+  .form {
+    width: 100%;
+  }
+
+
+  .heading {
+    font-size: 36px;
+  }
+
+
+  .journeyImageWrapper {
+    width: 100%;
+
+    height: 285px;
+  }
+
+
+  .contactCards {
+    width: 100%;
+  }
+
+
+  .fullNameInput,
+  .textarea,
+  .submitButton {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .section {
+    margin-top: -24px;
+
+    padding: 36px 20px 24px;
+
+    border-radius: 24px 24px 0 0;
+  }
+
+
+  .contactWrapper {
+    row-gap: 24px;
+  }
+
+
+  .heading {
+    font-size: 32px;
+
+    line-height: 0.95;
+  }
+
+
+  .description {
+    margin-top: 12px;
+
+    font-size: 14px;
+  }
+
+
+  .journeyImageWrapper {
+    height: 240px;
+
+    margin-top: 28px;
+
+    border-radius: 20px;
+  }
+
+
+  .contactCards {
+    grid-template-columns: 1fr;
+
+    row-gap: 12px;
+
+    margin-top: 12px;
+  }
+
+
+  .contactCard {
+    width: 100%;
+
+    height: 110px;
+  }
+
+
+  .formCard {
+    width: 100%;
+
+    min-height: 0;
+
+    height: auto;
+
+    padding: 24px 20px;
+
+    border-radius: 20px;
+  }
+
+
+  .form {
+    width: 100%;
+  }
+
+
+  .formHeading {
+    font-size: 20px;
+  }
+
+
+  .fullNameInput {
+    width: 100%;
+
+    height: 58px;
+
+    min-height: 58px;
+  }
+
+
+  .twoColumnFields {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    row-gap: 14px;
+
+    margin-top: 14px;
+  }
+
+
+  .formField {
+    width: 100%;
+  }
+
+
+  .input {
+    width: 100%;
+
+    height: 58px;
+
+    min-height: 58px;
+  }
+
+
+  .descriptionField {
+    width: 100%;
+  }
+
+
+  .textarea {
+    width: 100%;
+
+    height: 130px;
+
+    min-height: 130px;
+
+    max-height: 130px;
+  }
+
+
+  .submitButton {
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding-left: 40px;
+
+    padding-right: 40px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .section {
+    padding-left: 16px;
+
+    padding-right: 16px;
+
+    padding-top: 32px;
+  }
+
+
+  .heading {
+    font-size: 29px;
+  }
+
+
+  .journeyImageWrapper {
+    height: 210px;
+
+    border-radius: 18px;
+  }
+
+
+  .formCard {
+    padding: 22px 16px;
+  }
+
+
+  .formHeading {
+    font-size: 18px;
+  }
+
+
+  .input,
+  .fullNameInput {
+    height: 54px;
+
+    min-height: 54px;
+
+    border-radius: 10px;
+  }
+
+
+  .textarea {
+    height: 120px;
+
+    min-height: 120px;
+
+    max-height: 120px;
+
+    border-radius: 10px;
+  }
+
+
+  .submitButton {
+    width: 100%;
+
+    padding-left: 20px;
+
+    padding-right: 20px;
+  }
+}
