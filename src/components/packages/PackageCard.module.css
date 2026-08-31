@@ -208,9 +208,57 @@
 
   text-align: center;
 
+  text-decoration: none !important;
+
+  text-decoration-line: none !important;
+
+  text-decoration-style: none !important;
+
+  text-decoration-color: transparent !important;
+
+  -webkit-text-decoration: none !important;
+
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
+}
+
+
+/* =========================================================
+   BUTTON TEXT
+========================================================= */
+
+.detailsButton span {
+  text-decoration: none !important;
+
+  text-decoration-line: none !important;
+
+  text-decoration-style: none !important;
+
+  text-decoration-color: transparent !important;
+
+  -webkit-text-decoration: none !important;
+}
+
+
+/* =========================================================
+   BUTTON STATES
+========================================================= */
+
+.detailsButton:link,
+.detailsButton:visited,
+.detailsButton:hover,
+.detailsButton:active,
+.detailsButton:focus {
+  text-decoration: none !important;
+
+  text-decoration-line: none !important;
+
+  text-decoration-style: none !important;
+
+  text-decoration-color: transparent !important;
+
+  -webkit-text-decoration: none !important;
 }
 
 
@@ -353,6 +401,8 @@
     padding: 8px 30px;
 
     font-size: 14px;
+
+    text-decoration: none !important;
   }
 }
 
@@ -386,5 +436,7 @@
 
   .detailsButton {
     margin-top: 18px;
+
+    text-decoration: none !important;
   }
 }

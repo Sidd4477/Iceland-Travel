@@ -72,7 +72,7 @@ const MobileMenu = ({
           </span>
 
           <a
-            href="mailto:germannsson.ehf@gmail.com"
+            href="mailto:ghermannsson.ehf@gmail.com"
             className={styles.email}
           >
             ghermannsson.ehf@gmail.com

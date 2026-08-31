@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   CalendarDays,
   CircleDollarSign,
@@ -24,6 +25,70 @@ const PackageCard = ({
   duration,
   image,
 }: PackageCardProps) => {
+  /*
+   * =====================================================
+   * PACKAGE DETAIL ROUTES
+   * =====================================================
+   */
+
+  const packageRoutes: Record<string, string> = {
+    "Blue Lagoon Spa Experience":
+      "/destinations/blue-lagoon",
+
+    "Glacier Hike Adventure":
+      "/destinations/glacier-hike",
+
+    "Golden Circle":
+      "/destinations/golden-circle",
+
+    "Golden Circle Package":
+      "/destinations/golden-circle",
+
+    "Northern Lights":
+      "/destinations/northern-lights",
+
+    "Northern Lights Package":
+      "/destinations/northern-lights",
+
+    Snaefellsnes:
+      "/destinations/snaefellsnes",
+
+    "Snaefellsnes Package":
+      "/destinations/snaefellsnes",
+
+    Landmannalaugar:
+      "/destinations/landmannalaugar",
+
+    "Landmannalaugar Package":
+      "/destinations/landmannalaugar",
+
+    "South Coast":
+      "/destinations/south-coast",
+
+    "South Coast Package":
+      "/destinations/south-coast",
+
+    Thorsmork:
+      "/destinations/thorsmork",
+
+    "Thorsmork Package":
+      "/destinations/thorsmork",
+  };
+
+  /*
+   * =====================================================
+   * FALLBACK ROUTE
+   * =====================================================
+   */
+
+  const packageRoute =
+    packageRoutes[title] ||
+    `/destinations/${title
+      .toLowerCase()
+      .replace(/package/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")}`;
+
   return (
     <article className={styles.card}>
       {/* =====================================================
@@ -42,7 +107,9 @@ const PackageCard = ({
       {/* =====================================================
           PACKAGE TITLE
       ===================================================== */}
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>
+        {title}
+      </h2>
 
       {/* =====================================================
           PACKAGE META
@@ -80,14 +147,16 @@ const PackageCard = ({
       </div>
 
       {/* =====================================================
-          VIEW DETAILS BUTTON
+          VIEW PACKAGE DETAILS
       ===================================================== */}
-      <button
-        type="button"
+      <Link
+        href={packageRoute}
         className={styles.detailsButton}
       >
-        <span>View Package Details</span>
-      </button>
+        <span>
+          View Package Details
+        </span>
+      </Link>
     </article>
   );
 };

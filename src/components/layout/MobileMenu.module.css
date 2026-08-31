@@ -18,7 +18,10 @@
 
   display: flex;
 
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(90, 90, 90, 0.28);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 
   animation: overlayIn 0.25s ease forwards;
 }
@@ -36,7 +39,10 @@
   width: 100%;
   height: 100%;
 
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(90, 90, 90, 0.32);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
   pointer-events: auto;
 }
@@ -59,11 +65,17 @@
 
   overflow: hidden;
 
-  background: #6f6d6d;
+  /* Glass Effect */
+  background: rgba(70, 75, 75, 0.72);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
   isolation: isolate;
 
-  animation: menuIn 0.3s ease forwards;
+  animation: menuIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 
@@ -242,7 +254,7 @@
 .navigation {
   position: absolute;
 
-  top:90px;
+  top: 90px;
   left: 1085px;
 
   width: 202px;
@@ -382,11 +394,11 @@
 
 @keyframes menuIn {
   from {
-    transform: translateX(100%);
+    transform: translateY(100%);
   }
 
   to {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
