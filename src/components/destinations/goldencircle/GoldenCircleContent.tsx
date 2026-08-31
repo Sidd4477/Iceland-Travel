@@ -1,47 +1,187 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
 import {
-  ArrowUpRight,
-  CarFront,
-  CircleAlert,
+  CalendarDays,
   Clock3,
-  Tag,
+  Minus,
+  Plus,
+  CarFront,
   Users,
+  Tag,
+  CircleAlert,
+  ChevronDown,
 } from "lucide-react";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./GoldenCircleContent.module.css";
 
 const GoldenCircleContent = () => {
+  const router = useRouter();
+
+  /* =====================================================
+     PACKAGE PRICE
+  ===================================================== */
+
+  const pricePerPerson = 100;
+
+  /* =====================================================
+     DATE + TIME
+  ===================================================== */
+
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  /* =====================================================
+     GUEST DROPDOWN
+  ===================================================== */
+
+  const [isGuestOpen, setIsGuestOpen] = useState(false);
+
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+  /* =====================================================
+     CALCULATED VALUES
+  ===================================================== */
+
+  const totalGuests = adults + children;
+  const totalPrice = totalGuests * pricePerPerson;
+
+  /* =====================================================
+     ADULT COUNTER
+  ===================================================== */
+
+  const decreaseAdults = () => {
+    setAdults((current) => Math.max(1, current - 1));
+  };
+
+  const increaseAdults = () => {
+    setAdults((current) => current + 1);
+  };
+
+  /* =====================================================
+     CHILDREN COUNTER
+  ===================================================== */
+
+  const decreaseChildren = () => {
+    setChildren((current) => Math.max(0, current - 1));
+  };
+
+  const increaseChildren = () => {
+    setChildren((current) => current + 1);
+  };
+
+  /* =====================================================
+     BOOK NOW
+     PASS ALL SELECTED VALUES TO BOOKING PAGE
+  ===================================================== */
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams();
+
+    /* ===================================================
+       DESTINATION
+    =================================================== */
+
+    params.set(
+      "destination",
+      "Golden Circle"
+    );
+
+    /* ===================================================
+       PRICE PER PERSON
+    =================================================== */
+
+    params.set(
+      "price",
+      String(pricePerPerson)
+    );
+
+    /* ===================================================
+       SELECTED DATE
+    =================================================== */
+
+    params.set(
+      "date",
+      date
+    );
+
+    /* ===================================================
+       SELECTED TIME
+    =================================================== */
+
+    params.set(
+      "time",
+      time
+    );
+
+    /* ===================================================
+       GUEST DETAILS
+    =================================================== */
+
+    params.set(
+      "adults",
+      String(adults)
+    );
+
+    params.set(
+      "children",
+      String(children)
+    );
+
+    params.set(
+      "guests",
+      String(totalGuests)
+    );
+
+    /* ===================================================
+       TOTAL PRICE
+    =================================================== */
+
+    params.set(
+      "total",
+      String(totalPrice)
+    );
+
+    /* ===================================================
+       BOOKING IMAGE
+
+       File:
+       public/images/booking/golden-circle.png
+    =================================================== */
+
+    params.set(
+      "image",
+      "/images/booking/golden-circle.png"
+    );
+
+    /* ===================================================
+       REDIRECT TO BOOKING PAGE
+    =================================================== */
+
+    router.push(
+      `/booking?${params.toString()}`
+    );
+  };
+
   return (
     <section className={styles.section}>
-
-      {/* =========================================
-          STICKY AREA
-
-          Trip Details card will remain sticky
-          through Trip Highlights and will stop
-          exactly before the highlight images.
-      ========================================= */}
-
       <div className={styles.stickyArea}>
-
-        {/* =========================================
-            MAIN LAYOUT
-        ========================================= */}
-
         <div className={styles.layout}>
 
-          {/* =========================================
-              LEFT CONTENT
-          ========================================= */}
+          {/* =================================================
+              MAIN CONTENT
+          ================================================= */}
 
           <div className={styles.mainContent}>
-
-            {/* =========================================
-                TRIP OVERVIEW
-            ========================================= */}
-
             <div className={styles.overview}>
+
+              {/* =================================================
+                  TRIP OVERVIEW TITLE
+              ================================================= */}
 
               <h2 className={styles.sectionTitle}>
                 <span className={styles.titleIcon}>
@@ -51,91 +191,362 @@ const GoldenCircleContent = () => {
                 Trip Overview
               </h2>
 
+              {/* =================================================
+                  DESCRIPTION
+              ================================================= */}
 
               <div className={styles.description}>
-
                 <p>
-                  The Golden Circle is one of Iceland’s most iconic routes,
-                  bringing together some of the country’s most spectacular
-                  natural wonders in a single journey. From powerful
-                  waterfalls and steaming geothermal landscapes to dramatic
-                  volcanic scenery, the route offers an unforgettable glimpse
-                  into Iceland’s raw and diverse beauty.
+                  This Golden Circle journey introduces you
+                  to Iceland’s breathtaking night skies,
+                  dramatic landscapes, and the magical
+                  glow of the aurora. Designed for an
+                  unforgettable experience, the trip
+                  combines scenic surroundings with the
+                  thrill of witnessing nature’s most
+                  spectacular light show.
                 </p>
 
-
                 <p>
-                  Discover the mighty Gullfoss waterfall, witness the powerful
-                  eruptions of Geysir’s geothermal area, and explore
-                  Þingvellir National Park, where history, geology, and
-                  breathtaking landscapes come together. The Golden Circle is a
-                  perfect introduction to Iceland—compact, captivating, and
-                  filled with remarkable experiences at every stop.
+                  Discover the mighty Gullfoss waterfall,
+                  witness the powerful eruptions of Geysir’s
+                  geothermal area, and explore Þingvellir
+                  National Park, where history, geology,
+                  and breathtaking landscapes come together.
+                  The Golden Circle is a perfect introduction
+                  to Iceland—compact, captivating, and filled
+                  with remarkable experiences at every stop.
                 </p>
-
               </div>
 
-
-              {/* =========================================
-                  OVERVIEW IMAGE
-              ========================================= */}
+              {/* =================================================
+                  MAIN IMAGE
+              ================================================= */}
 
               <div className={styles.overviewImage}>
-
                 <Image
                   src="/images/destinations/golden-circle/Golden Circle Trip 1.png"
-                  alt="Golden Circle Iceland"
+                  alt="Golden Circle experience"
                   fill
+                  priority
                   className={styles.image}
                   sizes="(max-width: 900px) 100vw, 876px"
                 />
+              </div>
+
+            </div>
+          </div>
+
+          {/* =================================================
+              BOOKING CARD
+          ================================================= */}
+
+          <aside className={styles.detailsCard}>
+
+            {/* =================================================
+                PRICE
+            ================================================= */}
+
+            <div className={styles.bookingPrice}>
+              <strong>
+                ${pricePerPerson}
+              </strong>
+
+              <span>
+                /per person
+              </span>
+            </div>
+
+            <div className={styles.divider} />
+
+            {/* =================================================
+                WHERE
+            ================================================= */}
+
+            <div className={styles.formField}>
+
+              <label className={styles.fieldLabel}>
+                Where
+              </label>
+
+              <div className={styles.whereInput}>
+                <span>
+                  Golden Circle
+                </span>
+              </div>
+
+            </div>
+
+            {/* =================================================
+                DATE + TIME
+            ================================================= */}
+
+            <div className={styles.dateTimeRow}>
+
+              {/* =================================================
+                  DATE
+              ================================================= */}
+
+              <div className={styles.halfField}>
+
+                <label className={styles.fieldLabel}>
+                  Date
+                </label>
+
+                <div className={styles.inputWrapper}>
+
+                  <input
+                    type="date"
+                    value={date}
+                    onChange={(event) =>
+                      setDate(event.target.value)
+                    }
+                    className={styles.input}
+                    aria-label="Date"
+                  />
+
+                  <CalendarDays
+                    className={styles.inputIcon}
+                  />
+
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  TIME
+              ================================================= */}
+
+              <div className={styles.halfField}>
+
+                <label className={styles.fieldLabel}>
+                  Time
+                </label>
+
+                <div className={styles.inputWrapper}>
+
+                  <input
+                    type="time"
+                    value={time}
+                    onChange={(event) =>
+                      setTime(event.target.value)
+                    }
+                    className={styles.input}
+                    aria-label="Time"
+                  />
+
+                  <Clock3
+                    className={styles.inputIcon}
+                  />
+
+                </div>
 
               </div>
 
             </div>
 
-          </div>
+            {/* =================================================
+                GUEST
+            ================================================= */}
 
+            <div className={styles.formField}>
 
-          {/* =========================================
+              <label className={styles.fieldLabel}>
+                Guest
+              </label>
+
+              <button
+                type="button"
+                className={styles.guestInput}
+                onClick={() =>
+                  setIsGuestOpen(
+                    (current) => !current
+                  )
+                }
+                aria-expanded={isGuestOpen}
+                aria-haspopup="dialog"
+              >
+
+                <span>
+                  {totalGuests}
+                </span>
+
+                <ChevronDown
+                  className={
+                    isGuestOpen
+                      ? styles.chevronOpen
+                      : undefined
+                  }
+                />
+
+              </button>
+
+              {/* =================================================
+                  GUEST DROPDOWN
+              ================================================= */}
+
+              {isGuestOpen && (
+                <div className={styles.guestDropdown}>
+
+                  {/* =================================================
+                      ADULTS
+                  ================================================= */}
+
+                  <div className={styles.guestRow}>
+
+                    <div className={styles.guestInfo}>
+
+                      <span className={styles.guestTitle}>
+                        Adults
+                      </span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 13 or above
+                      </span>
+
+                    </div>
+
+                    <div className={styles.counter}>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseAdults}
+                        aria-label="Decrease adults"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+                      <span className={styles.counterValue}>
+                        {adults}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseAdults}
+                        aria-label="Increase adults"
+                      >
+                        <Plus size={12} />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                  {/* =================================================
+                      CHILDREN
+                  ================================================= */}
+
+                  <div className={styles.guestRow}>
+
+                    <div className={styles.guestInfo}>
+
+                      <span className={styles.guestTitle}>
+                        Children
+                      </span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 2-12
+                      </span>
+
+                    </div>
+
+                    <div className={styles.counter}>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseChildren}
+                        aria-label="Decrease children"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+                      <span className={styles.counterValue}>
+                        {children}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseChildren}
+                        aria-label="Increase children"
+                      >
+                        <Plus size={12} />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              )}
+
+            </div>
+
+            {/* =================================================
+                TOTAL
+            ================================================= */}
+
+            <div className={styles.totalRow}>
+
+              <span>
+                Total
+              </span>
+
+              <strong>
+                ${totalPrice.toFixed(2)}
+              </strong>
+
+            </div>
+
+            {/* =================================================
+                BOOK NOW
+            ================================================= */}
+
+            <button
+              type="button"
+              className={styles.bookButton}
+              onClick={handleBookNow}
+            >
+              <span>
+                Book Now
+              </span>
+            </button>
+
+          </aside>
+
+          {/* =================================================
               TRIP DETAILS
+          ================================================= */}
 
-              IMPORTANT:
-              This is now a direct child of
-              stickyArea, so it is NOT restricted
-              to the Overview/Image height.
-          ========================================= */}
+          <div className={styles.tripDetails}>
 
-          <aside className={styles.detailsCard}>
+            <h2 className={styles.tripDetailsTitle}>
 
-            <h3 className={styles.detailsTitle}>
+              <span className={styles.tripDetailsIcon}>
+                ✨
+              </span>
+
               Trip Details
-            </h3>
 
+            </h2>
 
-            <div className={styles.divider} />
+            <div className={styles.tripDetailsList}>
 
-
-            <div className={styles.detailList}>
-
-              {/* =========================================
+              {/* =================================================
                   DURATION
-              ========================================= */}
+              ================================================= */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
-
-                  <Clock3
-                    className={styles.detailIcon}
-                  />
-
+                <div className={styles.tripDetailsLabel}>
+                  <Clock3 />
                   <span>
                     Duration:
                   </span>
-
                 </div>
-
 
                 <strong>
                   1 Complete Day
@@ -143,25 +554,18 @@ const GoldenCircleContent = () => {
 
               </div>
 
-
-              {/* =========================================
+              {/* =================================================
                   VISITS
-              ========================================= */}
+              ================================================= */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
-
-                  <CarFront
-                    className={styles.detailIcon}
-                  />
-
+                <div className={styles.tripDetailsLabel}>
+                  <CarFront />
                   <span>
                     Visits:
                   </span>
-
                 </div>
-
 
                 <strong>
                   All Days
@@ -169,25 +573,18 @@ const GoldenCircleContent = () => {
 
               </div>
 
-
-              {/* =========================================
+              {/* =================================================
                   GROUP SIZE
-              ========================================= */}
+              ================================================= */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
-
-                  <Users
-                    className={styles.detailIcon}
-                  />
-
+                <div className={styles.tripDetailsLabel}>
+                  <Users />
                   <span>
                     Group Size:
                   </span>
-
                 </div>
-
 
                 <strong>
                   10 Travellers
@@ -195,182 +592,67 @@ const GoldenCircleContent = () => {
 
               </div>
 
-
-              {/* =========================================
+              {/* =================================================
                   PRICE
-              ========================================= */}
+              ================================================= */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
-
-                  <Tag
-                    className={styles.detailIcon}
-                  />
-
+                <div className={styles.tripDetailsLabel}>
+                  <Tag />
                   <span>
                     Price:
                   </span>
-
                 </div>
 
-
                 <strong>
-
                   $100
-
                   <small>
                     /per person
                   </small>
-
                 </strong>
 
               </div>
 
-
-              {/* =========================================
+              {/* =================================================
                   INCLUSIONS
-              ========================================= */}
+              ================================================= */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
-
-                  <CircleAlert
-                    className={styles.detailIcon}
-                  />
-
+                <div className={styles.tripDetailsLabel}>
+                  <CircleAlert />
                   <span>
                     Inclusions:
                   </span>
-
                 </div>
 
-
                 <strong>
-
                   Transportation, Tours,
-
                   <br />
-
                   Professional Guides
-
                 </strong>
 
               </div>
-
-            </div>
-
-
-            {/* =========================================
-                BOOK BUTTON
-            ========================================= */}
-
-            <button
-              type="button"
-              className={styles.bookButton}
-            >
-
-              <span>
-                Book a Trip Now
-              </span>
-
-
-              <span className={styles.arrowCircle}>
-
-                <ArrowUpRight
-                  size={24}
-                  strokeWidth={1.7}
-                />
-
-              </span>
-
-            </button>
-
-          </aside>
-
-
-          {/* =========================================
-              TRIP HIGHLIGHTS
-
-              This is part of the sticky boundary.
-              Therefore the Details Card remains
-              sticky while this content is scrolling.
-          ========================================= */}
-
-          <div className={styles.highlights}>
-
-            <h2 className={styles.sectionTitle}>
-
-              <span className={styles.titleIcon}>
-                ✨
-              </span>
-
-              Trip Highlights
-
-            </h2>
-
-
-            <div className={styles.highlightList}>
-
-              <p>
-                💦 Witness the powerful beauty of Gullfoss Waterfall
-              </p>
-
-
-              <p>
-                🌋 Experience the erupting geothermal activity at Geysir
-              </p>
-
-
-              <p>
-                🏔️ Explore Iceland’s volcanic landscapes and geothermal wonders
-              </p>
-
-
-              <p>
-                🏞️ Discover the dramatic scenery of Þingvellir National Park
-              </p>
-
-
-              <p>
-                📸 Enjoy breathtaking viewpoints and memorable photo stops
-              </p>
-
-
-              <p>
-                🍀 Experience Iceland’s nature, history, and unique geological heritage
-              </p>
 
             </div>
 
           </div>
 
         </div>
-
       </div>
 
-
-      {/* =========================================
+      {/* =====================================================
           HIGHLIGHT GALLERY
-
-          Details Card sticky boundary ends here.
-
-          Existing margin-top: 48px is preserved.
-          Card will NOT overlap these images.
-      ========================================= */}
+      ===================================================== */}
 
       <div className={styles.highlightGallery}>
-
-        {/* =========================================
-            TRIP 2
-        ========================================= */}
 
         <div className={styles.highlightImage}>
 
           <Image
             src="/images/destinations/golden-circle/Golden Circle Trip 2.png"
-            alt="Golden Circle Iceland landscape"
+            alt="Golden Circle over Iceland mountains"
             fill
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
@@ -378,16 +660,11 @@ const GoldenCircleContent = () => {
 
         </div>
 
-
-        {/* =========================================
-            TRIP 3
-        ========================================= */}
-
         <div className={styles.highlightImage}>
 
           <Image
             src="/images/destinations/golden-circle/Golden Circle Trip 3.png"
-            alt="Golden Circle Iceland geothermal landscape"
+            alt="Golden Circle over Iceland landscape"
             fill
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
@@ -400,6 +677,5 @@ const GoldenCircleContent = () => {
     </section>
   );
 };
-
 
 export default GoldenCircleContent;

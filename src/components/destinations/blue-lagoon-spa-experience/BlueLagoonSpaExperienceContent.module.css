@@ -1,5 +1,5 @@
-/* ========================================= 
-   SECTION 
+/* =========================================
+   SECTION
 ========================================= */
 
 .section {
@@ -15,8 +15,6 @@
 
 /* =========================================
    STICKY AREA
-   DETAILS CARD WILL STAY STICKY
-   UNTIL HIGHLIGHT IMAGES START
 ========================================= */
 
 .stickyArea {
@@ -33,11 +31,6 @@
 
   align-items: start;
 
-  /*
-    Existing 48px gap before highlight images
-    is kept visually, while the sticky boundary
-    is extended exactly to the image start.
-  */
   padding-bottom: 48px;
 
   margin-bottom: -48px;
@@ -46,26 +39,23 @@
 }
 
 
-/* ========================================= 
-   MAIN LAYOUT 
+/* =========================================
+   MAIN LAYOUT
 ========================================= */
 
 .layout {
   width: 100%;
+
   max-width: 1344px;
 
   margin: 0 auto;
 
-  /*
-    Layout wrapper no longer creates the
-    sticky boundary for the details card.
-  */
   display: contents;
 }
 
 
-/* ========================================= 
-   LEFT CONTENT 
+/* =========================================
+   LEFT CONTENT
 ========================================= */
 
 .mainContent {
@@ -76,8 +66,8 @@
 }
 
 
-/* ========================================= 
-   SECTION TITLE 
+/* =========================================
+   SECTION TITLE
 ========================================= */
 
 .sectionTitle {
@@ -106,7 +96,6 @@
   display: inline-flex;
 
   align-items: center;
-
   justify-content: center;
 
   font-size: 29px;
@@ -115,8 +104,8 @@
 }
 
 
-/* ========================================= 
-   TRIP OVERVIEW 
+/* =========================================
+   TRIP OVERVIEW
 ========================================= */
 
 .overview {
@@ -154,8 +143,8 @@
 }
 
 
-/* ========================================= 
-   OVERVIEW IMAGE 
+/* =========================================
+   OVERVIEW IMAGE
 ========================================= */
 
 .overviewImage {
@@ -180,45 +169,721 @@
 }
 
 
-/* ========================================= 
-   TRIP HIGHLIGHTS 
+/* =========================================
+   TRIP DETAILS
 ========================================= */
 
-.highlights {
+.tripDetails {
   width: 100%;
 
   margin-top: 48px;
 
   grid-column: 1;
+
   grid-row: 2;
 }
 
 
-.highlightList {
-  width: 100%;
+.tripDetailsTitle {
+  width: 197px;
 
-  margin-top: 16px;
+  height: 35px;
+
+  margin: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  gap: 8px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 32px;
+
+  font-weight: 500;
+
+  line-height: 108%;
+
+  letter-spacing: -0.02em;
+
+  color: #292929;
 }
 
 
-.highlightList p {
-  margin: 0;
+.tripDetailsIcon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 35px;
+
+  height: 35px;
+
+  flex-shrink: 0;
+
+  font-size: 29px;
+
+  line-height: 1;
+}
+
+
+.tripDetailsList {
+  width: 338px;
+
+  margin-top: 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+
+.tripDetailsRow {
+  width: 338px;
+
+  min-height: 22px;
+
+  display: grid;
+
+  grid-template-columns: auto minmax(0, 1fr);
+
+  column-gap: 12px;
+
+  align-items: start;
+}
+
+
+.tripDetailsLabel {
+  width: auto;
+
+  min-height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  box-sizing: border-box;
 
   font-family: "Outfit", sans-serif;
 
   font-size: 18px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.tripDetailsLabel svg {
+  width: 20px;
+
+  height: 20px;
+
+  flex-shrink: 0;
+
+  stroke-width: 1.5;
+}
+
+
+
+
+
+.tripDetailsRow strong {
+  display: block;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #343434;
+}
+
+
+.tripDetailsRow small {
+  margin-left: 2px;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  letter-spacing: -0.02em;
+
+  color: #555555;
+}
+
+
+/* =========================================
+   BOOKING FORM CARD
+========================================= */
+
+.detailsCard {
+  position: sticky;
+
+  top: 24px;
+
+  align-self: start;
+
+  width: 100%;
+
+  min-height: 457px;
+
+  padding: 28px 24px 30px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  border: 1px solid #eeeeee;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.07);
+
+  z-index: 5;
+
+  grid-column: 2;
+
+  grid-row: 1 / 3;
+}
+
+
+/* =========================================
+   BOOKING PRICE
+========================================= */
+
+.bookingPrice {
+  width: 100%;
+
+  height: 29px;
+
+  display: flex;
+
+  align-items: baseline;
+}
+
+
+.bookingPrice strong {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 24px;
+
+  font-weight: 600;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.bookingPrice span {
+  margin-left: 2px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
   font-weight: 300;
 
   line-height: 120%;
 
   letter-spacing: -0.03em;
 
-  color: #444444;
+  color: #555555;
 }
 
 
-/* ========================================= 
-   HIGHLIGHT GALLERY 
+/* =========================================
+   DIVIDER
+========================================= */
+
+.divider {
+  width: 100%;
+
+  height: 1px;
+
+  margin-top: 10px;
+
+  border-top: 1px dashed #d9d9d9;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   FORM FIELD
+========================================= */
+
+.formField {
+  width: 100%;
+
+  margin-top: 16px;
+}
+
+
+.fieldLabel {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   WHERE INPUT
+========================================= */
+
+.whereInput {
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.04);
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+/* =========================================
+   DATE + TIME
+========================================= */
+
+.dateTimeRow {
+  width: 100%;
+
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+}
+
+
+.halfField {
+  width: 100%;
+}
+
+
+.inputWrapper {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+}
+
+
+.input {
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 38px 0 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+.input:focus {
+  border-color: #d8d8d8;
+}
+
+
+.inputIcon {
+  position: absolute;
+
+  right: 10px;
+
+  top: 50%;
+
+  width: 16px;
+
+  height: 16px;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+
+  color: #555555;
+
+  stroke-width: 1.5;
+}
+
+
+/* =========================================
+   GUEST
+========================================= */
+
+.guestInput {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.04);
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+.guestInput svg {
+  width: 16px;
+
+  height: 16px;
+
+  color: #999999;
+
+  stroke-width: 1.5;
+}
+
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+
+/* =========================================
+   GUEST DROPDOWN
+========================================= */
+
+.guestDropdown {
+  position: absolute;
+
+  width: 364px;
+
+  min-height: 180px;
+
+  margin-top: 10px;
+
+  padding: 14px 24px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.12);
+
+  z-index: 20;
+}
+
+
+.guestRow {
+  width: 100%;
+
+  min-height: 68px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+.guestRow:last-child {
+  border-bottom: none;
+}
+
+
+.guestInfo {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.guestTitle {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.guestSubtitle {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #777777;
+}
+
+
+.counter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.counterButton {
+  width: 24px;
+
+  height: 24px;
+
+  padding: 6px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #f2f2f2;
+
+  color: #555555;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+
+.counterButton:last-child {
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+}
+
+
+.counterValue {
+  width: 12px;
+
+  text-align: center;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.totalRow {
+  width: 100%;
+
+  margin-top: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #343434;
+}
+
+
+.totalRow strong {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   BOOK BUTTON
+========================================= */
+
+.bookButton {
+  width: 100%;
+
+  height: 40px;
+
+  margin-top: 12px;
+
+  padding: 9px 106px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 32px;
+
+  background: #4d4d36;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  font-family: "Outfit", sans-serif;
+}
+
+
+.bookButton span {
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   HIGHLIGHT GALLERY
 ========================================= */
 
 .highlightGallery {
@@ -249,259 +914,8 @@
 }
 
 
-/* ========================================= 
-   TRIP DETAILS CARD 
-========================================= */
-
-.detailsCard {
-  position: sticky;
-
-  top: 24px;
-
-  align-self: start;
-
-  width: 100%;
-
-  min-height: 457px;
-
-  padding: 28px 24px 30px;
-
-  box-sizing: border-box;
-
-  background: #ffffff;
-
-  border-radius: 20px;
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.07);
-
-  z-index: 5;
-
-  /*
-    IMPORTANT:
-    Card is now a direct child of stickyArea,
-    not constrained by the Overview/Image layout.
-  */
-  grid-column: 2;
-
-  grid-row: 1 / 3;
-}
-
-
-/* ========================================= 
-   CARD HEADING 
-========================================= */
-
-.detailsTitle {
-  margin: 0;
-
-  font-family: "Outfit", sans-serif;
-
-  font-size: 24px;
-  font-weight: 500;
-
-  line-height: 108%;
-
-  letter-spacing: -0.02em;
-
-  color: #292929;
-}
-
-
-/* ========================================= 
-   DIVIDER 
-========================================= */
-
-.divider {
-  width: 100%;
-
-  height: 1px;
-
-  margin-top: 24px;
-
-  border-top: 1px dashed #d9d9d9;
-
-  box-sizing: border-box;
-}
-
-
-/* ========================================= 
-   DETAILS LIST 
-========================================= */
-
-.detailList {
-  width: 100%;
-
-  margin-top: 26px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 24px;
-}
-
-
-/* ========================================= 
-   DETAIL ROW 
-========================================= */
-
-.detailRow {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns: 164px minmax(0, 1fr);
-
-  column-gap: 0;
-
-  align-items: start;
-}
-
-
-/* ========================================= 
-   DETAIL LABEL 
-========================================= */
-
-.detailLabel {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  font-family: "Outfit", sans-serif;
-
-  font-size: 18px;
-  font-weight: 400;
-
-  line-height: 120%;
-
-  letter-spacing: -0.03em;
-
-  color: #4a4a4a;
-}
-
-
-.detailIcon {
-  width: 20px;
-  height: 20px;
-
-  flex-shrink: 0;
-
-  stroke-width: 1.5;
-
-  color: #999999;
-}
-
-
-/* ========================================= 
-   DETAIL VALUE 
-========================================= */
-
-.detailRow strong {
-  display: block;
-
-  font-family: "Outfit", sans-serif;
-
-  font-size: 18px;
-  font-weight: 600;
-
-  line-height: 120%;
-
-  letter-spacing: -0.03em;
-
-  color: #343434;
-}
-
-
-.detailRow small {
-  margin-left: 2px;
-
-  font-size: 13px;
-
-  font-weight: 400;
-
-  letter-spacing: -0.02em;
-
-  color: #555555;
-}
-
-
-/* ========================================= 
-   BOOK BUTTON 
-========================================= */
-
-.bookButton {
-  width: 224px;
-  height: 48px;
-
-  margin-top: 38px;
-
-  padding: 4px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  border: none;
-
-  border-radius: 32px;
-
-  background: #4d4d36;
-
-  color: #ffffff;
-
-  cursor: pointer;
-
-  box-sizing: border-box;
-
-  font-family: "Outfit", sans-serif;
-}
-
-
-.bookButton > span:first-child {
-  padding-left: 28px;
-
-  font-size: 16px;
-  font-weight: 400;
-
-  line-height: 120%;
-
-  letter-spacing: -0.03em;
-
-  white-space: nowrap;
-}
-
-
-/* ========================================= 
-   BUTTON ARROW CIRCLE 
-========================================= */
-
-.arrowCircle {
-  width: 40px;
-  height: 40px;
-
-  flex-shrink: 0;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #ffffff;
-
-  color: #343434;
-}
-
-
-/* ========================================= 
-   TABLET 
+/* =========================================
+   TABLET
 ========================================= */
 
 @media (max-width: 1200px) {
@@ -516,19 +930,23 @@
     column-gap: 36px;
   }
 
-  .detailRow {
-    grid-template-columns: 140px minmax(0, 1fr);
+  .tripDetailsRow {
+    width: 100%;
   }
 
-  .detailLabel,
-  .detailRow strong {
+  .tripDetailsLabel,
+  .tripDetailsRow strong {
     font-size: 16px;
+  }
+
+  .guestDropdown {
+    width: 100%;
   }
 }
 
 
-/* ========================================= 
-   TABLET / SMALL DESKTOP 
+/* =========================================
+   TABLET / SMALL DESKTOP
 ========================================= */
 
 @media (max-width: 900px) {
@@ -568,13 +986,15 @@
     min-height: auto;
 
     grid-column: auto;
+
     grid-row: auto;
   }
 
-  .highlights {
+  .tripDetails {
     order: 3;
 
     grid-column: auto;
+
     grid-row: auto;
   }
 
@@ -595,11 +1015,19 @@
   .highlightGallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .guestDropdown {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 8px;
+  }
 }
 
 
-/* ========================================= 
-   MOBILE 
+/* =========================================
+   MOBILE
 ========================================= */
 
 @media (max-width: 600px) {
@@ -615,8 +1043,7 @@
     font-size: 25px;
   }
 
-  .description p,
-  .highlightList p {
+  .description p {
     font-size: 16px;
   }
 
@@ -632,8 +1059,37 @@
     border-radius: 18px;
   }
 
-  .highlights {
+  .tripDetails {
     margin-top: 40px;
+  }
+
+  .tripDetailsTitle {
+    width: auto;
+
+    font-size: 28px;
+  }
+
+  .tripDetailsIcon {
+    width: 30px;
+
+    height: 30px;
+
+    font-size: 25px;
+  }
+
+  .tripDetailsList {
+    width: 100%;
+
+    gap: 12px;
+  }
+
+  .tripDetailsRow {
+    width: 100%;
+  }
+
+  .tripDetailsLabel,
+  .tripDetailsRow strong {
+    font-size: 15px;
   }
 
   .highlightGallery {
@@ -660,31 +1116,23 @@
     border-radius: 18px;
   }
 
-  .detailsTitle {
-    font-size: 22px;
+  .bookingPrice strong {
+    font-size: 24px;
   }
 
-  .detailList {
-    gap: 22px;
-  }
-
-  .detailRow {
-    grid-template-columns: 135px minmax(0, 1fr);
-  }
-
-  .detailLabel,
-  .detailRow strong {
-    font-size: 15px;
-  }
-
-  .detailIcon {
-    width: 18px;
-    height: 18px;
+  .dateTimeRow {
+    gap: 8px;
   }
 
   .bookButton {
-    width: 224px;
+    padding-left: 0;
 
-    margin-top: 32px;
+    padding-right: 0;
+  }
+
+  .guestDropdown {
+    padding-left: 16px;
+
+    padding-right: 16px;
   }
 }

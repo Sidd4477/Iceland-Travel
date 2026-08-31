@@ -1,33 +1,61 @@
+"use client";
+
 import Image from "next/image";
 
 import {
-  ArrowUpRight,
+  CalendarDays,
   CarFront,
+  ChevronDown,
   CircleAlert,
   Clock3,
+  Minus,
+  Plus,
   Tag,
   Users,
 } from "lucide-react";
 
+import { useState } from "react";
+
 import styles from "./SnaefellsnesContent.module.css";
 
 const SnaefellsnesContent = () => {
+  const pricePerPerson = 100;
+
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const [isGuestOpen, setIsGuestOpen] = useState(false);
+
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+  const totalGuests = adults + children;
+  const totalPrice = totalGuests * pricePerPerson;
+
+  const decreaseAdults = () => {
+    setAdults((current) => Math.max(1, current - 1));
+  };
+
+  const increaseAdults = () => {
+    setAdults((current) => current + 1);
+  };
+
+  const decreaseChildren = () => {
+    setChildren((current) => Math.max(0, current - 1));
+  };
+
+  const increaseChildren = () => {
+    setChildren((current) => current + 1);
+  };
+
   return (
     <section className={styles.section}>
 
       {/* =========================================
           STICKY AREA
-
-          Trip Details card will remain sticky
-          through Trip Highlights and will stop
-          exactly before the highlight images.
       ========================================= */}
 
       <div className={styles.stickyArea}>
-
-        {/* =========================================
-            MAIN LAYOUT
-        ========================================= */}
 
         <div className={styles.layout}>
 
@@ -36,10 +64,6 @@ const SnaefellsnesContent = () => {
           ========================================= */}
 
           <div className={styles.mainContent}>
-
-            {/* =========================================
-                TRIP OVERVIEW
-            ========================================= */}
 
             <div className={styles.overview}>
 
@@ -88,6 +112,7 @@ const SnaefellsnesContent = () => {
                   src="/images/destinations/snaefellsnes/Snaefellsnes%20Trip%201.png"
                   alt="Snaefellsnes Iceland landscape"
                   fill
+                  priority
                   className={styles.image}
                   sizes="(max-width: 900px) 100vw, 876px"
                 />
@@ -100,37 +125,324 @@ const SnaefellsnesContent = () => {
 
 
           {/* =========================================
-              TRIP DETAILS
-
-              IMPORTANT:
-              This is now a direct child of
-              stickyArea, so it is NOT restricted
-              to the Overview/Image height.
+              BOOKING FORM CARD
           ========================================= */}
 
           <aside className={styles.detailsCard}>
 
-            <h3 className={styles.detailsTitle}>
-              Trip Details
-            </h3>
+            {/* =========================================
+                PRICE
+            ========================================= */}
 
+            <div className={styles.bookingPrice}>
+
+              <strong>
+                ${pricePerPerson}
+              </strong>
+
+              <span>
+                /per person
+              </span>
+
+            </div>
+
+
+            {/* =========================================
+                DIVIDER
+            ========================================= */}
 
             <div className={styles.divider} />
 
 
-            <div className={styles.detailList}>
+            {/* =========================================
+                WHERE
+            ========================================= */}
 
-              {/* =========================================
-                  DURATION
-              ========================================= */}
+            <div className={styles.formField}>
 
-              <div className={styles.detailRow}>
+              <label className={styles.fieldLabel}>
+                Where
+              </label>
 
-                <div className={styles.detailLabel}>
+              <div className={styles.whereInput}>
+                <span>
+                  Snaefellsnes
+                </span>
+              </div>
+
+            </div>
+
+
+            {/* =========================================
+                DATE + TIME
+            ========================================= */}
+
+            <div className={styles.dateTimeRow}>
+
+              {/* DATE */}
+
+              <div className={styles.halfField}>
+
+                <label className={styles.fieldLabel}>
+                  Date
+                </label>
+
+                <div className={styles.inputWrapper}>
+
+                  <input
+                    type="date"
+                    value={date}
+                    onChange={(event) =>
+                      setDate(event.target.value)
+                    }
+                    className={styles.input}
+                    aria-label="Date"
+                  />
+
+                  <CalendarDays
+                    className={styles.inputIcon}
+                  />
+
+                </div>
+
+              </div>
+
+
+              {/* TIME */}
+
+              <div className={styles.halfField}>
+
+                <label className={styles.fieldLabel}>
+                  Time
+                </label>
+
+                <div className={styles.inputWrapper}>
+
+                  <input
+                    type="time"
+                    value={time}
+                    onChange={(event) =>
+                      setTime(event.target.value)
+                    }
+                    className={styles.input}
+                    aria-label="Time"
+                  />
 
                   <Clock3
-                    className={styles.detailIcon}
+                    className={styles.inputIcon}
                   />
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            {/* =========================================
+                GUEST
+            ========================================= */}
+
+            <div className={styles.formField}>
+
+              <label className={styles.fieldLabel}>
+                Guest
+              </label>
+
+              <button
+                type="button"
+                className={styles.guestInput}
+                onClick={() =>
+                  setIsGuestOpen((current) => !current)
+                }
+                aria-expanded={isGuestOpen}
+                aria-haspopup="dialog"
+              >
+
+                <span>
+                  {totalGuests}
+                </span>
+
+                <ChevronDown
+                  className={
+                    isGuestOpen
+                      ? styles.chevronOpen
+                      : undefined
+                  }
+                />
+
+              </button>
+
+
+              {/* =========================================
+                  GUEST DROPDOWN
+              ========================================= */}
+
+              {isGuestOpen && (
+
+                <div className={styles.guestDropdown}>
+
+                  {/* ADULTS */}
+
+                  <div className={styles.guestRow}>
+
+                    <div className={styles.guestInfo}>
+
+                      <span className={styles.guestTitle}>
+                        Adults
+                      </span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 13 or above
+                      </span>
+
+                    </div>
+
+
+                    <div className={styles.counter}>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseAdults}
+                        aria-label="Decrease adults"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+
+                      <span className={styles.counterValue}>
+                        {adults}
+                      </span>
+
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseAdults}
+                        aria-label="Increase adults"
+                      >
+                        <Plus size={12} />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                  {/* CHILDREN */}
+
+                  <div className={styles.guestRow}>
+
+                    <div className={styles.guestInfo}>
+
+                      <span className={styles.guestTitle}>
+                        Children
+                      </span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 2-12
+                      </span>
+
+                    </div>
+
+
+                    <div className={styles.counter}>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseChildren}
+                        aria-label="Decrease children"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+
+                      <span className={styles.counterValue}>
+                        {children}
+                      </span>
+
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseChildren}
+                        aria-label="Increase children"
+                      >
+                        <Plus size={12} />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              )}
+
+            </div>
+
+
+            {/* =========================================
+                TOTAL
+            ========================================= */}
+
+            <div className={styles.totalRow}>
+
+              <span>
+                Total
+              </span>
+
+              <strong>
+                ${totalPrice.toFixed(2)}
+              </strong>
+
+            </div>
+
+
+            {/* =========================================
+                BOOK NOW
+            ========================================= */}
+
+            <button
+              type="button"
+              className={styles.bookButton}
+            >
+              <span>
+                Book Now
+              </span>
+            </button>
+
+          </aside>
+
+
+          {/* =========================================
+              TRIP DETAILS
+          ========================================= */}
+
+          <div className={styles.tripDetails}>
+
+            <h2 className={styles.tripDetailsTitle}>
+
+              <span className={styles.tripDetailsIcon}>
+                ✨
+              </span>
+
+              Trip Details
+
+            </h2>
+
+
+            <div className={styles.tripDetailsList}>
+
+              {/* DURATION */}
+
+              <div className={styles.tripDetailsRow}>
+
+                <div className={styles.tripDetailsLabel}>
+
+                  <Clock3 />
 
                   <span>
                     Duration:
@@ -146,17 +458,13 @@ const SnaefellsnesContent = () => {
               </div>
 
 
-              {/* =========================================
-                  VISITS
-              ========================================= */}
+              {/* VISITS */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <CarFront
-                    className={styles.detailIcon}
-                  />
+                  <CarFront />
 
                   <span>
                     Visits:
@@ -172,17 +480,13 @@ const SnaefellsnesContent = () => {
               </div>
 
 
-              {/* =========================================
-                  GROUP SIZE
-              ========================================= */}
+              {/* GROUP SIZE */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <Users
-                    className={styles.detailIcon}
-                  />
+                  <Users />
 
                   <span>
                     Group Size:
@@ -198,17 +502,13 @@ const SnaefellsnesContent = () => {
               </div>
 
 
-              {/* =========================================
-                  PRICE
-              ========================================= */}
+              {/* PRICE */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <Tag
-                    className={styles.detailIcon}
-                  />
+                  <Tag />
 
                   <span>
                     Price:
@@ -217,30 +517,26 @@ const SnaefellsnesContent = () => {
                 </div>
 
 
-                <strong>
+                <strong className={styles.priceValue}>
 
                   $100
 
-                  <small>
+                  <span>
                     /per person
-                  </small>
+                  </span>
 
                 </strong>
 
               </div>
 
 
-              {/* =========================================
-                  INCLUSIONS
-              ========================================= */}
+              {/* INCLUSIONS */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <CircleAlert
-                    className={styles.detailIcon}
-                  />
+                  <CircleAlert />
 
                   <span>
                     Inclusions:
@@ -249,7 +545,7 @@ const SnaefellsnesContent = () => {
                 </div>
 
 
-                <strong>
+                <strong className={styles.inclusionsValue}>
 
                   Transportation, Tours,
 
@@ -263,89 +559,6 @@ const SnaefellsnesContent = () => {
 
             </div>
 
-
-            {/* =========================================
-                BOOK BUTTON
-            ========================================= */}
-
-            <button
-              type="button"
-              className={styles.bookButton}
-            >
-
-              <span>
-                Book a Trip Now
-              </span>
-
-
-              <span className={styles.arrowCircle}>
-
-                <ArrowUpRight
-                  size={24}
-                  strokeWidth={1.7}
-                />
-
-              </span>
-
-            </button>
-
-          </aside>
-
-
-          {/* =========================================
-              TRIP HIGHLIGHTS
-
-              This is part of the sticky boundary.
-              Therefore the Details Card remains
-              sticky while this content is scrolling.
-          ========================================= */}
-
-          <div className={styles.highlights}>
-
-            <h2 className={styles.sectionTitle}>
-
-              <span className={styles.titleIcon}>
-                ✨
-              </span>
-
-              Trip Highlights
-
-            </h2>
-
-
-            <div className={styles.highlightList}>
-
-              <p>
-                🏔️ Admire the iconic Kirkjufell Mountain
-              </p>
-
-
-              <p>
-                🌊 Explore dramatic cliffs and rugged Atlantic coastlines
-              </p>
-
-
-              <p>
-                🚶 Walk along the striking Djúpalónssandur black-sand beach
-              </p>
-
-
-              <p>
-                🗻 Discover volcanic landscapes, lava fields, and unique rock formations
-              </p>
-
-
-              <p>
-                📸 Capture breathtaking views at Arnarstapi and scenic coastal stops
-              </p>
-
-
-              <p>
-                🧊 Experience the majestic Snæfellsjökull glacier-capped volcano
-              </p>
-
-            </div>
-
           </div>
 
         </div>
@@ -355,18 +568,9 @@ const SnaefellsnesContent = () => {
 
       {/* =========================================
           HIGHLIGHT GALLERY
-
-          Details Card sticky boundary ends here.
-
-          Existing margin-top: 48px is preserved.
-          Card will NOT overlap these images.
       ========================================= */}
 
       <div className={styles.highlightGallery}>
-
-        {/* =========================================
-            TRIP 2
-        ========================================= */}
 
         <div className={styles.highlightImage}>
 
@@ -380,10 +584,6 @@ const SnaefellsnesContent = () => {
 
         </div>
 
-
-        {/* =========================================
-            TRIP 3
-        ========================================= */}
 
         <div className={styles.highlightImage}>
 
@@ -402,6 +602,5 @@ const SnaefellsnesContent = () => {
     </section>
   );
 };
-
 
 export default SnaefellsnesContent;

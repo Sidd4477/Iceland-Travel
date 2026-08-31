@@ -1,0 +1,1243 @@
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BOOKING SECTION
+========================================================= */
+
+.bookingSection {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1440px;
+
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  padding: 144px 48px 80px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.pageHeading {
+  position: relative;
+
+  width: 774px;
+
+  height: 56px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.backButton {
+  width: 56px;
+
+  height: 56px;
+
+  flex: 0 0 56px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 51px;
+
+  background: #ffffff;
+
+  color: #292929;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.backButton:hover {
+  background: #f5f5f5;
+
+  border-color: #dddddd;
+
+  color: #111111;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.pageTitle {
+  width: 282px;
+
+  height: 43px;
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 40px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   BOOKING GRID
+========================================================= */
+
+.bookingGrid {
+  width: 100%;
+
+  margin-top: 48px;
+
+  display: grid;
+
+  grid-template-columns:
+    774px
+    546px;
+
+  column-gap: 24px;
+
+  align-items: start;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEFT COLUMN
+========================================================= */
+
+.leftColumn {
+  width: 774px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTACT CARD
+========================================================= */
+
+.contactCard {
+  width: 774px;
+
+  height: 358px;
+
+  padding: 32px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid white;
+
+  border-radius: 24px;
+}
+
+
+/* =========================================================
+   CONTACT TITLE
+========================================================= */
+
+.contactTitle {
+  width: 100%;
+
+  height: 30px;
+
+  margin: 0;
+
+  padding: 0;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 28px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   CONTACT DESCRIPTION
+========================================================= */
+
+.contactDescription {
+  width: 710px;
+
+  height: 44px;
+
+  margin: 8px 0 0;
+
+  padding: 0;
+
+  color: #555555;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.formGrid {
+  width: 710px;
+
+  margin-top: 26px;
+
+  display: grid;
+
+  grid-template-columns:
+    343px
+    343px;
+
+  column-gap: 16px;
+
+  row-gap: 18px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FORM FIELD
+========================================================= */
+
+.formField {
+  width: 343px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FIELD LABEL
+========================================================= */
+
+.fieldLabel {
+  width: 100%;
+
+  height: 22px;
+
+  margin: 0 0 8px;
+
+  padding: 0;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   FORM INPUT
+========================================================= */
+
+.formInput {
+  width: 343px;
+
+  height: 48px;
+
+  padding: 0 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  transition: border-color 0.2s ease;
+}
+
+.formInput:focus {
+  border-color: #1294ff;
+}
+
+
+/* =========================================================
+   PAYMENT SECTION
+========================================================= */
+
+.paymentSection {
+  width: 774px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAYMENT DIVIDER
+========================================================= */
+
+.paymentDivider {
+  width: 774px;
+
+  height: 1px;
+
+  margin-top: 48px;
+
+  border-top: 1px solid #dddddd;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAYMENT TITLE
+========================================================= */
+
+.paymentTitle {
+  width: 238px;
+
+  height: 30px;
+
+  margin: 31px 0 0;
+
+  padding: 0;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 28px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   PAYMENT DESCRIPTION
+========================================================= */
+
+.paymentDescription {
+  width: 710px;
+
+  height: 22px;
+
+  margin: 8px 0 0;
+
+  padding: 0;
+
+  color: #777777;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   CONFIRM BUTTON
+========================================================= */
+
+.confirmButton {
+  width: 774px;
+
+  height: 48px;
+
+  margin-top: 24px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 32px;
+
+  background: #4d4d36;
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.confirmButton:hover {
+  background: #41412d;
+}
+
+.confirmButton span {
+  width: 113px;
+
+  height: 19px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   RIGHT SUMMARY CARD
+========================================================= */
+
+.summaryCard {
+  position: relative;
+
+  width: 546px;
+
+  height: 563px;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================================
+   DESTINATION ROW
+========================================================= */
+
+.destinationRow {
+  width: 100%;
+
+  height: 120px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 32px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DESTINATION IMAGE
+========================================================= */
+
+.destinationImage {
+  position: relative;
+
+  width: 232px;
+
+  height: 120px;
+
+  flex: 0 0 232px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 8px;
+}
+
+
+/* =========================================================
+   SUMMARY IMAGE
+========================================================= */
+
+.summaryImage {
+  width: 100% !important;
+
+  height: 100% !important;
+
+  object-fit: cover;
+
+  object-position: center;
+}
+
+
+/* =========================================================
+   DESTINATION INFO
+========================================================= */
+
+.destinationInfo {
+  width: 232px;
+
+  height: 64px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DESTINATION TITLE
+========================================================= */
+
+.destinationTitle {
+  width: 232px;
+
+  height: 24px;
+
+  margin: 0;
+
+  padding: 0;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 22px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   DESTINATION SUBTITLE
+========================================================= */
+
+.destinationSubtitle {
+  width: 232px;
+
+  height: 17px;
+
+  margin: 8px 0 0;
+
+  padding: 0;
+
+  color: #777777;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   CANCELLATION TEXT
+========================================================= */
+
+.cancellationText {
+  width: 503px;
+
+  min-height: 19px;
+
+  margin: 40px 0 0;
+
+  padding: 0;
+
+  color: #555555;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   SUMMARY DIVIDER
+========================================================= */
+
+.summaryDivider {
+  width: 100%;
+
+  height: 1px;
+
+  margin-top: 14px;
+
+  border-top: 1px solid #eeeeee;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SUMMARY ITEM
+========================================================= */
+
+.summaryItem {
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SUMMARY HEADING
+========================================================= */
+
+.summaryHeading {
+  width: 100%;
+
+  height: 22px;
+
+  margin: 12px 0 0;
+
+  padding: 0;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 20px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   SUMMARY VALUE
+========================================================= */
+
+.summaryValue {
+  width: 100%;
+
+  min-height: 19px;
+
+  margin: 8px 0 0;
+
+  padding: 0;
+
+  color: #555555;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   PRICE SECTION
+========================================================= */
+
+.priceSection {
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PRICE TITLE
+========================================================= */
+
+.priceTitle {
+  width: 100%;
+
+  height: 22px;
+
+  margin: 12px 0 0;
+
+  padding: 0;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 20px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   PRICE ROW
+========================================================= */
+
+.priceRow {
+  width: 100%;
+
+  min-height: 19px;
+
+  margin-top: 8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  color: #555555;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+}
+
+.priceRow + .priceRow {
+  margin-top: 6px;
+}
+
+
+/* =========================================================
+   TOTAL DIVIDER
+========================================================= */
+
+.totalDivider {
+  width: 100%;
+
+  height: 1px;
+
+  margin-top: 16px;
+
+  border-top: 1px solid #eeeeee;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.totalRow {
+  width: 100%;
+
+  min-height: 22px;
+
+  margin-top: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  color: #111111;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+}
+
+.totalRow strong {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+  .bookingSection {
+    padding-left: 48px;
+
+    padding-right: 48px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1400px) {
+  .bookingSection {
+    padding-left: 32px;
+
+    padding-right: 32px;
+  }
+
+  .bookingGrid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      500px;
+
+    column-gap: 24px;
+  }
+
+  .leftColumn,
+  .contactCard,
+  .paymentSection,
+  .paymentDivider,
+  .confirmButton {
+    width: 100%;
+  }
+
+  .contactDescription,
+  .paymentDescription {
+    width: 100%;
+  }
+
+  .formGrid {
+    width: 100%;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .formField,
+  .formInput {
+    width: 100%;
+  }
+
+  .summaryCard {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .bookingGrid {
+    grid-template-columns: 1fr;
+
+    row-gap: 32px;
+  }
+
+  .leftColumn {
+    width: 100%;
+  }
+
+  .summaryCard {
+    width: 100%;
+
+    max-width: 546px;
+  }
+
+  .pageHeading {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .bookingSection {
+    padding: 120px 24px 48px;
+  }
+
+  .pageHeading {
+    height: 56px;
+
+    gap: 12px;
+  }
+
+  .backButton {
+    width: 48px;
+
+    height: 48px;
+
+    flex-basis: 48px;
+  }
+
+  .pageTitle {
+    width: auto;
+
+    height: auto;
+
+    font-size: 32px;
+
+    text-align: left;
+  }
+
+  .bookingGrid {
+    margin-top: 32px;
+  }
+
+  .contactCard {
+    height: auto;
+
+    min-height: 358px;
+
+    padding: 24px;
+
+    border-radius: 20px;
+  }
+
+  .contactTitle {
+    height: auto;
+
+    font-size: 24px;
+  }
+
+  .contactDescription {
+    height: auto;
+
+    font-size: 16px;
+
+    margin-top: 10px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+
+    row-gap: 16px;
+
+    margin-top: 24px;
+  }
+
+  .fieldLabel {
+    font-size: 16px;
+  }
+
+  .formInput {
+    height: 48px;
+  }
+
+  .paymentDivider {
+    margin-top: 32px;
+  }
+
+  .paymentTitle {
+    width: auto;
+
+    font-size: 24px;
+
+    margin-top: 24px;
+  }
+
+  .paymentDescription {
+    height: auto;
+
+    width: 100%;
+
+    font-size: 16px;
+  }
+
+  .confirmButton {
+    height: 48px;
+
+    margin-top: 20px;
+  }
+
+  .summaryCard {
+    height: auto;
+
+    min-height: 563px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+  }
+
+  .destinationRow {
+    height: auto;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+
+  .destinationImage {
+    width: 100%;
+
+    height: 180px;
+
+    flex-basis: 180px;
+  }
+
+  .destinationInfo,
+  .destinationTitle,
+  .destinationSubtitle {
+    width: 100%;
+
+    text-align: left;
+  }
+
+  .destinationInfo {
+    height: auto;
+  }
+
+  .cancellationText {
+    width: 100%;
+
+    margin-top: 24px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .bookingSection {
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
+
+  .pageTitle {
+    font-size: 28px;
+  }
+
+  .contactCard {
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+  .contactTitle {
+    font-size: 22px;
+  }
+
+  .summaryCard {
+    padding: 18px;
+
+    border-radius: 18px;
+  }
+
+  .destinationImage {
+    height: 160px;
+
+    flex-basis: 160px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .backButton,
+  .confirmButton,
+  .formInput {
+    transition: none;
+  }
+}

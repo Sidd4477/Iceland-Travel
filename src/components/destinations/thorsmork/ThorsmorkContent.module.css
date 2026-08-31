@@ -209,10 +209,15 @@
 
 /* =========================================
    HIGHLIGHT GALLERY
+   FIGMA DESKTOP:
+   661px × 369px
 ========================================= */
 
 .highlightGallery {
   width: 100%;
+  max-width: 1344px;
+
+  margin: 48px auto 0;
 
   display: grid;
 
@@ -220,17 +225,24 @@
 
   gap: 22px;
 
-  margin-top: 48px;
-
   padding-bottom: 80px;
+
+  box-sizing: border-box;
 }
 
+
+/* =========================================
+   HIGHLIGHT IMAGE
+   FIGMA:
+   Width 661px
+   Height 369px
+   Radius 24px
+========================================= */
 
 .highlightImage {
   position: relative;
 
   width: 661px;
-
   height: 369px;
 
   overflow: hidden;
@@ -486,6 +498,34 @@
 
 
 /* =========================================
+   RESPONSIVE DESKTOP
+   BELOW FIGMA 1440px CANVAS
+   PREVENT HORIZONTAL SCROLL
+========================================= */
+
+@media (max-width: 1399px) {
+
+  .stickyArea {
+    grid-template-columns:
+      minmax(0, 1fr) 360px;
+
+    column-gap: 36px;
+  }
+
+
+  .highlightGallery {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .highlightImage {
+    width: 100%;
+  }
+}
+
+
+/* =========================================
    TABLET
 ========================================= */
 
@@ -496,6 +536,7 @@
     padding-right: 32px;
   }
 
+
   .stickyArea {
     grid-template-columns:
       minmax(0, 1fr) 360px;
@@ -503,10 +544,12 @@
     column-gap: 36px;
   }
 
+
   .detailRow {
     grid-template-columns:
       140px minmax(0, 1fr);
   }
+
 
   .detailLabel,
   .detailRow strong {
@@ -525,6 +568,7 @@
     padding: 48px 24px 0;
   }
 
+
   .stickyArea {
     display: flex;
 
@@ -537,15 +581,18 @@
     margin-bottom: 0;
   }
 
+
   .layout {
     display: contents;
   }
+
 
   .mainContent {
     width: 100%;
 
     order: 2;
   }
+
 
   .detailsCard {
     position: relative;
@@ -560,6 +607,7 @@
     grid-row: auto;
   }
 
+
   .highlights {
     order: 3;
 
@@ -567,19 +615,23 @@
     grid-row: auto;
   }
 
+
   .overview {
     padding-top: 0;
   }
 
+
   .overviewImage {
     height: 420px;
   }
+
 
   .highlightImage {
     height: 320px;
 
     width: 100%;
   }
+
 
   .highlightGallery {
     grid-template-columns:
@@ -598,22 +650,27 @@
     padding: 36px 16px 0;
   }
 
+
   .sectionTitle {
     font-size: 28px;
   }
 
+
   .titleIcon {
     font-size: 25px;
   }
+
 
   .description p,
   .highlightList p {
     font-size: 16px;
   }
 
+
   .description p + p {
     margin-top: 16px;
   }
+
 
   .overviewImage {
     height: 300px;
@@ -623,9 +680,11 @@
     border-radius: 18px;
   }
 
+
   .highlights {
     margin-top: 40px;
   }
+
 
   .highlightGallery {
     grid-template-columns: 1fr;
@@ -637,6 +696,7 @@
     padding-bottom: 48px;
   }
 
+
   .highlightImage {
     height: 280px;
 
@@ -645,34 +705,41 @@
     border-radius: 18px;
   }
 
+
   .detailsCard {
     padding: 24px 20px;
 
     border-radius: 18px;
   }
 
+
   .detailsTitle {
     font-size: 22px;
   }
 
+
   .detailList {
     gap: 22px;
   }
+
 
   .detailRow {
     grid-template-columns:
       135px minmax(0, 1fr);
   }
 
+
   .detailLabel,
   .detailRow strong {
     font-size: 15px;
   }
 
+
   .detailIcon {
     width: 18px;
     height: 18px;
   }
+
 
   .bookButton {
     width: 224px;

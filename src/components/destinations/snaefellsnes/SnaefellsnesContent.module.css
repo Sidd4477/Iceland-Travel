@@ -1,690 +1,1595 @@
-/* =========================================  
-   SECTION  
-========================================= */ 
- 
-.section { 
-  width: 100%; 
- 
-  box-sizing: border-box; 
- 
-  padding: 52px 48px 0; 
- 
-  background: #ffffff; 
-} 
- 
- 
-/* ========================================= 
-   STICKY AREA 
-   DETAILS CARD WILL STAY STICKY 
-   UNTIL HIGHLIGHT IMAGES START 
-========================================= */ 
- 
-.stickyArea { 
-  width: 100%; 
-  max-width: 1344px; 
- 
-  margin: 0 auto; 
- 
-  display: grid; 
- 
-  grid-template-columns: minmax(0, 876px) 412px; 
- 
-  column-gap: 56px; 
- 
-  align-items: start; 
- 
-  /* 
-    Existing 48px gap before highlight images 
-    is kept visually, while the sticky boundary 
-    is extended exactly to the image start. 
-  */ 
-  padding-bottom: 48px; 
- 
-  margin-bottom: -48px; 
- 
-  box-sizing: border-box; 
-} 
- 
- 
-/* =========================================  
-   MAIN LAYOUT  
-========================================= */ 
- 
-.layout { 
-  width: 100%; 
-  max-width: 1344px; 
- 
-  margin: 0 auto; 
- 
-  /* 
-    Layout wrapper no longer creates the 
-    sticky boundary for the details card. 
-  */ 
-  display: contents; 
-} 
- 
- 
-/* =========================================  
-   LEFT CONTENT  
-========================================= */ 
- 
-.mainContent { 
-  width: 100%; 
- 
-  grid-column: 1; 
-  grid-row: 1; 
-} 
- 
- 
-/* =========================================  
-   SECTION TITLE  
-========================================= */ 
- 
-.sectionTitle { 
-  margin: 0; 
- 
-  display: flex; 
- 
-  align-items: center; 
- 
-  gap: 8px; 
- 
-  font-family: "Outfit", sans-serif; 
- 
-  font-size: 32px; 
-  font-weight: 500; 
- 
-  line-height: 108%; 
- 
-  letter-spacing: -0.02em; 
- 
-  color: #292929; 
-} 
- 
- 
-.titleIcon { 
-  display: inline-flex; 
- 
-  align-items: center; 
- 
-  justify-content: center; 
- 
-  font-size: 29px; 
- 
-  line-height: 1; 
-} 
- 
- 
-/* =========================================  
-   TRIP OVERVIEW  
-========================================= */ 
- 
-.overview { 
-  width: 100%; 
- 
-  padding-top: 20px; 
-} 
- 
- 
-.description { 
-  width: 100%; 
- 
-  margin-top: 24px; 
-} 
- 
- 
-.description p { 
-  margin: 0; 
- 
-  font-family: "Outfit", sans-serif; 
- 
-  font-size: 18px; 
-  font-weight: 300; 
- 
-  line-height: 120%; 
- 
-  letter-spacing: -0.03em; 
- 
-  color: #444444; 
-} 
- 
- 
-.description p + p { 
-  margin-top: 18px; 
-} 
- 
- 
-/* =========================================  
-   OVERVIEW IMAGE  
-========================================= */ 
- 
-.overviewImage { 
-  position: relative; 
- 
-  width: 100%; 
- 
-  height: 457px; 
- 
-  margin-top: 40px; 
- 
-  overflow: hidden; 
- 
-  border-radius: 24px; 
-} 
- 
- 
-.image { 
-  object-fit: cover; 
- 
-  object-position: center; 
-} 
- 
- 
-/* =========================================  
-   TRIP HIGHLIGHTS  
-========================================= */ 
- 
-.highlights { 
-  width: 100%; 
- 
-  margin-top: 48px; 
- 
-  grid-column: 1; 
-  grid-row: 2; 
-} 
- 
- 
-.highlightList { 
-  width: 100%; 
- 
-  margin-top: 16px; 
-} 
- 
- 
-.highlightList p { 
-  margin: 0; 
- 
-  font-family: "Outfit", sans-serif; 
- 
-  font-size: 18px; 
-  font-weight: 300; 
- 
-  line-height: 120%; 
- 
-  letter-spacing: -0.03em; 
- 
-  color: #444444; 
-} 
- 
- 
-/* =========================================  
-   HIGHLIGHT GALLERY  
-========================================= */ 
- 
-.highlightGallery { 
-  width: 100%; 
- 
-  display: grid; 
- 
-  grid-template-columns: 661px 661px; 
- 
-  gap: 22px; 
- 
-  margin-top: 48px; 
- 
-  padding-bottom: 80px; 
-} 
- 
- 
-.highlightImage { 
-  position: relative; 
- 
-  width: 661px; 
- 
-  height: 369px; 
- 
-  overflow: hidden; 
- 
-  border-radius: 24px; 
-} 
- 
- 
-/* =========================================  
-   TRIP DETAILS CARD  
-========================================= */ 
- 
-.detailsCard { 
-  position: sticky; 
- 
-  top: 24px; 
- 
-  align-self: start; 
- 
-  width: 100%; 
- 
-  min-height: 457px; 
- 
-  padding: 28px 24px 30px; 
- 
-  box-sizing: border-box; 
- 
-  background: #ffffff; 
- 
-  border-radius: 20px; 
- 
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.07); 
- 
-  z-index: 5; 
- 
-  /* 
-    IMPORTANT: 
-    Card is now a direct child of stickyArea, 
-    not constrained by the Overview/Image layout. 
-  */ 
-  grid-column: 2; 
- 
-  grid-row: 1 / 3; 
-} 
- 
- 
-/* =========================================  
-   CARD HEADING  
-========================================= */ 
- 
-.detailsTitle { 
-  margin: 0; 
- 
-  font-family: "Outfit", sans-serif; 
- 
-  font-size: 24px; 
-  font-weight: 500; 
- 
-  line-height: 108%; 
- 
-  letter-spacing: -0.02em; 
- 
-  color: #292929; 
-} 
- 
- 
-/* =========================================  
-   DIVIDER  
-========================================= */ 
- 
-.divider { 
-  width: 100%; 
- 
-  height: 1px; 
- 
-  margin-top: 24px; 
- 
-  border-top: 1px dashed #d9d9d9; 
- 
-  box-sizing: border-box; 
-} 
- 
- 
-/* =========================================  
-   DETAILS LIST  
-========================================= */ 
- 
-.detailList { 
-  width: 100%; 
- 
-  margin-top: 26px; 
- 
-  display: flex; 
- 
-  flex-direction: column; 
- 
-  gap: 24px; 
-} 
- 
- 
-/* =========================================  
-   DETAIL ROW  
-========================================= */ 
- 
-.detailRow { 
-  width: 100%; 
- 
-  display: grid; 
- 
-  grid-template-columns: 164px minmax(0, 1fr); 
- 
-  column-gap: 0; 
- 
-  align-items: start; 
-} 
- 
- 
-/* =========================================  
-   DETAIL LABEL  
-========================================= */ 
- 
-.detailLabel { 
-  display: flex; 
- 
-  align-items: center; 
- 
-  gap: 12px; 
- 
-  font-family: "Outfit", sans-serif; 
- 
-  font-size: 18px; 
-  font-weight: 400; 
- 
-  line-height: 120%; 
- 
-  letter-spacing: -0.03em; 
- 
-  color: #4a4a4a; 
-} 
- 
- 
-.detailIcon { 
-  width: 20px; 
-  height: 20px; 
- 
-  flex-shrink: 0; 
- 
-  stroke-width: 1.5; 
- 
-  color: #999999; 
-} 
- 
- 
-/* =========================================  
-   DETAIL VALUE  
-========================================= */ 
- 
-.detailRow strong { 
-  display: block; 
- 
-  font-family: "Outfit", sans-serif; 
- 
-  font-size: 18px; 
-  font-weight: 600; 
- 
-  line-height: 120%; 
- 
-  letter-spacing: -0.03em; 
- 
-  color: #343434; 
-} 
- 
- 
-.detailRow small { 
-  margin-left: 2px; 
- 
-  font-size: 13px; 
- 
-  font-weight: 400; 
- 
-  letter-spacing: -0.02em; 
- 
-  color: #555555; 
-} 
- 
- 
-/* =========================================  
-   BOOK BUTTON  
-========================================= */ 
- 
-.bookButton { 
-  width: 224px; 
-  height: 48px; 
- 
-  margin-top: 38px; 
- 
-  padding: 4px; 
- 
-  display: flex; 
- 
-  align-items: center; 
- 
-  justify-content: space-between; 
- 
-  border: none; 
- 
-  border-radius: 32px; 
- 
-  background: #4d4d36; 
- 
-  color: #ffffff; 
- 
-  cursor: pointer; 
- 
-  box-sizing: border-box; 
- 
-  font-family: "Outfit", sans-serif; 
-} 
- 
- 
-.bookButton > span:first-child { 
-  padding-left: 28px; 
- 
-  font-size: 16px; 
-  font-weight: 400; 
- 
-  line-height: 120%; 
- 
-  letter-spacing: -0.03em; 
- 
-  white-space: nowrap; 
-} 
- 
- 
-/* =========================================  
-   BUTTON ARROW CIRCLE  
-========================================= */ 
- 
-.arrowCircle { 
-  width: 40px; 
-  height: 40px; 
- 
-  flex-shrink: 0; 
- 
-  display: flex; 
- 
-  align-items: center; 
- 
-  justify-content: center; 
- 
-  border-radius: 50%; 
- 
-  background: #ffffff; 
- 
-  color: #343434; 
-} 
- 
- 
-/* =========================================  
-   TABLET  
-========================================= */ 
- 
-@media (max-width: 1200px) { 
-  .section { 
-    padding-left: 32px; 
-    padding-right: 32px; 
-  } 
- 
-  .stickyArea { 
-    grid-template-columns: minmax(0, 1fr) 360px; 
- 
-    column-gap: 36px; 
-  } 
- 
-  .detailRow { 
-    grid-template-columns: 140px minmax(0, 1fr); 
-  } 
- 
-  .detailLabel, 
-  .detailRow strong { 
-    font-size: 16px; 
-  } 
-} 
- 
- 
-/* =========================================  
-   TABLET / SMALL DESKTOP  
-========================================= */ 
- 
-@media (max-width: 900px) { 
-  .section { 
-    padding: 48px 24px 0; 
-  } 
- 
-  .stickyArea { 
-    display: flex; 
- 
-    flex-direction: column; 
- 
-    gap: 40px; 
- 
-    padding-bottom: 0; 
- 
-    margin-bottom: 0; 
-  } 
- 
-  .layout { 
-    display: contents; 
-  } 
- 
-  .mainContent { 
-    width: 100%; 
- 
-    order: 2; 
-  } 
- 
-  .detailsCard { 
-    position: relative; 
- 
-    top: auto; 
- 
-    order: 1; 
- 
-    min-height: auto; 
- 
-    grid-column: auto; 
-    grid-row: auto; 
-  } 
- 
-  .highlights { 
-    order: 3; 
- 
-    grid-column: auto; 
-    grid-row: auto; 
-  } 
- 
-  .overview { 
-    padding-top: 0; 
-  } 
- 
-  .overviewImage { 
-    height: 420px; 
-  } 
- 
-  .highlightImage { 
-    height: 320px; 
- 
-    width: 100%; 
-  } 
- 
-  .highlightGallery { 
-    grid-template-columns: repeat(2, minmax(0, 1fr)); 
-  } 
-} 
- 
- 
-/* =========================================  
-   MOBILE  
-========================================= */ 
- 
-@media (max-width: 600px) { 
-  .section { 
-    padding: 36px 16px 0; 
-  } 
- 
-  .sectionTitle { 
-    font-size: 28px; 
-  } 
- 
-  .titleIcon { 
-    font-size: 25px; 
-  } 
- 
-  .description p, 
-  .highlightList p { 
-    font-size: 16px; 
-  } 
- 
-  .description p + p { 
-    margin-top: 16px; 
-  } 
- 
-  .overviewImage { 
-    height: 300px; 
- 
-    margin-top: 32px; 
- 
-    border-radius: 18px; 
-  } 
- 
-  .highlights { 
-    margin-top: 40px; 
-  } 
- 
-  .highlightGallery { 
-    grid-template-columns: 1fr; 
- 
-    gap: 16px; 
- 
-    margin-top: 32px; 
- 
-    padding-bottom: 48px; 
-  } 
- 
-  .highlightImage { 
-    height: 280px; 
- 
-    width: 100%; 
- 
-    border-radius: 18px; 
-  } 
- 
-  .detailsCard { 
-    padding: 24px 20px; 
- 
-    border-radius: 18px; 
-  } 
- 
-  .detailsTitle { 
-    font-size: 22px; 
-  } 
- 
-  .detailList { 
-    gap: 22px; 
-  } 
- 
-  .detailRow { 
-    grid-template-columns: 135px minmax(0, 1fr); 
-  } 
- 
-  .detailLabel, 
-  .detailRow strong { 
-    font-size: 15px; 
-  } 
- 
-  .detailIcon { 
-    width: 18px; 
-    height: 18px; 
-  } 
- 
-  .bookButton { 
-    width: 224px; 
- 
-    margin-top: 32px; 
-  } 
+/* =========================================
+   SECTION
+========================================= */
+
+.section {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 52px 48px 0;
+
+  background: #ffffff;
+
+  overflow-x: clip;
+}
+
+
+/* =========================================
+   STICKY AREA
+   DETAILS CARD WILL STAY STICKY
+   UNTIL HIGHLIGHT IMAGES START
+========================================= */
+
+.stickyArea {
+  width: 100%;
+  max-width: 1344px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 876px)
+    412px;
+
+  column-gap: 56px;
+
+  align-items: start;
+
+  padding-bottom: 48px;
+
+  margin-bottom: -48px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.layout {
+  width: 100%;
+  max-width: 1344px;
+
+  margin: 0 auto;
+
+  display: contents;
+}
+
+
+/* =========================================
+   LEFT CONTENT
+========================================= */
+
+.mainContent {
+  width: 100%;
+
+  min-width: 0;
+
+  grid-column: 1;
+  grid-row: 1;
+}
+
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.sectionTitle {
+  margin: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 32px;
+
+  font-weight: 500;
+
+  line-height: 108%;
+
+  letter-spacing: -0.02em;
+
+  color: #292929;
+}
+
+
+.titleIcon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 29px;
+
+  line-height: 1;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   TRIP OVERVIEW
+========================================= */
+
+.overview {
+  width: 100%;
+
+  padding-top: 20px;
+}
+
+
+.description {
+  width: 100%;
+
+  margin-top: 24px;
+}
+
+
+.description p {
+  margin: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #444444;
+}
+
+
+.description p + p {
+  margin-top: 18px;
+}
+
+
+/* =========================================
+   OVERVIEW IMAGE
+========================================= */
+
+.overviewImage {
+  position: relative;
+
+  width: 100%;
+
+  height: 457px;
+
+  margin-top: 40px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+}
+
+
+.image {
+  object-fit: cover;
+
+  object-position: center;
+}
+
+
+/* =========================================
+   TRIP DETAILS
+========================================= */
+
+.tripDetails {
+  width: 338px;
+
+  height: 180px;
+
+  margin-top: 48px;
+
+  grid-column: 1;
+
+  grid-row: 2;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   TRIP DETAILS HEADING
+========================================= */
+
+.tripDetailsTitle {
+  width: 197px;
+
+  height: 35px;
+
+  margin: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  gap: 8px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 32px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  margin-top: -16px;
+
+  letter-spacing: -0.02em;
+
+  color: #292929;
+}
+
+
+.tripDetailsIcon {
+  width: 20px;
+
+  height: 20px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 20px;
+
+  line-height: 20px;
+}
+
+
+/* =========================================
+   TRIP DETAILS LIST
+========================================= */
+
+.tripDetailsList {
+  width: 338px;
+
+  margin-top: 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+
+/* =========================================
+   TRIP DETAILS ROW
+========================================= */
+
+.tripDetailsRow {
+  width: 338px;
+
+  min-height: 22px;
+
+  display: grid;
+
+  grid-template-columns:
+    116px
+    minmax(0, 1fr);
+
+  column-gap: 8px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   TRIP DETAILS LABEL
+========================================= */
+
+.tripDetailsLabel {
+  width: 116px;
+
+  min-height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  box-sizing: border-box;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.tripDetailsLabel svg {
+  width: 20px;
+
+  height: 20px;
+
+  flex-shrink: 0;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   TRIP DETAILS VALUE
+========================================= */
+
+.tripDetailsRow > strong {
+  min-height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   PRICE VALUE
+========================================= */
+
+.priceValue {
+  gap: 1px;
+}
+
+
+.priceValue span {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+/* =========================================
+   INCLUSIONS
+========================================= */
+
+.inclusionsValue {
+  display: block !important;
+
+  line-height: 120% !important;
+}
+
+
+/* =========================================
+   BOOKING FORM CARD
+========================================= */
+
+.detailsCard {
+  position: sticky;
+
+  top: 24px;
+
+  align-self: start;
+
+  width: 100%;
+
+  min-width: 0;
+
+  height: 459px;
+
+  padding: 20px 24px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.07);
+
+  z-index: 5;
+
+  grid-column: 2;
+
+  grid-row: 1 / 3;
+}
+
+
+/* =========================================
+   PRICE HEADING
+========================================= */
+
+.bookingPrice {
+  width: 100%;
+
+  height: 19px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: "Outfit", sans-serif;
+
+  letter-spacing: -0.03em;
+}
+
+
+.bookingPrice strong {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 24px;
+
+  font-weight: 600;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.bookingPrice span {
+  margin-left: 1px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+/* =========================================
+   MAIN DIVIDER
+========================================= */
+
+.divider {
+  width: 100%;
+
+  height: 0;
+
+  margin-top: 20px;
+
+  border-top: 1px dashed #d9d9d9;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   FORM FIELD
+========================================= */
+
+.formField {
+  position: relative;
+
+  width: 100%;
+
+  margin-top: 16px;
+}
+
+
+.fieldLabel {
+  display: block;
+
+  width: 100%;
+
+  height: 19px;
+
+  margin: 0 0 6px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   WHERE INPUT
+========================================= */
+
+.whereInput {
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.04);
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+/* =========================================
+   DATE + TIME
+========================================= */
+
+.dateTimeRow {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+
+.halfField {
+  width: 100%;
+}
+
+
+/* =========================================
+   DATE / TIME INPUT WRAPPER
+========================================= */
+
+.inputWrapper {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+}
+
+
+/* =========================================
+   DATE / TIME INPUT
+========================================= */
+
+.input {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 36px 0 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.04);
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+.input:focus {
+  outline: none;
+
+  border-color: #d5d5d5;
+}
+
+
+/* =========================================
+   HIDE NATIVE DATE ICON
+========================================= */
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+
+  position: absolute;
+
+  right: 0;
+
+  width: 40px;
+
+  height: 40px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   HIDE NATIVE TIME ICON
+========================================= */
+
+.input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+
+  position: absolute;
+
+  right: 0;
+
+  width: 40px;
+
+  height: 40px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   CUSTOM DATE / TIME ICON
+========================================= */
+
+.inputIcon {
+  position: absolute;
+
+  top: 50%;
+
+  right: 10px;
+
+  transform: translateY(-50%);
+
+  width: 16px;
+
+  height: 16px;
+
+  color: #999999;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   GUEST INPUT
+========================================= */
+
+.guestInput {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.04);
+
+  cursor: pointer;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+.guestInput svg {
+  width: 16px;
+
+  height: 16px;
+
+  color: #999999;
+}
+
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+
+/* =========================================
+   GUEST DROPDOWN
+========================================= */
+
+.guestDropdown {
+  position: absolute;
+
+  top: calc(100% + 6px);
+
+  left: 0;
+
+  width: 100%;
+
+  min-height: 120px;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.10);
+
+  z-index: 20;
+}
+
+
+/* =========================================
+   GUEST ROW
+========================================= */
+
+.guestRow {
+  width: 100%;
+
+  min-height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.guestRow + .guestRow {
+  margin-top: 8px;
+
+  padding-top: 8px;
+
+  border-top: 1px solid #eeeeee;
+}
+
+
+/* =========================================
+   GUEST TEXT
+========================================= */
+
+.guestInfo {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 1px;
+}
+
+
+.guestTitle {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.guestSubtitle {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #777777;
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.counter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.counterButton {
+  width: 24px;
+
+  height: 24px;
+
+  padding: 6px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #f1f1f1;
+
+  color: #999999;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+
+.counterButton:hover {
+  background: #e8e8e8;
+}
+
+
+.counterValue {
+  min-width: 12px;
+
+  height: 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #343434;
+}
+
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.totalRow {
+  width: 100%;
+
+  height: 19px;
+
+  margin-top: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-family: "Outfit", sans-serif;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+}
+
+
+.totalRow span {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.totalRow strong {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #343434;
+}
+
+
+/* =========================================
+   BOOK NOW BUTTON
+========================================= */
+
+.bookButton {
+  width: 100%;
+
+  height: 40px;
+
+  margin-top: 12px;
+
+  padding: 9px 106px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid #4d4d36;
+
+  border-radius: 32px;
+
+  background: #4d4d36;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-family: "Outfit", sans-serif;
+}
+
+
+.bookButton > span {
+  width: 60px;
+
+  height: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  letter-spacing: -0.03em;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   HIGHLIGHT GALLERY
+   DESKTOP - EXACT FIGMA SIZE
+========================================= */
+
+.highlightGallery {
+  width: 100%;
+
+  max-width: 1344px;
+
+  margin: 48px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    661px
+    661px;
+
+  gap: 22px;
+
+  padding-bottom: 80px;
+
+  box-sizing: border-box;
+
+  min-width: 0;
+}
+
+
+/* =========================================
+   HIGHLIGHT IMAGE
+   EXACT FIGMA SIZE
+
+   WIDTH  = 661px
+   HEIGHT = 369px
+   GAP    = 22px
+   TOTAL  = 1344px
+========================================= */
+
+.highlightImage {
+  position: relative;
+
+  width: 661px;
+
+  height: 369px;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   RESPONSIVE DESKTOP
+   PREVENT HORIZONTAL OVERFLOW
+========================================= */
+
+@media (max-width: 1399px) {
+
+  .stickyArea {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(360px, 412px);
+
+    column-gap: 36px;
+  }
+
+
+  .detailsCard {
+    width: 100%;
+  }
+
+
+  .highlightGallery {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+  }
+
+
+  .highlightImage {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .section {
+    padding-left: 32px;
+
+    padding-right: 32px;
+  }
+
+
+  .stickyArea {
+    grid-template-columns:
+      minmax(0, 1fr)
+      360px;
+
+    column-gap: 36px;
+  }
+
+
+  .detailsCard {
+    width: 360px;
+  }
+
+
+  .divider,
+  .formField,
+  .whereInput,
+  .guestInput,
+  .totalRow,
+  .bookButton {
+    width: 312px;
+  }
+
+
+  .dateTimeRow {
+    width: 312px;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+
+  .halfField,
+  .inputWrapper,
+  .input {
+    width: 100%;
+  }
+
+
+  .tripDetailsRow {
+    width: 100%;
+  }
+
+
+  .tripDetailsLabel,
+  .tripDetailsRow strong {
+    font-size: 16px;
+  }
+
+
+  .guestDropdown {
+    width: 312px;
+  }
+
+}
+
+
+/* =========================================
+   TABLET / SMALL DESKTOP
+========================================= */
+
+@media (max-width: 900px) {
+
+  .section {
+    padding: 48px 24px 0;
+  }
+
+
+  .stickyArea {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 40px;
+
+    padding-bottom: 0;
+
+    margin-bottom: 0;
+  }
+
+
+  .layout {
+    display: contents;
+  }
+
+
+  .mainContent {
+    width: 100%;
+
+    order: 2;
+  }
+
+
+  .detailsCard {
+    position: relative;
+
+    top: auto;
+
+    order: 1;
+
+    width: 100%;
+
+    height: auto;
+
+    min-height: 459px;
+
+    grid-column: auto;
+
+    grid-row: auto;
+  }
+
+
+  .divider,
+  .formField,
+  .whereInput,
+  .guestInput,
+  .totalRow,
+  .bookButton {
+    width: 100%;
+  }
+
+
+  .dateTimeRow {
+    width: 100%;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+
+  .halfField,
+  .inputWrapper,
+  .input {
+    width: 100%;
+  }
+
+
+  .guestDropdown {
+    width: 100%;
+  }
+
+
+  .tripDetails {
+    width: 100%;
+
+    height: auto;
+
+    order: 3;
+
+    grid-column: auto;
+
+    grid-row: auto;
+  }
+
+
+  .tripDetailsTitle {
+    width: auto;
+  }
+
+
+  .tripDetailsList,
+  .tripDetailsRow {
+    width: 100%;
+  }
+
+
+  .tripDetailsRow {
+    grid-template-columns:
+      116px
+      minmax(0, 1fr);
+  }
+
+
+  .overview {
+    padding-top: 0;
+  }
+
+
+  .overviewImage {
+    height: 420px;
+  }
+
+
+  .highlightGallery {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+  }
+
+
+  .highlightImage {
+    width: 100%;
+
+    height: 320px;
+  }
+
+
+  .guestDropdown {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 8px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .section {
+    padding: 36px 16px 0;
+  }
+
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+
+  .titleIcon {
+    font-size: 25px;
+  }
+
+
+  .description p {
+    font-size: 16px;
+  }
+
+
+  .description p + p {
+    margin-top: 16px;
+  }
+
+
+  .overviewImage {
+    height: 300px;
+
+    margin-top: 32px;
+
+    border-radius: 18px;
+  }
+
+
+  .tripDetails {
+    margin-top: 40px;
+  }
+
+
+  .tripDetailsTitle {
+    width: auto;
+
+    height: 32px;
+
+    font-size: 28px;
+  }
+
+
+  .tripDetailsIcon {
+    width: 20px;
+
+    height: 20px;
+
+    font-size: 20px;
+  }
+
+
+  .tripDetailsList {
+    margin-top: 10px;
+
+    width: 100%;
+  }
+
+
+  .tripDetailsRow {
+    grid-template-columns:
+      110px
+      minmax(0, 1fr);
+
+    width: 100%;
+  }
+
+
+  .tripDetailsLabel {
+    width: 110px;
+
+    font-size: 15px;
+  }
+
+
+  .tripDetailsLabel svg {
+    width: 18px;
+
+    height: 18px;
+  }
+
+
+  .tripDetailsRow > strong {
+    font-size: 15px;
+  }
+
+
+  .priceValue span {
+    font-size: 12px;
+  }
+
+
+  /* =====================================
+     MOBILE GALLERY
+  ===================================== */
+
+  .highlightGallery {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+    margin-top: 32px;
+
+    padding-bottom: 48px;
+
+    width: 100%;
+  }
+
+
+  .highlightImage {
+    width: 100%;
+
+    height: 280px;
+
+    border-radius: 18px;
+  }
+
+
+  /* =====================================
+     BOOKING CARD
+  ===================================== */
+
+  .detailsCard {
+    width: 100%;
+
+    height: auto;
+
+    min-height: 459px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+
+  .bookingPrice strong {
+    font-size: 22px;
+  }
+
+
+  .bookingPrice span {
+    font-size: 13px;
+  }
+
+
+  .fieldLabel {
+    font-size: 15px;
+  }
+
+
+  .guestDropdown {
+    width: 100%;
+  }
+
+
+  .totalRow {
+    width: 100%;
+  }
+
+
+  .bookButton {
+    width: 100%;
+
+    padding-left: 0;
+
+    padding-right: 0;
+  }
+
 }
