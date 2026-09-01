@@ -1,54 +1,133 @@
+"use client";
+
 import Image from "next/image";
 
 import {
-  ArrowUpRight,
-  CarFront,
-  CircleAlert,
+  CalendarDays,
   Clock3,
-  Tag,
+  Minus,
+  Plus,
+  CarFront,
   Users,
+  Tag,
+  CircleAlert,
+  ChevronDown,
 } from "lucide-react";
+
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./ThorsmorkContent.module.css";
 
 const ThorsmorkContent = () => {
+  const router = useRouter();
+
+  const pricePerPerson = 100;
+
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const dateInputRef = useRef<HTMLInputElement>(null);
+  const timeInputRef = useRef<HTMLInputElement>(null);
+
+  const openDatePicker = () => {
+    const input = dateInputRef.current;
+
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    } else {
+      input.focus();
+      input.click();
+    }
+  };
+
+  const openTimePicker = () => {
+    const input = timeInputRef.current;
+
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    } else {
+      input.focus();
+      input.click();
+    }
+  };
+
+  const [isGuestOpen, setIsGuestOpen] = useState(false);
+
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+  const totalGuests = adults + children;
+  const totalPrice = totalGuests * pricePerPerson;
+
+  const decreaseAdults = () => {
+    setAdults((current) => Math.max(1, current - 1));
+  };
+
+  const increaseAdults = () => {
+    setAdults((current) => current + 1);
+  };
+
+  const decreaseChildren = () => {
+    setChildren((current) => Math.max(0, current - 1));
+  };
+
+  const increaseChildren = () => {
+    setChildren((current) => current + 1);
+  };
+
+  /* =====================================================
+     BOOK NOW
+  ===================================================== */
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams();
+
+    params.set("destination", "Thorsmork");
+    params.set("price", String(pricePerPerson));
+    params.set("date", date);
+    params.set("time", time);
+    params.set("adults", String(adults));
+    params.set("children", String(children));
+    params.set("guests", String(totalGuests));
+    params.set("total", String(totalPrice));
+
+    params.set(
+      "image",
+      "/images/destinations/thorsmork/Thorsmork Trip 1.png"
+    );
+
+    router.push(`/booking?${params.toString()}`);
+  };
+
   return (
     <section className={styles.section}>
-
       {/* =========================================
           STICKY AREA
       ========================================= */}
 
       <div className={styles.stickyArea}>
-
-        {/* =========================================
-            MAIN LAYOUT
-        ========================================= */}
-
         <div className={styles.layout}>
-
           {/* =========================================
               LEFT CONTENT
           ========================================= */}
 
           <div className={styles.mainContent}>
-
             {/* =========================================
                 TRIP OVERVIEW
             ========================================= */}
 
             <div className={styles.overview}>
-
               <h2 className={styles.sectionTitle}>
-                <span className={styles.titleIcon}>
-                  🧭
-                </span>
-
+                <span className={styles.titleIcon}>🧭</span>
                 Trip Overview
               </h2>
 
               <div className={styles.description}>
-
                 <p>
                   The Þórsmörk (Thorsmörk) Valley is one of Iceland’s most
                   breathtaking natural landscapes, surrounded by rugged
@@ -66,7 +145,6 @@ const ThorsmorkContent = () => {
                   unforgettable experience in the heart of Iceland’s wild
                   nature.
                 </p>
-
               </div>
 
               {/* =========================================
@@ -74,51 +152,241 @@ const ThorsmorkContent = () => {
               ========================================= */}
 
               <div className={styles.overviewImage}>
-
                 <Image
                   src="/images/destinations/thorsmork/Thorsmork Trip 1.png"
                   alt="Thorsmörk Valley"
                   fill
+                  priority
                   className={styles.image}
                   sizes="(max-width: 900px) 100vw, 876px"
                 />
-
               </div>
-
             </div>
-
           </div>
 
+          {/* =========================================
+              BOOKING FORM
+          ========================================= */}
+
+          <aside className={styles.detailsCard}>
+            {/* PRICE */}
+
+            <div className={styles.bookingPrice}>
+              <strong>${pricePerPerson}</strong>
+              <span>/per person</span>
+            </div>
+
+            {/* DIVIDER */}
+
+            <div className={styles.divider} />
+
+            {/* WHERE */}
+
+            <div className={styles.formField}>
+              <label className={styles.fieldLabel}>Where</label>
+
+              <div className={styles.whereInput}>
+                <span>Thorsmork</span>
+              </div>
+            </div>
+
+            {/* DATE + TIME */}
+
+            <div className={styles.dateTimeRow}>
+              <div className={styles.halfField}>
+                <label className={styles.fieldLabel}>Date</label>
+
+                <div className={styles.inputWrapper}>
+                  <input
+                    ref={dateInputRef}
+                    type="date"
+                    value={date}
+                    onChange={(event) => setDate(event.target.value)}
+                    className={styles.input}
+                    aria-label="Date"
+                  />
+
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openDatePicker}
+                    aria-label="Open date picker"
+                  >
+                    <CalendarDays className={styles.inputIcon} />
+                  </button>
+                </div>
+              </div>
+
+              <div className={styles.halfField}>
+                <label className={styles.fieldLabel}>Time</label>
+
+                <div className={styles.inputWrapper}>
+                  <input
+                    ref={timeInputRef}
+                    type="time"
+                    value={time}
+                    onChange={(event) => setTime(event.target.value)}
+                    className={styles.input}
+                    aria-label="Time"
+                  />
+
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openTimePicker}
+                    aria-label="Open time picker"
+                  >
+                    <Clock3 className={styles.inputIcon} />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* GUEST */}
+
+            <div className={styles.formField}>
+              <label className={styles.fieldLabel}>Guest</label>
+
+              <button
+                type="button"
+                className={styles.guestInput}
+                onClick={() => setIsGuestOpen((current) => !current)}
+                aria-expanded={isGuestOpen}
+                aria-haspopup="dialog"
+              >
+                <span>{totalGuests}</span>
+
+                <ChevronDown
+                  className={isGuestOpen ? styles.chevronOpen : undefined}
+                />
+              </button>
+
+              {/* GUEST DROPDOWN */}
+
+              {isGuestOpen && (
+                <div className={styles.guestDropdown}>
+                  {/* ADULTS */}
+
+                  <div className={styles.guestRow}>
+                    <div className={styles.guestInfo}>
+                      <span className={styles.guestTitle}>Adults</span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 13 or above
+                      </span>
+                    </div>
+
+                    <div className={styles.counter}>
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseAdults}
+                        aria-label="Decrease adults"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+                      <span className={styles.counterValue}>{adults}</span>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseAdults}
+                        aria-label="Increase adults"
+                      >
+                        <Plus size={12} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* CHILDREN */}
+
+                  <div className={styles.guestRow}>
+                    <div className={styles.guestInfo}>
+                      <span className={styles.guestTitle}>Children</span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 2-12
+                      </span>
+                    </div>
+
+                    <div className={styles.counter}>
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseChildren}
+                        aria-label="Decrease children"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+                      <span className={styles.counterValue}>{children}</span>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseChildren}
+                        aria-label="Increase children"
+                      >
+                        <Plus size={12} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* TOTAL */}
+
+            <div className={styles.totalRow}>
+              <span>Total</span>
+              <strong>${totalPrice.toFixed(2)}</strong>
+            </div>
+
+            {/* BOOK NOW */}
+
+            <button
+              type="button"
+              className={styles.bookButton}
+              onClick={handleBookNow}
+            >
+              <span>Book Now</span>
+            </button>
+          </aside>
 
           {/* =========================================
               TRIP DETAILS
           ========================================= */}
 
-          <aside className={styles.detailsCard}>
+          <div className={styles.tripDetails}>
 
-            <h3 className={styles.detailsTitle}>
+            <h2 className={styles.tripDetailsTitle}>
+
+              <span className={styles.tripDetailsIcon}>
+                ✨
+              </span>
+
               Trip Details
-            </h3>
 
-            <div className={styles.divider} />
+            </h2>
 
-            <div className={styles.detailList}>
+
+            <div className={styles.tripDetailsList}>
 
               {/* DURATION */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <Clock3
-                    className={styles.detailIcon}
-                  />
+                  <Clock3 />
 
                   <span>
                     Duration:
                   </span>
 
                 </div>
+
 
                 <strong>
                   1 Complete Day
@@ -129,19 +397,18 @@ const ThorsmorkContent = () => {
 
               {/* VISITS */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <CarFront
-                    className={styles.detailIcon}
-                  />
+                  <CarFront />
 
                   <span>
                     Visits:
                   </span>
 
                 </div>
+
 
                 <strong>
                   All Days
@@ -152,19 +419,18 @@ const ThorsmorkContent = () => {
 
               {/* GROUP SIZE */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <Users
-                    className={styles.detailIcon}
-                  />
+                  <Users />
 
                   <span>
                     Group Size:
                   </span>
 
                 </div>
+
 
                 <strong>
                   10 Travellers
@@ -175,13 +441,11 @@ const ThorsmorkContent = () => {
 
               {/* PRICE */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <Tag
-                    className={styles.detailIcon}
-                  />
+                  <Tag />
 
                   <span>
                     Price:
@@ -189,12 +453,14 @@ const ThorsmorkContent = () => {
 
                 </div>
 
-                <strong>
+
+                <strong className={styles.priceValue}>
+
                   $100
 
-                  <small>
+                  <span>
                     /per person
-                  </small>
+                  </span>
 
                 </strong>
 
@@ -203,13 +469,11 @@ const ThorsmorkContent = () => {
 
               {/* INCLUSIONS */}
 
-              <div className={styles.detailRow}>
+              <div className={styles.tripDetailsRow}>
 
-                <div className={styles.detailLabel}>
+                <div className={styles.tripDetailsLabel}>
 
-                  <CircleAlert
-                    className={styles.detailIcon}
-                  />
+                  <CircleAlert />
 
                   <span>
                     Inclusions:
@@ -217,7 +481,8 @@ const ThorsmorkContent = () => {
 
                 </div>
 
-                <strong>
+
+                <strong className={styles.inclusionsValue}>
 
                   Transportation, Tours,
 
@@ -231,98 +496,21 @@ const ThorsmorkContent = () => {
 
             </div>
 
-
-            {/* =========================================
-                BOOK BUTTON
-            ========================================= */}
-
-            <button
-              type="button"
-              className={styles.bookButton}
-            >
-
-              <span>
-                Book a Trip Now
-              </span>
-
-              <span className={styles.arrowCircle}>
-
-                <ArrowUpRight
-                  size={24}
-                  strokeWidth={1.7}
-                />
-
-              </span>
-
-            </button>
-
-          </aside>
-
-
-          {/* =========================================
-              TRIP HIGHLIGHTS
-          ========================================= */}
-
-          <div className={styles.highlights}>
-
-            <h2 className={styles.sectionTitle}>
-
-              <span className={styles.titleIcon}>
-                ✨
-              </span>
-
-              Trip Highlights
-
-            </h2>
-
-
-            <div className={styles.highlightList}>
-
-              <p>
-                🏔️ Explore the dramatic mountains and valleys of Þórsmörk
-              </p>
-
-              <p>
-                🥾 Wander through lush, moss-covered landscapes and scenic trails
-              </p>
-
-              <p>
-                🧊 Discover breathtaking views of surrounding glaciers
-              </p>
-
-              <p>
-                🌿 Experience unforgettable hiking routes through Icelandic wilderness
-              </p>
-
-              <p>
-                📸 Capture stunning mountain, valley, and river landscapes
-              </p>
-
-              <p>
-                🌊 Cross glacial rivers and immerse yourself in Þórsmörk’s untouched beauty
-              </p>
-
-            </div>
-
           </div>
 
+          </div>
         </div>
-
-      </div>
-
 
       {/* =========================================
           HIGHLIGHT GALLERY
       ========================================= */}
 
       <div className={styles.highlightGallery}>
-
         {/* =========================================
             TRIP 2
         ========================================= */}
 
         <div className={styles.highlightImage}>
-
           <Image
             src="/images/destinations/thorsmork/Thorsmork Trip 2.png"
             alt="Thorsmörk Iceland landscape"
@@ -330,16 +518,13 @@ const ThorsmorkContent = () => {
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
           />
-
         </div>
-
 
         {/* =========================================
             TRIP 3
         ========================================= */}
 
         <div className={styles.highlightImage}>
-
           <Image
             src="/images/destinations/thorsmork/Thorsmork Trip 3.png"
             alt="Thorsmörk mountains and valleys"
@@ -347,11 +532,8 @@ const ThorsmorkContent = () => {
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
           />
-
         </div>
-
       </div>
-
     </section>
   );
 };

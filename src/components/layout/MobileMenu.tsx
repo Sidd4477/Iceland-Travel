@@ -21,9 +21,11 @@ const MobileMenu = ({
 
   return (
     <div className={styles.overlay}>
+
       {/* =====================================================
           BACKDROP
       ===================================================== */}
+
       <div
         className={styles.backdrop}
         onClick={onClose}
@@ -33,10 +35,13 @@ const MobileMenu = ({
       {/* =====================================================
           MENU
       ===================================================== */}
+
       <aside className={styles.menu}>
+
         {/* ===================================================
             CLOSE BUTTON
         =================================================== */}
+
         <button
           type="button"
           className={styles.closeButton}
@@ -52,7 +57,9 @@ const MobileMenu = ({
         {/* ===================================================
             LEFT IMAGE
         =================================================== */}
+
         <div className={styles.imageWrapper}>
+
           <Image
             src="/icons/Hamburger Image.png"
             alt="Iceland landscape"
@@ -61,12 +68,15 @@ const MobileMenu = ({
             sizes="372px"
             className={styles.menuImage}
           />
+
         </div>
 
         {/* ===================================================
             GET IN TOUCH
         =================================================== */}
+
         <div className={styles.contactInfo}>
+
           <span className={styles.contactLabel}>
             Get Touch
           </span>
@@ -77,12 +87,17 @@ const MobileMenu = ({
           >
             ghermannsson.ehf@gmail.com
           </a>
+
         </div>
 
         {/* ===================================================
             NAVIGATION
         =================================================== */}
+
         <nav className={styles.navigation}>
+
+          {/* HOME */}
+
           <Link
             href="/"
             className={styles.navLink}
@@ -90,6 +105,8 @@ const MobileMenu = ({
           >
             Home
           </Link>
+
+          {/* ABOUT */}
 
           <Link
             href="/about-us"
@@ -99,6 +116,8 @@ const MobileMenu = ({
             About
           </Link>
 
+          {/* DESTINATIONS */}
+
           <Link
             href="/destinations"
             className={styles.navLink}
@@ -106,6 +125,8 @@ const MobileMenu = ({
           >
             Destinations
           </Link>
+
+          {/* PACKAGES */}
 
           <Link
             href="/packages"
@@ -115,6 +136,8 @@ const MobileMenu = ({
             Packages
           </Link>
 
+          {/* PHOTO GALLERY */}
+
           <Link
             href="/gallery"
             className={styles.navLink}
@@ -122,6 +145,8 @@ const MobileMenu = ({
           >
             Photo Gallery
           </Link>
+
+          {/* CONTACT US */}
 
           <Link
             href="/contact"
@@ -131,6 +156,15 @@ const MobileMenu = ({
             Contact Us
           </Link>
 
+          {/* =================================================
+              ONLINE BOOKING
+
+              Click karne par:
+              /online-booking
+              
+              page open hoga aur menu close hoga.
+          ================================================= */}
+
           <Link
             href="/online-booking"
             className={styles.navLink}
@@ -138,13 +172,19 @@ const MobileMenu = ({
           >
             Online Booking
           </Link>
+
         </nav>
 
         {/* ===================================================
             SOCIAL ICONS
         =================================================== */}
+
         <div className={styles.socials}>
-          {/* X */}
+
+          {/* =================================================
+              X
+          ================================================= */}
+
           <a
             href="#"
             className={styles.socialLink}
@@ -164,7 +204,10 @@ const MobileMenu = ({
             </svg>
           </a>
 
-          {/* Facebook */}
+          {/* =================================================
+              FACEBOOK
+          ================================================= */}
+
           <a
             href="#"
             className={styles.socialLink}
@@ -188,7 +231,10 @@ const MobileMenu = ({
             </svg>
           </a>
 
-          {/* LinkedIn */}
+          {/* =================================================
+              LINKEDIN
+          ================================================= */}
+
           <a
             href="#"
             className={styles.socialLink}
@@ -221,7 +267,10 @@ const MobileMenu = ({
             </svg>
           </a>
 
-          {/* Instagram */}
+          {/* =================================================
+              INSTAGRAM
+          ================================================= */}
+
           <a
             href="#"
             className={styles.socialLink}
@@ -259,8 +308,11 @@ const MobileMenu = ({
               />
             </svg>
           </a>
+
         </div>
+
       </aside>
+
     </div>
   );
 };

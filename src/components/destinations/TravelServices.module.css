@@ -14,9 +14,8 @@
    * compensate karke Our Services section
    * ko upar pull kiya gaya hai.
    */
- 
 
-  padding: 0 48px 160px;
+  padding: 0 48px 60px;
 
   box-sizing: border-box;
 
@@ -188,7 +187,7 @@
 .card3 {
   z-index: 3;
 
-  margin-bottom: 0;
+  margin-bottom: 140px;
 }
 
 
@@ -514,6 +513,17 @@
     max-width: 600px;
 
     font-size: 40px;
+  }
+
+
+  /* =====================================
+     MOBILE CARDS WRAPPER
+  ===================================== */
+
+  .cardsWrapper {
+    margin: 0 auto;
+
+    padding-bottom: 40px;
   }
 
 

@@ -10,34 +10,32 @@
   padding: 52px 48px 0;
 
   background: #ffffff;
+
+  overflow-x: clip;
 }
 
 
 /* =========================================
    STICKY AREA
-   DETAILS CARD WILL STAY STICKY
-   UNTIL HIGHLIGHT IMAGES START
 ========================================= */
 
 .stickyArea {
   width: 100%;
+
   max-width: 1344px;
 
   margin: 0 auto;
 
   display: grid;
 
-  grid-template-columns: minmax(0, 876px) 412px;
+  grid-template-columns:
+    minmax(0, 876px)
+    412px;
 
   column-gap: 56px;
 
   align-items: start;
 
-  /*
-    Existing 48px gap before highlight images
-    is kept visually, while the sticky boundary
-    is extended exactly to the image start.
-  */
   padding-bottom: 48px;
 
   margin-bottom: -48px;
@@ -52,14 +50,11 @@
 
 .layout {
   width: 100%;
+
   max-width: 1344px;
 
   margin: 0 auto;
 
-  /*
-    Layout wrapper no longer creates the
-    sticky boundary for the details card.
-  */
   display: contents;
 }
 
@@ -71,7 +66,10 @@
 .mainContent {
   width: 100%;
 
+  min-width: 0;
+
   grid-column: 1;
+
   grid-row: 1;
 }
 
@@ -92,6 +90,7 @@
   font-family: "Outfit", sans-serif;
 
   font-size: 32px;
+
   font-weight: 500;
 
   line-height: 108%;
@@ -106,6 +105,7 @@
   display: inline-flex;
 
   align-items: center;
+
   justify-content: center;
 
   font-size: 29px;
@@ -138,6 +138,7 @@
   font-family: "Outfit", sans-serif;
 
   font-size: 18px;
+
   font-weight: 300;
 
   line-height: 120%;
@@ -180,76 +181,226 @@
 
 
 /* =========================================
-   TRIP HIGHLIGHTS
+   TRIP DETAILS
 ========================================= */
 
-.highlights {
-  width: 100%;
+.tripDetails {
+  width: 338px;
+
+  height: 180px;
 
   margin-top: 48px;
 
   grid-column: 1;
+
   grid-row: 2;
+
+  box-sizing: border-box;
 }
 
 
-.highlightList {
-  width: 100%;
+/* =========================================
+   TRIP DETAILS HEADING
+========================================= */
 
-  margin-top: 16px;
-}
+.tripDetailsTitle {
+  width: 197px;
 
+  height: 35px;
 
-.highlightList p {
   margin: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  gap: 8px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 32px;
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  line-height: 108%;
+
+  margin-top: -16px;
+
+  letter-spacing: -0.02em;
+
+  color: #292929;
+}
+
+
+.tripDetailsIcon {
+  width: 20px;
+
+  height: 20px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 20px;
+
+  line-height: 20px;
+}
+
+
+/* =========================================
+   TRIP DETAILS LIST
+========================================= */
+
+.tripDetailsList {
+  width: 338px;
+
+  margin-top: 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+
+/* =========================================
+   TRIP DETAILS ROW
+========================================= */
+
+.tripDetailsRow {
+  width: 338px;
+
+  min-height: 22px;
+
+  display: grid;
+
+  grid-template-columns:
+    116px
+    minmax(0, 1fr);
+
+  column-gap: 8px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   TRIP DETAILS LABEL
+========================================= */
+
+.tripDetailsLabel {
+  width: 116px;
+
+  min-height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  box-sizing: border-box;
 
   font-family: "Outfit", sans-serif;
 
   font-size: 18px;
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.tripDetailsLabel svg {
+  width: 20px;
+
+  height: 20px;
+
+  flex-shrink: 0;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   TRIP DETAILS VALUE
+========================================= */
+
+.tripDetailsRow > strong {
+  min-height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  font-style: normal;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   PRICE VALUE
+========================================= */
+
+.priceValue {
+  gap: 1px;
+}
+
+
+.priceValue span {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
   font-weight: 300;
 
   line-height: 120%;
 
   letter-spacing: -0.03em;
 
-  color: #444444;
+  color: #555555;
 }
 
 
 /* =========================================
-   HIGHLIGHT GALLERY
+   INCLUSIONS
 ========================================= */
 
-.highlightGallery {
-  width: 100%;
+.inclusionsValue {
+  display: block !important;
 
-  display: grid;
-
-  grid-template-columns: 661px 661px;
-
-  gap: 22px;
-
-  margin-top: 48px;
-
-  padding-bottom: 80px;
-}
-
-
-.highlightImage {
-  position: relative;
-
-  width: 661px;
-
-  height: 369px;
-
-  overflow: hidden;
-
-  border-radius: 24px;
+  line-height: 120% !important;
 }
 
 
 /* =========================================
-   TRIP DETAILS CARD
+   BOOKING FORM CARD
 ========================================= */
 
 .detailsCard {
@@ -269,18 +420,15 @@
 
   background: #ffffff;
 
-  border-radius: 20px;
+  border-radius: 24px;
+
+  border: 1px solid #eeeeee;
 
   box-shadow:
     0 8px 30px rgba(0, 0, 0, 0.07);
 
   z-index: 5;
 
-  /*
-    IMPORTANT:
-    Card is now a direct child of stickyArea,
-    not constrained by the Overview/Image layout.
-  */
   grid-column: 2;
 
   grid-row: 1 / 3;
@@ -288,22 +436,49 @@
 
 
 /* =========================================
-   CARD HEADING
+   BOOKING PRICE
 ========================================= */
 
-.detailsTitle {
-  margin: 0;
+.bookingPrice {
+  width: 100%;
 
+  height: 29px;
+
+  display: flex;
+
+  align-items: baseline;
+}
+
+
+.bookingPrice strong {
   font-family: "Outfit", sans-serif;
 
   font-size: 24px;
-  font-weight: 500;
 
-  line-height: 108%;
+  font-weight: 600;
 
-  letter-spacing: -0.02em;
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
 
   color: #292929;
+}
+
+
+.bookingPrice span {
+  margin-left: 2px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
 }
 
 
@@ -316,7 +491,7 @@
 
   height: 1px;
 
-  margin-top: 24px;
+  margin-top: 10px;
 
   border-top: 1px dashed #d9d9d9;
 
@@ -325,53 +500,64 @@
 
 
 /* =========================================
-   DETAILS LIST
+   FORM FIELD
 ========================================= */
 
-.detailList {
+.formField {
   width: 100%;
 
-  margin-top: 26px;
+  margin-top: 16px;
+}
 
-  display: flex;
 
-  flex-direction: column;
+.fieldLabel {
+  display: block;
 
-  gap: 24px;
+  margin-bottom: 6px;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
 }
 
 
 /* =========================================
-   DETAIL ROW
+   WHERE INPUT
 ========================================= */
 
-.detailRow {
+.whereInput {
   width: 100%;
 
-  display: grid;
+  height: 40px;
 
-  grid-template-columns: 164px minmax(0, 1fr);
+  padding: 0 12px;
 
-  column-gap: 0;
-
-  align-items: start;
-}
-
-
-/* =========================================
-   DETAIL LABEL
-========================================= */
-
-.detailLabel {
   display: flex;
 
   align-items: center;
 
-  gap: 12px;
+  box-sizing: border-box;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.04);
 
   font-family: "Outfit", sans-serif;
 
-  font-size: 18px;
+  font-size: 14px;
 
   font-weight: 400;
 
@@ -379,32 +565,380 @@
 
   letter-spacing: -0.03em;
 
-  color: #4a4a4a;
+  color: #555555;
 }
 
 
-.detailIcon {
-  width: 20px;
-  height: 20px;
+/* =========================================
+   DATE + TIME
+========================================= */
+
+.dateTimeRow {
+  width: 100%;
+
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+}
+
+
+.halfField {
+  width: 100%;
+}
+
+
+.inputWrapper {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+}
+
+
+.input {
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 38px 0 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+.input:focus {
+  border-color: #d8d8d8;
+}
+
+
+/* =========================================
+   HIDE NATIVE BROWSER ICON
+========================================= */
+
+.input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+
+  width: 0;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+/* =========================================
+   CUSTOM RIGHT-SIDE ICON BUTTON
+========================================= */
+
+.inputIconButton {
+  position: absolute;
+
+  top: 50%;
+
+  right: 10px;
+
+  width: 18px;
+
+  height: 18px;
+
+  padding: 0;
+
+  transform: translateY(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+
+  color: #555555;
+
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+
+.inputIconButton:hover {
+  color: #292929;
+}
+
+
+.inputIconButton:focus {
+  outline: none;
+}
+
+
+.inputIcon {
+  width: 16px;
+
+  height: 16px;
 
   flex-shrink: 0;
 
   stroke-width: 1.5;
 
-  color: #999999;
+  pointer-events: none;
 }
 
 
 /* =========================================
-   DETAIL VALUE
+   GUEST
 ========================================= */
 
-.detailRow strong {
-  display: block;
+.guestInput {
+  position: relative;
+
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.04);
+
+  cursor: pointer;
+
+  box-sizing: border-box;
 
   font-family: "Outfit", sans-serif;
 
-  font-size: 18px;
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #555555;
+}
+
+
+.guestInput svg {
+  width: 16px;
+
+  height: 16px;
+
+  color: #999999;
+
+  stroke-width: 1.5;
+}
+
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+
+/* =========================================
+   GUEST DROPDOWN
+========================================= */
+
+.guestDropdown {
+  position: absolute;
+
+  width: 364px;
+
+  min-height: 180px;
+
+  margin-top: 10px;
+
+  padding: 14px 24px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.12);
+
+  z-index: 20;
+}
+
+
+.guestRow {
+  width: 100%;
+
+  min-height: 68px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+.guestRow:last-child {
+  border-bottom: none;
+}
+
+
+.guestInfo {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.guestTitle {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #292929;
+}
+
+
+.guestSubtitle {
+  font-family: "Outfit", sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 300;
+
+  line-height: 120%;
+
+  letter-spacing: -0.03em;
+
+  color: #777777;
+}
+
+
+.counter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.counterButton {
+  width: 24px;
+
+  height: 24px;
+
+  padding: 6px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #f2f2f2;
+
+  color: #555555;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+
+.counterButton:last-child {
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+}
+
+
+.counterValue {
+  width: 12px;
+
+  text-align: center;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 120%;
+
+  color: #292929;
+}
+
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.totalRow {
+  width: 100%;
+
+  margin-top: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-family: "Outfit", sans-serif;
+
+  font-size: 16px;
 
   font-weight: 600;
 
@@ -416,16 +950,10 @@
 }
 
 
-.detailRow small {
-  margin-left: 2px;
+.totalRow strong {
+  font-size: 16px;
 
-  font-size: 13px;
-
-  font-weight: 400;
-
-  letter-spacing: -0.02em;
-
-  color: #555555;
+  font-weight: 600;
 }
 
 
@@ -434,18 +962,19 @@
 ========================================= */
 
 .bookButton {
-  width: 224px;
-  height: 48px;
+  width: 100%;
 
-  margin-top: 38px;
+  height: 40px;
 
-  padding: 4px;
+  margin-top: 12px;
+
+  padding: 9px 106px;
 
   display: flex;
 
   align-items: center;
 
-  justify-content: space-between;
+  justify-content: center;
 
   border: none;
 
@@ -463,14 +992,12 @@
 }
 
 
-.bookButton > span:first-child {
-  padding-left: 28px;
-
-  font-size: 16px;
+.bookButton span {
+  font-size: 14px;
 
   font-weight: 400;
 
-  line-height: 120%;
+  line-height: 108%;
 
   letter-spacing: -0.03em;
 
@@ -479,26 +1006,80 @@
 
 
 /* =========================================
-   BUTTON ARROW CIRCLE
+   HIGHLIGHT GALLERY
 ========================================= */
 
-.arrowCircle {
-  width: 40px;
-  height: 40px;
+.highlightGallery {
+  width: 100%;
 
-  flex-shrink: 0;
+  max-width: 1344px;
 
-  display: flex;
+  margin: 48px auto 0;
 
-  align-items: center;
+  display: grid;
 
-  justify-content: center;
+  grid-template-columns:
+    661px
+    661px;
 
-  border-radius: 50%;
+  gap: 22px;
 
-  background: #ffffff;
+  padding-bottom: 80px;
 
-  color: #343434;
+  box-sizing: border-box;
+
+  min-width: 0;
+}
+
+
+.highlightImage {
+  position: relative;
+
+  width: 661px;
+
+  height: 369px;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   RESPONSIVE DESKTOP
+========================================= */
+
+@media (max-width: 1399px) {
+
+  .stickyArea {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(360px, 412px);
+
+    column-gap: 36px;
+  }
+
+
+  .detailsCard {
+    width: 100%;
+  }
+
+
+  .highlightGallery {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+  }
+
+
+  .highlightImage {
+    width: 100%;
+  }
 }
 
 
@@ -510,27 +1091,34 @@
 
   .section {
     padding-left: 32px;
+
     padding-right: 32px;
   }
 
 
   .stickyArea {
-    grid-template-columns: minmax(0, 1fr) 360px;
+    grid-template-columns:
+      minmax(0, 1fr)
+      360px;
 
     column-gap: 36px;
   }
 
 
-  .detailRow {
-    grid-template-columns: 140px minmax(0, 1fr);
+  .guestDropdown {
+    width: 100%;
   }
 
 
-  .detailLabel,
-  .detailRow strong {
+  .tripDetailsRow {
+    width: 100%;
+  }
+
+
+  .tripDetailsLabel,
+  .tripDetailsRow > strong {
     font-size: 16px;
   }
-
 }
 
 
@@ -585,7 +1173,11 @@
   }
 
 
-  .highlights {
+  .tripDetails {
+    width: 100%;
+
+    height: auto;
+
     order: 3;
 
     grid-column: auto;
@@ -612,9 +1204,24 @@
 
 
   .highlightGallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
+
+  .guestDropdown {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 8px;
+  }
+
+
+  .tripDetailsList,
+  .tripDetailsRow {
+    width: 100%;
+  }
 }
 
 
@@ -639,8 +1246,7 @@
   }
 
 
-  .description p,
-  .highlightList p {
+  .description p {
     font-size: 16px;
   }
 
@@ -659,8 +1265,49 @@
   }
 
 
-  .highlights {
+  .tripDetails {
     margin-top: 40px;
+  }
+
+
+  .tripDetailsTitle {
+    font-size: 28px;
+  }
+
+
+  .tripDetailsList,
+  .tripDetailsRow {
+    width: 100%;
+  }
+
+
+  .tripDetailsRow {
+    grid-template-columns:
+      116px
+      minmax(0, 1fr);
+  }
+
+
+  .tripDetailsLabel,
+  .tripDetailsRow > strong {
+    font-size: 15px;
+  }
+
+
+  .tripDetailsLabel {
+    gap: 8px;
+  }
+
+
+  .tripDetailsLabel svg {
+    width: 18px;
+
+    height: 18px;
+  }
+
+
+  .priceValue span {
+    font-size: 13px;
   }
 
 
@@ -691,37 +1338,21 @@
   }
 
 
-  .detailsTitle {
-    font-size: 22px;
-  }
-
-
-  .detailList {
-    gap: 22px;
-  }
-
-
-  .detailRow {
-    grid-template-columns: 135px minmax(0, 1fr);
-  }
-
-
-  .detailLabel,
-  .detailRow strong {
-    font-size: 15px;
-  }
-
-
-  .detailIcon {
-    width: 18px;
-    height: 18px;
+  .dateTimeRow {
+    gap: 8px;
   }
 
 
   .bookButton {
-    width: 224px;
+    padding-left: 0;
 
-    margin-top: 32px;
+    padding-right: 0;
   }
 
+
+  .guestDropdown {
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
 }

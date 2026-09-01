@@ -15,10 +15,13 @@ import {
 } from "lucide-react";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./SnaefellsnesContent.module.css";
 
 const SnaefellsnesContent = () => {
+  const router = useRouter();
+
   const pricePerPerson = 100;
 
   const [date, setDate] = useState("");
@@ -46,6 +49,29 @@ const SnaefellsnesContent = () => {
 
   const increaseChildren = () => {
     setChildren((current) => current + 1);
+  };
+
+  /* =====================================================
+     BOOK NOW
+  ===================================================== */
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams();
+
+    params.set("destination", "Snaefellsnes");
+    params.set("price", String(pricePerPerson));
+    params.set("date", date);
+    params.set("time", time);
+    params.set("adults", String(adults));
+    params.set("children", String(children));
+    params.set("guests", String(totalGuests));
+    params.set("total", String(totalPrice));
+    params.set(
+      "image",
+      "/images/destinations/snaefellsnes/Snaefellsnes%20Trip%201.png"
+    );
+
+    router.push(`/booking?${params.toString()}`);
   };
 
   return (
@@ -408,6 +434,7 @@ const SnaefellsnesContent = () => {
             <button
               type="button"
               className={styles.bookButton}
+              onClick={handleBookNow}
             >
               <span>
                 Book Now

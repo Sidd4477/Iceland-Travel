@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 
 import {
@@ -13,15 +14,47 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./LandmannalaugarContent.module.css";
 
 const LandmannalaugarContent = () => {
+  const router = useRouter();
+
   const pricePerPerson = 100;
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
+  const dateInputRef = useRef<HTMLInputElement>(null);
+  const timeInputRef = useRef<HTMLInputElement>(null);
+
+  const openDatePicker = () => {
+    const input = dateInputRef.current;
+
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    } else {
+      input.focus();
+      input.click();
+    }
+  };
+
+  const openTimePicker = () => {
+    const input = timeInputRef.current;
+
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    } else {
+      input.focus();
+      input.click();
+    }
+  };
 
   const [isGuestOpen, setIsGuestOpen] = useState(false);
 
@@ -45,6 +78,30 @@ const LandmannalaugarContent = () => {
 
   const increaseChildren = () => {
     setChildren((current) => current + 1);
+  };
+
+  /* =====================================================
+     BOOK NOW
+  ===================================================== */
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams();
+
+    params.set("destination", "Landmannalaugar");
+    params.set("price", String(pricePerPerson));
+    params.set("date", date);
+    params.set("time", time);
+    params.set("adults", String(adults));
+    params.set("children", String(children));
+    params.set("guests", String(totalGuests));
+    params.set("total", String(totalPrice));
+
+    params.set(
+      "image",
+      "/images/destinations/landmannalaugar/Landmannalaugar%20Trip%201.png"
+    );
+
+    router.push(`/booking?${params.toString()}`);
   };
 
   return (
@@ -137,6 +194,7 @@ const LandmannalaugarContent = () => {
 
                 <div className={styles.inputWrapper}>
                   <input
+                    ref={dateInputRef}
                     type="date"
                     value={date}
                     onChange={(event) => setDate(event.target.value)}
@@ -144,7 +202,14 @@ const LandmannalaugarContent = () => {
                     aria-label="Date"
                   />
 
-                  <CalendarDays className={styles.inputIcon} />
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openDatePicker}
+                    aria-label="Open date picker"
+                  >
+                    <CalendarDays className={styles.inputIcon} />
+                  </button>
                 </div>
               </div>
 
@@ -153,6 +218,7 @@ const LandmannalaugarContent = () => {
 
                 <div className={styles.inputWrapper}>
                   <input
+                    ref={timeInputRef}
                     type="time"
                     value={time}
                     onChange={(event) => setTime(event.target.value)}
@@ -160,7 +226,14 @@ const LandmannalaugarContent = () => {
                     aria-label="Time"
                   />
 
-                  <Clock3 className={styles.inputIcon} />
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openTimePicker}
+                    aria-label="Open time picker"
+                  >
+                    <Clock3 className={styles.inputIcon} />
+                  </button>
                 </div>
               </div>
             </div>
@@ -193,6 +266,7 @@ const LandmannalaugarContent = () => {
                   <div className={styles.guestRow}>
                     <div className={styles.guestInfo}>
                       <span className={styles.guestTitle}>Adults</span>
+
                       <span className={styles.guestSubtitle}>
                         Ages 13 or above
                       </span>
@@ -208,7 +282,9 @@ const LandmannalaugarContent = () => {
                         <Minus size={12} />
                       </button>
 
-                      <span className={styles.counterValue}>{adults}</span>
+                      <span className={styles.counterValue}>
+                        {adults}
+                      </span>
 
                       <button
                         type="button"
@@ -226,7 +302,10 @@ const LandmannalaugarContent = () => {
                   <div className={styles.guestRow}>
                     <div className={styles.guestInfo}>
                       <span className={styles.guestTitle}>Children</span>
-                      <span className={styles.guestSubtitle}>Ages 2-12</span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 2-12
+                      </span>
                     </div>
 
                     <div className={styles.counter}>
@@ -239,7 +318,9 @@ const LandmannalaugarContent = () => {
                         <Minus size={12} />
                       </button>
 
-                      <span className={styles.counterValue}>{children}</span>
+                      <span className={styles.counterValue}>
+                        {children}
+                      </span>
 
                       <button
                         type="button"
@@ -264,7 +345,11 @@ const LandmannalaugarContent = () => {
 
             {/* BOOK NOW */}
 
-            <button type="button" className={styles.bookButton}>
+            <button
+              type="button"
+              className={styles.bookButton}
+              onClick={handleBookNow}
+            >
               <span>Book Now</span>
             </button>
           </aside>

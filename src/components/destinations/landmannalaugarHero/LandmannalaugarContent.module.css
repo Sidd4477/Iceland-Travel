@@ -302,9 +302,6 @@
 }
 
 
-
-
-
 .tripDetailsRow strong {
   display: block;
 
@@ -572,24 +569,79 @@
 }
 
 
-.inputIcon {
-  position: absolute;
+/* =========================================
+   HIDE NATIVE BROWSER ICON
+   KEEP CUSTOM RIGHT ICON
+========================================= */
 
-  right: 10px;
+.input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+
+  width: 0;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+/* =========================================
+   CUSTOM RIGHT-SIDE ICON BUTTON
+========================================= */
+
+.inputIconButton {
+  position: absolute;
 
   top: 50%;
 
+  right: 10px;
+
+  width: 18px;
+
+  height: 18px;
+
+  padding: 0;
+
+  transform: translateY(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+
+  color: #555555;
+
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+
+.inputIconButton:hover {
+  color: #292929;
+}
+
+
+.inputIconButton:focus {
+  outline: none;
+}
+
+
+.inputIcon {
   width: 16px;
 
   height: 16px;
 
-  transform: translateY(-50%);
-
-  pointer-events: none;
-
-  color: #555555;
+  flex-shrink: 0;
 
   stroke-width: 1.5;
+
+  pointer-events: none;
 }
 
 
@@ -935,7 +987,6 @@
 ========================================= */
 
 @media (max-width: 1399px) {
-
   .stickyArea {
     grid-template-columns:
       minmax(0, 1fr)
@@ -961,7 +1012,6 @@
   .highlightImage {
     width: 100%;
   }
-
 }
 
 
@@ -975,20 +1025,24 @@
     padding-right: 32px;
   }
 
+
   .stickyArea {
     grid-template-columns: minmax(0, 1fr) 360px;
 
     column-gap: 36px;
   }
 
+
   .tripDetailsRow {
     width: 100%;
   }
+
 
   .tripDetailsLabel,
   .tripDetailsRow strong {
     font-size: 16px;
   }
+
 
   .guestDropdown {
     width: 100%;
@@ -1005,6 +1059,7 @@
     padding: 48px 24px 0;
   }
 
+
   .stickyArea {
     display: flex;
 
@@ -1017,15 +1072,18 @@
     margin-bottom: 0;
   }
 
+
   .layout {
     display: contents;
   }
+
 
   .mainContent {
     width: 100%;
 
     order: 2;
   }
+
 
   .detailsCard {
     position: relative;
@@ -1041,6 +1099,7 @@
     grid-row: auto;
   }
 
+
   .tripDetails {
     order: 3;
 
@@ -1049,13 +1108,16 @@
     grid-row: auto;
   }
 
+
   .overview {
     padding-top: 0;
   }
 
+
   .overviewImage {
     height: 420px;
   }
+
 
   .highlightImage {
     height: 320px;
@@ -1063,9 +1125,11 @@
     width: 100%;
   }
 
+
   .highlightGallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
 
   .guestDropdown {
     position: relative;
@@ -1086,21 +1150,26 @@
     padding: 36px 16px 0;
   }
 
+
   .sectionTitle {
     font-size: 28px;
   }
+
 
   .titleIcon {
     font-size: 25px;
   }
 
+
   .description p {
     font-size: 16px;
   }
 
+
   .description p + p {
     margin-top: 16px;
   }
+
 
   .overviewImage {
     height: 300px;
@@ -1110,15 +1179,18 @@
     border-radius: 18px;
   }
 
+
   .tripDetails {
     margin-top: 40px;
   }
+
 
   .tripDetailsTitle {
     width: auto;
 
     font-size: 28px;
   }
+
 
   .tripDetailsIcon {
     width: 30px;
@@ -1128,20 +1200,24 @@
     font-size: 25px;
   }
 
+
   .tripDetailsList {
     width: 100%;
 
     gap: 12px;
   }
 
+
   .tripDetailsRow {
     width: 100%;
   }
+
 
   .tripDetailsLabel,
   .tripDetailsRow strong {
     font-size: 15px;
   }
+
 
   .highlightGallery {
     grid-template-columns: 1fr;
@@ -1153,6 +1229,7 @@
     padding-bottom: 48px;
   }
 
+
   .highlightImage {
     height: 280px;
 
@@ -1161,25 +1238,30 @@
     border-radius: 18px;
   }
 
+
   .detailsCard {
     padding: 24px 20px;
 
     border-radius: 18px;
   }
 
+
   .bookingPrice strong {
     font-size: 24px;
   }
 
+
   .dateTimeRow {
     gap: 8px;
   }
+
 
   .bookButton {
     padding-left: 0;
 
     padding-right: 0;
   }
+
 
   .guestDropdown {
     padding-left: 16px;

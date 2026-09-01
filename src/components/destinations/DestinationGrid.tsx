@@ -29,7 +29,8 @@ const destinations = [
   {
     name: "South Coast",
     slug: "south-coast",
-    image: "/images/destinations/Explore%20the%20Wild%20Side%20of%20Iceland.png",
+    image:
+      "/images/destinations/Explore%20the%20Wild%20Side%20of%20Iceland.png",
     price: "$100",
   },
   {
@@ -37,6 +38,19 @@ const destinations = [
     slug: "thorsmork",
     image: "/images/destinations/Thorsmörk.png",
     price: "$100",
+  },
+  {
+    name: "Blue Lagoon Spa",
+    slug: "blue-lagoon-spa-experience",
+    image: "/images/destinations/Blue%20Lagoon%20Spa.png",
+    price: "$80",
+  },
+  {
+    name: "Glacier Hike Adventure",
+    slug: "glacier-hike-adventure",
+    image:
+      "/images/destinations/Glacier%20Hike%20Adventure%20destination.png",
+    price: "$80",
   },
 ];
 

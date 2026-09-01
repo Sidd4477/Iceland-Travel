@@ -1,33 +1,117 @@
+"use client";
+
 import Image from "next/image";
 
 import {
-  ArrowUpRight,
-  CarFront,
-  CircleAlert,
+  CalendarDays,
   Clock3,
-  Tag,
+  Minus,
+  Plus,
+  CarFront,
   Users,
+  Tag,
+  CircleAlert,
+  ChevronDown,
 } from "lucide-react";
+
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./GlacierHikeAdventureContent.module.css";
 
 const GlacierHikeAdventureContent = () => {
+  const router = useRouter();
+
+  const pricePerPerson = 80;
+
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const dateInputRef = useRef<HTMLInputElement>(null);
+  const timeInputRef = useRef<HTMLInputElement>(null);
+
+  const openDatePicker = () => {
+    const input = dateInputRef.current;
+
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    } else {
+      input.focus();
+      input.click();
+    }
+  };
+
+  const openTimePicker = () => {
+    const input = timeInputRef.current;
+
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    } else {
+      input.focus();
+      input.click();
+    }
+  };
+
+  const [isGuestOpen, setIsGuestOpen] = useState(false);
+
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+  const totalGuests = adults + children;
+  const totalPrice = totalGuests * pricePerPerson;
+
+  const decreaseAdults = () => {
+    setAdults((current) => Math.max(1, current - 1));
+  };
+
+  const increaseAdults = () => {
+    setAdults((current) => current + 1);
+  };
+
+  const decreaseChildren = () => {
+    setChildren((current) => Math.max(0, current - 1));
+  };
+
+  const increaseChildren = () => {
+    setChildren((current) => current + 1);
+  };
+
+  /* =====================================================
+     BOOK NOW
+  ===================================================== */
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams();
+
+    params.set("destination", "Glacier Hike Adventure");
+    params.set("price", String(pricePerPerson));
+    params.set("date", date);
+    params.set("time", time);
+    params.set("adults", String(adults));
+    params.set("children", String(children));
+    params.set("guests", String(totalGuests));
+    params.set("total", String(totalPrice));
+
+    params.set(
+      "image",
+      "/images/destinations/glacier-hike-adventure/Glacier Hike Adventure Trip 1.png"
+    );
+
+    router.push(`/booking?${params.toString()}`);
+  };
+
   return (
     <section className={styles.section}>
 
       {/* =========================================
           STICKY AREA
-
-          Trip Details card will remain sticky
-          through Trip Highlights and will stop
-          exactly before the highlight images.
       ========================================= */}
 
       <div className={styles.stickyArea}>
-
-        {/* =========================================
-            MAIN LAYOUT
-        ========================================= */}
 
         <div className={styles.layout}>
 
@@ -44,13 +128,9 @@ const GlacierHikeAdventureContent = () => {
             <div className={styles.overview}>
 
               <h2 className={styles.sectionTitle}>
-                <span className={styles.titleIcon}>
-                  🧭
-                </span>
-
+                <span className={styles.titleIcon}>🧭</span>
                 Trip Overview
               </h2>
-
 
               <div className={styles.description}>
 
@@ -61,7 +141,6 @@ const GlacierHikeAdventureContent = () => {
                   wilderness, the experience offers an unforgettable opportunity
                   to explore Iceland’s raw and ever-changing natural beauty.
                 </p>
-
 
                 <p>
                   Step onto the magnificent ice, discover fascinating crevasses
@@ -74,7 +153,6 @@ const GlacierHikeAdventureContent = () => {
 
               </div>
 
-
               {/* =========================================
                   OVERVIEW IMAGE
               ========================================= */}
@@ -85,6 +163,7 @@ const GlacierHikeAdventureContent = () => {
                   src="/images/destinations/glacier-hike-adventure/Glacier Hike Adventure Trip 1.png"
                   alt="Glacier Hike Adventure"
                   fill
+                  priority
                   className={styles.image}
                   sizes="(max-width: 900px) 100vw, 876px"
                 />
@@ -93,267 +172,413 @@ const GlacierHikeAdventureContent = () => {
 
             </div>
 
+            {/* =========================================
+                TRIP DETAILS
+            ========================================= */}
+
+            <div className={styles.tripDetails}>
+
+              <h2 className={styles.tripDetailsTitle}>
+
+                <span className={styles.tripDetailsIcon}>
+                  ✨
+                </span>
+
+                Trip Details
+
+              </h2>
+
+              <div className={styles.tripDetailsList}>
+
+                {/* =========================================
+                    DURATION
+                ========================================= */}
+
+                <div className={styles.tripDetailsRow}>
+
+                  <div className={styles.tripDetailsLabel}>
+
+                    <Clock3 />
+
+                    <span>
+                      Duration:
+                    </span>
+
+                  </div>
+
+                  <strong>
+                    1 Complete Day
+                  </strong>
+
+                </div>
+
+                {/* =========================================
+                    VISITS
+                ========================================= */}
+
+                <div className={styles.tripDetailsRow}>
+
+                  <div className={styles.tripDetailsLabel}>
+
+                    <CarFront />
+
+                    <span>
+                      Visits:
+                    </span>
+
+                  </div>
+
+                  <strong>
+                    All Days
+                  </strong>
+
+                </div>
+
+                {/* =========================================
+                    GROUP SIZE
+                ========================================= */}
+
+                <div className={styles.tripDetailsRow}>
+
+                  <div className={styles.tripDetailsLabel}>
+
+                    <Users />
+
+                    <span>
+                      Group Size:
+                    </span>
+
+                  </div>
+
+                  <strong>
+                    10 Travellers
+                  </strong>
+
+                </div>
+
+                {/* =========================================
+                    PRICE
+                ========================================= */}
+
+                <div className={styles.tripDetailsRow}>
+
+                  <div className={styles.tripDetailsLabel}>
+
+                    <Tag />
+
+                    <span>
+                      Price:
+                    </span>
+
+                  </div>
+
+                  <strong className={styles.priceValue}>
+
+                    ${pricePerPerson}
+
+                    <span>
+                      /per person
+                    </span>
+
+                  </strong>
+
+                </div>
+
+                {/* =========================================
+                    INCLUSIONS
+                ========================================= */}
+
+                <div className={styles.tripDetailsRow}>
+
+                  <div className={styles.tripDetailsLabel}>
+
+                    <CircleAlert />
+
+                    <span>
+                      Inclusions:
+                    </span>
+
+                  </div>
+
+                  <strong className={styles.inclusionsValue}>
+                    Transportation, Tours,
+
+                    <br />
+
+                    Professional Guides
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
 
-
           {/* =========================================
-              TRIP DETAILS
-
-              IMPORTANT:
-              This is now a direct child of
-              stickyArea, so it is NOT restricted
-              to the Overview/Image layout.
+              BOOKING FORM
           ========================================= */}
 
           <aside className={styles.detailsCard}>
 
-            <h3 className={styles.detailsTitle}>
-              Trip Details
-            </h3>
+            {/* PRICE */}
 
+            <div className={styles.bookingPrice}>
+              <strong>${pricePerPerson}</strong>
+              <span>/per person</span>
+            </div>
+
+            {/* DIVIDER */}
 
             <div className={styles.divider} />
 
+            {/* WHERE */}
 
-            <div className={styles.detailList}>
+            <div className={styles.formField}>
 
-              {/* =========================================
-                  DURATION
-              ========================================= */}
+              <label className={styles.fieldLabel}>
+                Where
+              </label>
 
-              <div className={styles.detailRow}>
+              <div className={styles.whereInput}>
+                <span>
+                  Glacier Hike Adventure
+                </span>
+              </div>
 
-                <div className={styles.detailLabel}>
+            </div>
 
-                  <Clock3
-                    className={styles.detailIcon}
+            {/* DATE + TIME */}
+
+            <div className={styles.dateTimeRow}>
+
+              <div className={styles.halfField}>
+
+                <label className={styles.fieldLabel}>
+                  Date
+                </label>
+
+                <div className={styles.inputWrapper}>
+
+                  <input
+                    ref={dateInputRef}
+                    type="date"
+                    value={date}
+                    onChange={(event) => setDate(event.target.value)}
+                    className={styles.input}
+                    aria-label="Date"
                   />
 
-                  <span>
-                    Duration:
-                  </span>
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openDatePicker}
+                    aria-label="Open date picker"
+                  >
+                    <CalendarDays className={styles.inputIcon} />
+                  </button>
 
                 </div>
-
-
-                <strong>
-                  1 Complete Day
-                </strong>
 
               </div>
 
+              <div className={styles.halfField}>
 
-              {/* =========================================
-                  VISITS
-              ========================================= */}
+                <label className={styles.fieldLabel}>
+                  Time
+                </label>
 
-              <div className={styles.detailRow}>
+                <div className={styles.inputWrapper}>
 
-                <div className={styles.detailLabel}>
-
-                  <CarFront
-                    className={styles.detailIcon}
+                  <input
+                    ref={timeInputRef}
+                    type="time"
+                    value={time}
+                    onChange={(event) => setTime(event.target.value)}
+                    className={styles.input}
+                    aria-label="Time"
                   />
 
-                  <span>
-                    Visits:
-                  </span>
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openTimePicker}
+                    aria-label="Open time picker"
+                  >
+                    <Clock3 className={styles.inputIcon} />
+                  </button>
 
                 </div>
-
-
-                <strong>
-                  All Days
-                </strong>
-
-              </div>
-
-
-              {/* =========================================
-                  GROUP SIZE
-              ========================================= */}
-
-              <div className={styles.detailRow}>
-
-                <div className={styles.detailLabel}>
-
-                  <Users
-                    className={styles.detailIcon}
-                  />
-
-                  <span>
-                    Group Size:
-                  </span>
-
-                </div>
-
-
-                <strong>
-                  10 Travellers
-                </strong>
-
-              </div>
-
-
-              {/* =========================================
-                  PRICE
-              ========================================= */}
-
-              <div className={styles.detailRow}>
-
-                <div className={styles.detailLabel}>
-
-                  <Tag
-                    className={styles.detailIcon}
-                  />
-
-                  <span>
-                    Price:
-                  </span>
-
-                </div>
-
-
-                <strong>
-                  $80
-
-                  <small>
-                    /per person
-                  </small>
-
-                </strong>
-
-              </div>
-
-
-              {/* =========================================
-                  INCLUSIONS
-              ========================================= */}
-
-              <div className={styles.detailRow}>
-
-                <div className={styles.detailLabel}>
-
-                  <CircleAlert
-                    className={styles.detailIcon}
-                  />
-
-                  <span>
-                    Inclusions:
-                  </span>
-
-                </div>
-
-
-                <strong>
-                  Transportation, Tours,
-
-                  <br />
-
-                  Professional Guides
-                </strong>
 
               </div>
 
             </div>
 
+            {/* GUEST */}
 
-            {/* =========================================
-                BOOK BUTTON
-            ========================================= */}
+            <div className={styles.formField}>
+
+              <label className={styles.fieldLabel}>
+                Guest
+              </label>
+
+              <button
+                type="button"
+                className={styles.guestInput}
+                onClick={() => setIsGuestOpen((current) => !current)}
+                aria-expanded={isGuestOpen}
+                aria-haspopup="dialog"
+              >
+
+                <span>
+                  {totalGuests}
+                </span>
+
+                <ChevronDown
+                  className={
+                    isGuestOpen
+                      ? styles.chevronOpen
+                      : undefined
+                  }
+                />
+
+              </button>
+
+              {/* GUEST DROPDOWN */}
+
+              {isGuestOpen && (
+
+                <div className={styles.guestDropdown}>
+
+                  {/* ADULTS */}
+
+                  <div className={styles.guestRow}>
+
+                    <div className={styles.guestInfo}>
+
+                      <span className={styles.guestTitle}>
+                        Adults
+                      </span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 13 or above
+                      </span>
+
+                    </div>
+
+                    <div className={styles.counter}>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseAdults}
+                        aria-label="Decrease adults"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+                      <span className={styles.counterValue}>
+                        {adults}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseAdults}
+                        aria-label="Increase adults"
+                      >
+                        <Plus size={12} />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                  {/* CHILDREN */}
+
+                  <div className={styles.guestRow}>
+
+                    <div className={styles.guestInfo}>
+
+                      <span className={styles.guestTitle}>
+                        Children
+                      </span>
+
+                      <span className={styles.guestSubtitle}>
+                        Ages 2-12
+                      </span>
+
+                    </div>
+
+                    <div className={styles.counter}>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={decreaseChildren}
+                        aria-label="Decrease children"
+                      >
+                        <Minus size={12} />
+                      </button>
+
+                      <span className={styles.counterValue}>
+                        {children}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={styles.counterButton}
+                        onClick={increaseChildren}
+                        aria-label="Increase children"
+                      >
+                        <Plus size={12} />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              )}
+
+            </div>
+
+            {/* TOTAL */}
+
+            <div className={styles.totalRow}>
+
+              <span>
+                Total
+              </span>
+
+              <strong>
+                ${totalPrice.toFixed(2)}
+              </strong>
+
+            </div>
+
+            {/* BOOK NOW */}
 
             <button
               type="button"
               className={styles.bookButton}
+              onClick={handleBookNow}
             >
-
               <span>
-                Book a Trip Now
+                Book Now
               </span>
-
-
-              <span className={styles.arrowCircle}>
-
-                <ArrowUpRight
-                  size={24}
-                  strokeWidth={1.7}
-                />
-
-              </span>
-
             </button>
 
           </aside>
-
-
-          {/* =========================================
-              TRIP HIGHLIGHTS
-
-              This is part of the sticky boundary.
-              Therefore the Details Card remains
-              sticky while this content is scrolling.
-          ========================================= */}
-
-          <div className={styles.highlights}>
-
-            <h2 className={styles.sectionTitle}>
-
-              <span className={styles.titleIcon}>
-                ✨
-              </span>
-
-              Trip Highlights
-
-            </h2>
-
-
-            <div className={styles.highlightList}>
-
-              <p>
-                🧊 Trek across Iceland’s breathtaking glaciers and ancient ice fields
-              </p>
-
-
-              <p>
-                🥾 Experience an unforgettable guided glacier hiking adventure
-              </p>
-
-
-              <p>
-                🏔️ Admire dramatic mountains, rugged valleys, and spectacular glacial landscapes
-              </p>
-
-
-              <p>
-                ❄️ Discover fascinating ice formations, crevasses, and unique glacier features
-              </p>
-
-
-              <p>
-                📸 Capture incredible moments surrounded by Iceland’s stunning frozen wilderness
-              </p>
-
-
-              <p>
-                ⛰️ Immerse yourself in Iceland’s raw nature and thrilling outdoor adventure
-              </p>
-
-            </div>
-
-          </div>
 
         </div>
 
       </div>
 
-
       {/* =========================================
           HIGHLIGHT GALLERY
-
-          Details Card sticky boundary ends here.
-
-          Existing margin-top: 48px is preserved.
-          Card will NOT overlap these images.
       ========================================= */}
 
       <div className={styles.highlightGallery}>
@@ -373,7 +598,6 @@ const GlacierHikeAdventureContent = () => {
           />
 
         </div>
-
 
         {/* =========================================
             TRIP 3
@@ -396,6 +620,5 @@ const GlacierHikeAdventureContent = () => {
     </section>
   );
 };
-
 
 export default GlacierHikeAdventureContent;

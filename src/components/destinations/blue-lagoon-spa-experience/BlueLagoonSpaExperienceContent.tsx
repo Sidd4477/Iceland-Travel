@@ -80,7 +80,7 @@ const BlueLagoonSpaExperienceContent = () => {
 
               <div className={styles.overviewImage}>
                 <Image
-                  src="/images/destinations/golden-circle/Blue Lagoon Spa Experience Trip 1.png"
+                  src="/images/destinations/blue-lagoon-spa-experience/Blue Lagoon Spa Experience Trip 1.png"
                   alt="Blue Lagoon Spa Experience experience"
                   fill
                   priority
@@ -299,7 +299,7 @@ const BlueLagoonSpaExperienceContent = () => {
       <div className={styles.highlightGallery}>
         <div className={styles.highlightImage}>
           <Image
-            src="/images/destinations/golden-circle/Blue Lagoon Spa Experience Trip 2.png"
+            src="/images/destinations/blue-lagoon-spa-experience/Blue Lagoon Spa Experience Trip 2.png"
             alt="Blue Lagoon Spa Experience over Iceland mountains"
             fill
             className={styles.image}
@@ -309,7 +309,7 @@ const BlueLagoonSpaExperienceContent = () => {
 
         <div className={styles.highlightImage}>
           <Image
-            src="/images/destinations/golden-circle/Blue Lagoon Spa Experience Trip 3.png"
+            src="/images/destinations/blue-lagoon-spa-experience/Blue Lagoon Spa Experience Trip 3.png"
             alt="Blue Lagoon Spa Experience over Iceland landscape"
             fill
             className={styles.image}

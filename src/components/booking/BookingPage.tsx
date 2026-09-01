@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import Header from "@/components/layout/Header";
 
@@ -21,6 +21,16 @@ const BookingPage = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+
+  /* =========================================================
+     GUEST EDITOR
+  ========================================================= */
+
+  const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
+  const [editingAdults, setEditingAdults] = useState(0);
+  const [editingChildren, setEditingChildren] = useState(0);
+  const [selectedAdults, setSelectedAdults] = useState(0);
+  const [selectedChildren, setSelectedChildren] = useState(0);
 
   /* =========================================================
      BOOKING DATA
@@ -71,6 +81,23 @@ const BookingPage = () => {
     searchParams.get("image") ?? "";
 
   /* =========================================================
+     DATE & TIME EDITOR
+  ========================================================= */
+
+  const [selectedDate, setSelectedDate] = useState(date);
+  const [selectedTime, setSelectedTime] = useState(time);
+
+  const [isDateTimeModalOpen, setIsDateTimeModalOpen] = useState(false);
+  const [draftDate, setDraftDate] = useState(date);
+  const [draftHour, setDraftHour] = useState(7);
+  const [draftMinute, setDraftMinute] = useState(0);
+  const [draftPeriod, setDraftPeriod] = useState<"AM" | "PM">("AM");
+  const [clockStep, setClockStep] = useState<"hour" | "minute">("hour");
+  const [isClockDragging, setIsClockDragging] = useState(false);
+
+  const clockFaceRef = useRef<HTMLDivElement | null>(null);
+
+  /* =========================================================
      SAFE VALUES
   ========================================================= */
 
@@ -97,18 +124,46 @@ const BookingPage = () => {
       : safeGuests * safePricePerPerson;
 
   /* =========================================================
+     ACTIVE GUEST VALUES
+  ========================================================= */
+
+  useEffect(() => {
+    setSelectedAdults(safeAdults);
+    setSelectedChildren(safeChildren);
+  }, [safeAdults, safeChildren]);
+
+  const activeAdults = selectedAdults;
+  const activeChildren = selectedChildren;
+  const activeGuests = activeAdults + activeChildren;
+
+  const activeBasePrice =
+    activeGuests * safePricePerPerson;
+
+  const activeTotal =
+    totalParam !== null &&
+    totalParam !== "" &&
+    activeGuests === safeGuests
+      ? safeTotal
+      : activeBasePrice;
+
+  const activeTaxes = Math.max(
+    0,
+    activeTotal - activeBasePrice
+  );
+
+  /* =========================================================
      FORMATTED DATE
   ========================================================= */
 
   const formattedDate = useMemo(() => {
-    if (!date) {
+    if (!selectedDate) {
       return "Select date";
     }
 
-    const parts = date.split("-");
+    const parts = selectedDate.split("-");
 
     if (parts.length !== 3) {
-      return date;
+      return selectedDate;
     }
 
     const year = Number(parts[0]);
@@ -116,7 +171,7 @@ const BookingPage = () => {
     const day = Number(parts[2]);
 
     if (!year || !month || !day) {
-      return date;
+      return selectedDate;
     }
 
     const dateObject = new Date(
@@ -129,19 +184,19 @@ const BookingPage = () => {
       year: "numeric",
       timeZone: "UTC",
     }).format(dateObject);
-  }, [date]);
+  }, [selectedDate]);
 
   /* =========================================================
      FORMATTED TIME
   ========================================================= */
 
   const formattedTime = useMemo(() => {
-    if (!time) {
+    if (!selectedTime) {
       return "Select time";
     }
 
     const [hoursString, minutesString] =
-      time.split(":");
+      selectedTime.split(":");
 
     const hours = Number(hoursString);
     const minutes = Number(minutesString);
@@ -150,7 +205,7 @@ const BookingPage = () => {
       Number.isNaN(hours) ||
       Number.isNaN(minutes)
     ) {
-      return time;
+      return selectedTime;
     }
 
     const dateObject = new Date();
@@ -166,35 +221,298 @@ const BookingPage = () => {
       hour: "numeric",
       minute: "2-digit",
     }).format(dateObject);
+  }, [selectedTime]);
+
+  /* =========================================================
+     DATE & TIME MODAL ACTIONS
+  ========================================================= */
+
+  useEffect(() => {
+    setSelectedDate(date);
+  }, [date]);
+
+  useEffect(() => {
+    setSelectedTime(time);
   }, [time]);
+
+  const parseTimeForEditor = (value: string) => {
+    const [hourText, minuteText] = value.split(":");
+    const parsedHour = Number(hourText);
+    const parsedMinute = Number(minuteText);
+
+    if (
+      !Number.isFinite(parsedHour) ||
+      !Number.isFinite(parsedMinute) ||
+      parsedHour < 0 ||
+      parsedHour > 23 ||
+      parsedMinute < 0 ||
+      parsedMinute > 59
+    ) {
+      return {
+        hour: 7,
+        minute: 0,
+        period: "AM" as const,
+      };
+    }
+
+    return {
+      hour: parsedHour,
+      minute: parsedMinute,
+      period: parsedHour >= 12 ? ("PM" as const) : ("AM" as const),
+    };
+  };
+
+  const openDateTimeModal = () => {
+    const parsed = parseTimeForEditor(selectedTime);
+
+    setDraftDate(selectedDate);
+    setDraftHour(parsed.hour);
+    setDraftMinute(parsed.minute);
+    setDraftPeriod(parsed.period);
+    setClockStep("hour");
+    setIsDateTimeModalOpen(true);
+  };
+
+  const closeDateTimeModal = () => {
+    setIsDateTimeModalOpen(false);
+    setIsClockDragging(false);
+  };
+
+  const saveDateTimeChanges = () => {
+    const normalizedHour = Math.min(
+      23,
+      Math.max(0, draftHour)
+    );
+
+    const hourText = String(normalizedHour).padStart(2, "0");
+    const minuteText = String(draftMinute).padStart(2, "0");
+
+    setSelectedDate(draftDate);
+    setSelectedTime(`${hourText}:${minuteText}`);
+    setIsDateTimeModalOpen(false);
+    setIsClockDragging(false);
+  };
+
+  const getDisplayHour = () => {
+    const hour = draftHour % 12;
+    return hour === 0 ? 12 : hour;
+  };
+
+  const updateClockFromPointer = (
+    clientX: number,
+    clientY: number
+  ) => {
+    const clock = clockFaceRef.current;
+
+    if (!clock) {
+      return;
+    }
+
+    const rect = clock.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const deltaX = clientX - centerX;
+    const deltaY = clientY - centerY;
+
+    if (Math.abs(deltaX) < 2 && Math.abs(deltaY) < 2) {
+      return;
+    }
+
+    let angle =
+      (Math.atan2(deltaY, deltaX) * 180) / Math.PI + 90;
+
+    if (angle < 0) {
+      angle += 360;
+    }
+
+    if (clockStep === "hour") {
+      const hourIndex =
+        Math.round(angle / 30) % 12;
+      const selectedDisplayHour =
+        hourIndex === 0 ? 12 : hourIndex;
+
+      const nextHour =
+        draftPeriod === "PM"
+          ? selectedDisplayHour === 12
+            ? 12
+            : selectedDisplayHour + 12
+          : selectedDisplayHour === 12
+            ? 0
+            : selectedDisplayHour;
+
+      setDraftHour(nextHour);
+      return;
+    }
+
+    const minuteIndex =
+      Math.round(angle / 6) % 60;
+
+    setDraftMinute(
+      Math.min(59, Math.round(minuteIndex / 5) * 5)
+    );
+  };
+
+  const handleClockPointerDown = (
+    event: React.PointerEvent<HTMLDivElement>
+  ) => {
+    event.preventDefault();
+    setIsClockDragging(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+    updateClockFromPointer(
+      event.clientX,
+      event.clientY
+    );
+  };
+
+  const handleClockPointerMove = (
+    event: React.PointerEvent<HTMLDivElement>
+  ) => {
+    if (!isClockDragging) {
+      return;
+    }
+
+    updateClockFromPointer(
+      event.clientX,
+      event.clientY
+    );
+  };
+
+  const handleClockPointerUp = () => {
+    setIsClockDragging(false);
+
+    if (clockStep === "hour") {
+      setClockStep("minute");
+    }
+  };
+
+  const selectCalendarDate = (day: number) => {
+    if (!draftDate) {
+      const today = new Date();
+      setDraftDate(
+        `${today.getFullYear()}-${String(
+          today.getMonth() + 1
+        ).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+      );
+      return;
+    }
+
+    const parts = draftDate.split("-");
+    if (parts.length !== 3) {
+      return;
+    }
+
+    setDraftDate(
+      `${parts[0]}-${parts[1]}-${String(day).padStart(2, "0")}`
+    );
+  };
+
+  const calendarMonth = useMemo(() => {
+    const sourceDate = draftDate
+      ? new Date(`${draftDate}T00:00:00`)
+      : new Date();
+
+    return {
+      year: sourceDate.getFullYear(),
+      month: sourceDate.getMonth(),
+    };
+  }, [draftDate]);
+
+  const calendarDays = useMemo(() => {
+    const firstDay = new Date(
+      calendarMonth.year,
+      calendarMonth.month,
+      1
+    ).getDay();
+
+    const daysInMonth = new Date(
+      calendarMonth.year,
+      calendarMonth.month + 1,
+      0
+    ).getDate();
+
+    return [
+      ...Array(firstDay).fill(null),
+      ...Array.from(
+        { length: daysInMonth },
+        (_, index) => index + 1
+      ),
+    ];
+  }, [calendarMonth]);
+
+  const calendarMonthLabel = new Intl.DateTimeFormat(
+    "en-US",
+    {
+      month: "long",
+      year: "numeric",
+    }
+  ).format(
+    new Date(
+      calendarMonth.year,
+      calendarMonth.month,
+      1
+    )
+  );
 
   /* =========================================================
      GUEST TEXT
   ========================================================= */
 
   const guestText = useMemo(() => {
-    if (safeChildren > 0) {
-      return `${safeAdults} Adult${
-        safeAdults !== 1 ? "s" : ""
-      }, ${safeChildren} Child${
-        safeChildren !== 1 ? "ren" : ""
+    if (activeChildren > 0) {
+      return `${activeAdults} Adult${
+        activeAdults !== 1 ? "s" : ""
+      }, ${activeChildren} Child${
+        activeChildren !== 1 ? "ren" : ""
       }`;
     }
 
-    return `${safeGuests} Adult${
-      safeGuests !== 1 ? "s" : ""
+    return `${activeAdults} Adult${
+      activeAdults !== 1 ? "s" : ""
     }`;
-  }, [
-    safeAdults,
-    safeChildren,
-    safeGuests,
-  ]);
+  }, [activeAdults, activeChildren]);
+
+  /* =========================================================
+     GUEST MODAL ACTIONS
+  ========================================================= */
+
+  const openGuestModal = () => {
+    setEditingAdults(activeAdults);
+    setEditingChildren(activeChildren);
+    setIsGuestModalOpen(true);
+  };
+
+  const closeGuestModal = () => {
+    setIsGuestModalOpen(false);
+  };
+
+  const saveGuestChanges = () => {
+    setSelectedAdults(editingAdults);
+    setSelectedChildren(editingChildren);
+    setIsGuestModalOpen(false);
+  };
+
+  const incrementAdults = () => {
+    setEditingAdults((value) => value + 1);
+  };
+
+  const decrementAdults = () => {
+    setEditingAdults((value) => Math.max(0, value - 1));
+  };
+
+  const incrementChildren = () => {
+    setEditingChildren((value) => value + 1);
+  };
+
+  const decrementChildren = () => {
+    setEditingChildren((value) => Math.max(0, value - 1));
+  };
 
   /* =========================================================
      BOOKING DATE DESCRIPTION
   ========================================================= */
 
-  const cancellationText = date
+  const cancellationText = selectedDate
     ? `Cancel before check-in on ${formattedDate} for a partial refund.`
     : "Select your check-in date for cancellation details.";
 
@@ -202,13 +520,8 @@ const BookingPage = () => {
      PRICE CALCULATION
   ========================================================= */
 
-  const basePrice =
-    safeGuests * safePricePerPerson;
-
-  const taxes = Math.max(
-    0,
-    safeTotal - basePrice
-  );
+  const basePrice = activeBasePrice;
+  const taxes = activeTaxes;
 
   /* =========================================================
      BACK URL
@@ -242,17 +555,17 @@ const BookingPage = () => {
       phone,
 
       destination,
-      date,
-      time,
+      date: selectedDate,
+      time: selectedTime,
 
-      adults: safeAdults,
-      children: safeChildren,
-      guests: safeGuests,
+      adults: activeAdults,
+      children: activeChildren,
+      guests: activeGuests,
 
       pricePerPerson: safePricePerPerson,
       basePrice,
       taxes,
-      total: safeTotal,
+      total: activeTotal,
 
       image: bookingImage,
     });
@@ -440,17 +753,6 @@ const BookingPage = () => {
 
             <div className={styles.paymentSection}>
 
-              <div className={styles.paymentDivider} />
-
-              <h2 className={styles.paymentTitle}>
-                Proceed to payment
-              </h2>
-
-              <p className={styles.paymentDescription}>
-                You’ll be directed to KlarnaPay to
-                complete payment.
-              </p>
-
               <button
                 type="submit"
                 form="booking-form"
@@ -529,15 +831,25 @@ const BookingPage = () => {
 
             <div className={styles.summaryItem}>
 
-              <h3 className={styles.summaryHeading}>
-                Date &amp; Time
-              </h3>
+              <div className={styles.summaryItemHeader}>
+                <h3 className={styles.summaryHeading}>
+                  Date &amp; Time
+                </h3>
+
+                <button
+                  type="button"
+                  className={styles.changeButton}
+                  onClick={openDateTimeModal}
+                >
+                  Change
+                </button>
+              </div>
 
               <p className={styles.summaryValue}>
 
                 {formattedDate}
 
-                {time
+                {selectedTime
                   ? `, ${formattedTime}`
                   : ""}
 
@@ -553,9 +865,19 @@ const BookingPage = () => {
 
             <div className={styles.summaryItem}>
 
-              <h3 className={styles.summaryHeading}>
-                Guests
-              </h3>
+              <div className={styles.summaryItemHeader}>
+                <h3 className={styles.summaryHeading}>
+                  Guests
+                </h3>
+
+                <button
+                  type="button"
+                  className={styles.changeButton}
+                  onClick={openGuestModal}
+                >
+                  Change
+                </button>
+              </div>
 
               <p className={styles.summaryValue}>
                 {guestText}
@@ -578,8 +900,8 @@ const BookingPage = () => {
               <div className={styles.priceRow}>
 
                 <span>
-                  {safeGuests} Adult
-                  {safeGuests !== 1 ? "s" : ""} × $
+                  {activeGuests} Adult
+                  {activeGuests !== 1 ? "s" : ""} × $
                   {safePricePerPerson}
                 </span>
 
@@ -616,7 +938,7 @@ const BookingPage = () => {
               </span>
 
               <strong>
-                ${safeTotal.toFixed(2)}
+                ${activeTotal.toFixed(2)}
               </strong>
 
             </div>
@@ -626,6 +948,518 @@ const BookingPage = () => {
         </div>
 
       </section>
+
+      {/* =====================================================
+          SELECT DATE & TIME MODAL
+      ===================================================== */}
+
+      {isDateTimeModalOpen && (
+        <div
+          className={styles.dateTimeModalOverlay}
+          role="presentation"
+          onMouseDown={closeDateTimeModal}
+        >
+          <div
+            className={styles.dateTimeModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="select-date-time-title"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.dateTimeModalClose}
+              onClick={closeDateTimeModal}
+              aria-label="Close date and time dialog"
+            >
+              ×
+            </button>
+
+            <h2
+              id="select-date-time-title"
+              className={styles.dateTimeModalTitle}
+            >
+              Select Date &amp; Time
+            </h2>
+
+            <div className={styles.dateTimeModalBody}>
+
+              <div className={styles.calendarPanel}>
+
+                <div className={styles.calendarHeader}>
+                  <button
+                    type="button"
+                    className={styles.calendarNavButton}
+                    aria-label="Previous month"
+                    onClick={() => {
+                      const previousMonth = new Date(
+                        calendarMonth.year,
+                        calendarMonth.month - 1,
+                        1
+                      );
+                      const daysInPreviousMonth =
+                        new Date(
+                          previousMonth.getFullYear(),
+                          previousMonth.getMonth() + 1,
+                          0
+                        ).getDate();
+
+                      const currentDay = draftDate
+                        ? Number(
+                            draftDate.split("-")[2]
+                          )
+                        : 1;
+
+                      const safeDay = Math.min(
+                        currentDay,
+                        daysInPreviousMonth
+                      );
+
+                      setDraftDate(
+                        `${previousMonth.getFullYear()}-${String(
+                          previousMonth.getMonth() + 1
+                        ).padStart(2, "0")}-${String(
+                          safeDay
+                        ).padStart(2, "0")}`
+                      );
+                    }}
+                  >
+                    ‹
+                  </button>
+
+                  <span className={styles.calendarMonthLabel}>
+                    {calendarMonthLabel}
+                  </span>
+
+                  <button
+                    type="button"
+                    className={styles.calendarNavButton}
+                    aria-label="Next month"
+                    onClick={() => {
+                      const nextMonth = new Date(
+                        calendarMonth.year,
+                        calendarMonth.month + 1,
+                        1
+                      );
+                      const daysInNextMonth =
+                        new Date(
+                          nextMonth.getFullYear(),
+                          nextMonth.getMonth() + 1,
+                          0
+                        ).getDate();
+
+                      const currentDay = draftDate
+                        ? Number(
+                            draftDate.split("-")[2]
+                          )
+                        : 1;
+
+                      const safeDay = Math.min(
+                        currentDay,
+                        daysInNextMonth
+                      );
+
+                      setDraftDate(
+                        `${nextMonth.getFullYear()}-${String(
+                          nextMonth.getMonth() + 1
+                        ).padStart(2, "0")}-${String(
+                          safeDay
+                        ).padStart(2, "0")}`
+                      );
+                    }}
+                  >
+                    ›
+                  </button>
+                </div>
+
+                <div className={styles.calendarWeekdays}>
+                  {["S", "M", "T", "W", "T", "F", "S"].map(
+                    (day, index) => (
+                      <span key={`${day}-${index}`}>
+                        {day}
+                      </span>
+                    )
+                  )}
+                </div>
+
+                <div className={styles.calendarGrid}>
+                  {calendarDays.map((day, index) => {
+                    if (day === null) {
+                      return (
+                        <span
+                          key={`empty-${index}`}
+                          className={styles.calendarDayEmpty}
+                        />
+                      );
+                    }
+
+                    const selectedDay =
+                      draftDate &&
+                      Number(
+                        draftDate.split("-")[2]
+                      ) === day &&
+                      Number(
+                        draftDate.split("-")[1]
+                      ) ===
+                        calendarMonth.month + 1 &&
+                      Number(
+                        draftDate.split("-")[0]
+                      ) === calendarMonth.year;
+
+                    return (
+                      <button
+                        key={day}
+                        type="button"
+                        className={`${styles.calendarDay} ${
+                          selectedDay
+                            ? styles.calendarDaySelected
+                            : ""
+                        }`}
+                        onClick={() =>
+                          selectCalendarDate(day)
+                        }
+                      >
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className={styles.calendarIcon}>
+                </div>
+              </div>
+
+              <div className={styles.dateTimeDivider} />
+
+              <div className={styles.clockPanel}>
+
+                <div className={styles.timeControls}>
+                  <button
+                    type="button"
+                    className={`${styles.timeBox} ${
+                      clockStep === "hour"
+                        ? styles.timeBoxActive
+                        : ""
+                    }`}
+                    onClick={() =>
+                      setClockStep("hour")
+                    }
+                  >
+                    {String(getDisplayHour()).padStart(
+                      2,
+                      "0"
+                    )}
+                  </button>
+
+                  <span className={styles.timeColon}>
+                    :
+                  </span>
+
+                  <button
+                    type="button"
+                    className={`${styles.timeBox} ${
+                      clockStep === "minute"
+                        ? styles.timeBoxActive
+                        : ""
+                    }`}
+                    onClick={() =>
+                      setClockStep("minute")
+                    }
+                  >
+                    {String(draftMinute).padStart(2, "0")}
+                  </button>
+
+                  <div className={styles.periodToggle}>
+                    <button
+                      type="button"
+                      className={
+                        draftPeriod === "AM"
+                          ? styles.periodActive
+                          : styles.periodButton
+                      }
+                      onClick={() => {
+                        setDraftPeriod("AM");
+
+                        if (draftHour >= 12) {
+                          setDraftHour(
+                            draftHour - 12
+                          );
+                        }
+                      }}
+                    >
+                      AM
+                    </button>
+
+                    <button
+                      type="button"
+                      className={
+                        draftPeriod === "PM"
+                          ? styles.periodActive
+                          : styles.periodButton
+                      }
+                      onClick={() => {
+                        setDraftPeriod("PM");
+
+                        if (draftHour < 12) {
+                          setDraftHour(
+                            draftHour + 12
+                          );
+                        }
+                      }}
+                    >
+                      PM
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  ref={clockFaceRef}
+                  className={`${styles.clockFace} ${
+                    isClockDragging
+                      ? styles.clockFaceDragging
+                      : ""
+                  }`}
+                  onPointerDown={
+                    handleClockPointerDown
+                  }
+                  onPointerMove={
+                    handleClockPointerMove
+                  }
+                  onPointerUp={
+                    handleClockPointerUp
+                  }
+                  onPointerCancel={
+                    handleClockPointerUp
+                  }
+                >
+                  {Array.from(
+                    { length: 12 },
+                    (_, index) => {
+                      const number =
+                        index === 0
+                          ? 12
+                          : index;
+                      const angle =
+                        (index * 30 - 90) *
+                        (Math.PI / 180);
+                      const radius =
+                        clockStep === "hour"
+                          ? 49
+                          : 51;
+
+                      const left =
+                        50 +
+                        Math.cos(angle) *
+                          (radius / 0.98);
+                      const top =
+                        50 +
+                        Math.sin(angle) *
+                          (radius / 0.98);
+
+                      const activeNumber =
+                        clockStep === "hour"
+                          ? getDisplayHour()
+                          : Math.round(
+                              draftMinute / 5
+                            ) || 12;
+
+                      const isActive =
+                        number === activeNumber;
+
+                      return (
+                        <span
+                          key={number}
+                          className={`${styles.clockNumber} ${
+                            isActive
+                              ? styles.clockNumberActive
+                              : ""
+                          }`}
+                          style={{
+                            left: `${left}%`,
+                            top: `${top}%`,
+                          }}
+                        >
+                          {clockStep === "minute"
+                            ? String(
+                                number === 12
+                                  ? 0
+                                  : number * 5
+                              ).padStart(2, "0")
+                            : number}
+                        </span>
+                      );
+                    }
+                  )}
+
+                  <div
+                    className={styles.clockHand}
+                    style={{
+                      transform: `translate(-50%, -100%) rotate(${
+                        clockStep === "hour"
+                          ? ((getDisplayHour() % 12) *
+                              30)
+                          : draftMinute * 6
+                      }deg)`,
+                    }}
+                  />
+
+                  <div
+                    className={styles.clockCenter}
+                  />
+                </div>
+
+                <div className={styles.clockHint}>
+                  {clockStep === "hour"
+                    ? "Select hour"
+                    : "Select minutes"}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.dateTimeModalFooter}>
+              <button
+                type="button"
+                className={styles.dateTimeCancelButton}
+                onClick={closeDateTimeModal}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className={styles.dateTimeSaveButton}
+                onClick={saveDateTimeChanges}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================
+          CHANGE GUESTS MODAL
+      ===================================================== */}
+
+      {isGuestModalOpen && (
+        <div
+          className={styles.guestModalOverlay}
+          role="presentation"
+          onMouseDown={closeGuestModal}
+        >
+          <div
+            className={styles.guestModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="change-guests-title"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.guestModalClose}
+              onClick={closeGuestModal}
+              aria-label="Close change guests dialog"
+            >
+              ×
+            </button>
+
+            <h2
+              id="change-guests-title"
+              className={styles.guestModalTitle}
+            >
+              Change Guests
+            </h2>
+
+            <p className={styles.guestModalDescription}>
+              This place has a maximum of 10 guests, including children and Adults.
+            </p>
+
+            <div className={styles.guestControlRow}>
+              <div className={styles.guestControlLabel}>
+                <span className={styles.guestType}>Adults</span>
+                <span className={styles.guestAge}>Age 12+</span>
+              </div>
+
+              <div className={styles.guestCounter}>
+                <button
+                  type="button"
+                  className={styles.counterButton}
+                  onClick={decrementAdults}
+                  disabled={editingAdults === 0}
+                  aria-label="Decrease adults"
+                >
+                  −
+                </button>
+
+                <span className={styles.counterValue}>
+                  {editingAdults}
+                </span>
+
+                <button
+                  type="button"
+                  className={styles.counterButton}
+                  onClick={incrementAdults}
+                  disabled={editingAdults + editingChildren >= 10}
+                  aria-label="Increase adults"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.guestControlRow}>
+              <div className={styles.guestControlLabel}>
+                <span className={styles.guestType}>Children</span>
+                <span className={styles.guestAge}>Age 2 - 12</span>
+              </div>
+
+              <div className={styles.guestCounter}>
+                <button
+                  type="button"
+                  className={styles.counterButton}
+                  onClick={decrementChildren}
+                  disabled={editingChildren === 0}
+                  aria-label="Decrease children"
+                >
+                  −
+                </button>
+
+                <span className={styles.counterValue}>
+                  {editingChildren}
+                </span>
+
+                <button
+                  type="button"
+                  className={styles.counterButton}
+                  onClick={incrementChildren}
+                  disabled={editingAdults + editingChildren >= 10}
+                  aria-label="Increase children"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.guestModalFooter}>
+              <button
+                type="button"
+                className={styles.guestCancelButton}
+                onClick={closeGuestModal}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className={styles.guestSaveButton}
+                onClick={saveGuestChanges}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </main>
   );

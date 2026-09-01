@@ -6,6 +6,7 @@
   position: relative;
 
   width: 100%;
+
   height: 517px;
 
   overflow: hidden;
@@ -28,6 +29,7 @@
   inset: 0;
 
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
@@ -77,12 +79,15 @@
   position: absolute;
 
   left: 0;
+
   right: 0;
+
   bottom: 0;
 
   z-index: 3;
 
   width: 100%;
+
   height: 110px;
 
   box-sizing: border-box;
@@ -90,25 +95,17 @@
   padding: 16px 20px 18px;
 
   display: flex;
+
   flex-direction: column;
+
   justify-content: flex-end;
 
-  /*
-   * Transparent glass layer.
-   * Image neeche se visible rahegi.
-   */
   background: rgba(0, 0, 0, 0.08);
 
-  /*
-   * Main blur.
-   */
   backdrop-filter: blur(20px);
+
   -webkit-backdrop-filter: blur(20px);
 
-  /*
-   * Subtle top border exactly like
-   * the existing glass card design.
-   */
   border-top: 1px solid rgba(255, 255, 255, 0.10);
 
   pointer-events: none;
@@ -125,22 +122,17 @@
   position: absolute;
 
   left: 0;
+
   right: 0;
 
-  /*
-   * Blur area ko panel se thoda upar extend
-   * kar rahe hain so transition smooth rahe.
-   */
   top: -36px;
+
   bottom: 0;
 
   z-index: -1;
 
   pointer-events: none;
 
-  /*
-   * Progressive transparent layer.
-   */
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
@@ -150,16 +142,10 @@
     rgba(0, 0, 0, 0.10) 100%
   );
 
-  /*
-   * Additional progressive blur.
-   */
   backdrop-filter: blur(20px);
+
   -webkit-backdrop-filter: blur(20px);
 
-  /*
-   * Mask blur so upper edge gradually
-   * fades into the original image.
-   */
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -186,6 +172,7 @@
 
 .cardTitle {
   position: relative;
+
   z-index: 4;
 
   margin: 0 0 4px;
@@ -193,10 +180,13 @@
   font-family: "Outfit", sans-serif;
 
   font-size: 28px;
+
   font-weight: 500;
+
   font-style: normal;
 
   line-height: 108%;
+
   letter-spacing: -0.03em;
 
   color: #ffffff;
@@ -213,6 +203,7 @@
 
 .cardPrice {
   position: relative;
+
   z-index: 4;
 
   margin: 0;
@@ -220,10 +211,13 @@
   font-family: "Outfit", sans-serif;
 
   font-size: 20px;
+
   font-weight: 300;
+
   font-style: normal;
 
   line-height: 108%;
+
   letter-spacing: -0.03em;
 
   color: rgba(255, 255, 255, 0.95);
@@ -242,11 +236,15 @@
   display: block;
 
   width: 100%;
+
   height: 100%;
 
   text-decoration: none;
+
   color: inherit;
 }
+
+
 /* =========================================
    TABLET
 ========================================= */

@@ -83,7 +83,7 @@
 
   font-family: "Outfit", sans-serif;
 
-  font-size: 40px;
+  font-size: 48px;
 
   font-weight: 400;
 
@@ -119,6 +119,7 @@
 @media (min-width: 1440px) {
   .container {
     padding-left: 48px;
+
     padding-right: 48px;
   }
 

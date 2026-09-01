@@ -13,7 +13,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import styles from "./GoldenCircleContent.module.css";
@@ -33,6 +33,21 @@ const GoldenCircleContent = () => {
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
+  const dateInputRef = useRef<HTMLInputElement>(null);
+  const timeInputRef = useRef<HTMLInputElement>(null);
+
+  /* =====================================================
+     DATE + TIME PICKER FUNCTIONS
+  ===================================================== */
+
+  const openDatePicker = () => {
+    dateInputRef.current?.showPicker?.();
+  };
+
+  const openTimePicker = () => {
+    timeInputRef.current?.showPicker?.();
+  };
 
   /* =====================================================
      GUEST DROPDOWN
@@ -264,7 +279,6 @@ const GoldenCircleContent = () => {
             ================================================= */}
 
             <div className={styles.formField}>
-
               <label className={styles.fieldLabel}>
                 Where
               </label>
@@ -274,7 +288,6 @@ const GoldenCircleContent = () => {
                   Golden Circle
                 </span>
               </div>
-
             </div>
 
             {/* =================================================
@@ -288,7 +301,6 @@ const GoldenCircleContent = () => {
               ================================================= */}
 
               <div className={styles.halfField}>
-
                 <label className={styles.fieldLabel}>
                   Date
                 </label>
@@ -296,6 +308,7 @@ const GoldenCircleContent = () => {
                 <div className={styles.inputWrapper}>
 
                   <input
+                    ref={dateInputRef}
                     type="date"
                     value={date}
                     onChange={(event) =>
@@ -305,12 +318,18 @@ const GoldenCircleContent = () => {
                     aria-label="Date"
                   />
 
-                  <CalendarDays
-                    className={styles.inputIcon}
-                  />
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openDatePicker}
+                    aria-label="Open date picker"
+                  >
+                    <CalendarDays
+                      className={styles.inputIcon}
+                    />
+                  </button>
 
                 </div>
-
               </div>
 
               {/* =================================================
@@ -318,7 +337,6 @@ const GoldenCircleContent = () => {
               ================================================= */}
 
               <div className={styles.halfField}>
-
                 <label className={styles.fieldLabel}>
                   Time
                 </label>
@@ -326,6 +344,7 @@ const GoldenCircleContent = () => {
                 <div className={styles.inputWrapper}>
 
                   <input
+                    ref={timeInputRef}
                     type="time"
                     value={time}
                     onChange={(event) =>
@@ -335,12 +354,18 @@ const GoldenCircleContent = () => {
                     aria-label="Time"
                   />
 
-                  <Clock3
-                    className={styles.inputIcon}
-                  />
+                  <button
+                    type="button"
+                    className={styles.inputIconButton}
+                    onClick={openTimePicker}
+                    aria-label="Open time picker"
+                  >
+                    <Clock3
+                      className={styles.inputIcon}
+                    />
+                  </button>
 
                 </div>
-
               </div>
 
             </div>
@@ -350,7 +375,6 @@ const GoldenCircleContent = () => {
             ================================================= */}
 
             <div className={styles.formField}>
-
               <label className={styles.fieldLabel}>
                 Guest
               </label>
@@ -395,7 +419,6 @@ const GoldenCircleContent = () => {
                   <div className={styles.guestRow}>
 
                     <div className={styles.guestInfo}>
-
                       <span className={styles.guestTitle}>
                         Adults
                       </span>
@@ -403,7 +426,6 @@ const GoldenCircleContent = () => {
                       <span className={styles.guestSubtitle}>
                         Ages 13 or above
                       </span>
-
                     </div>
 
                     <div className={styles.counter}>
@@ -441,7 +463,6 @@ const GoldenCircleContent = () => {
                   <div className={styles.guestRow}>
 
                     <div className={styles.guestInfo}>
-
                       <span className={styles.guestTitle}>
                         Children
                       </span>
@@ -449,7 +470,6 @@ const GoldenCircleContent = () => {
                       <span className={styles.guestSubtitle}>
                         Ages 2-12
                       </span>
-
                     </div>
 
                     <div className={styles.counter}>
@@ -490,7 +510,6 @@ const GoldenCircleContent = () => {
             ================================================= */}
 
             <div className={styles.totalRow}>
-
               <span>
                 Total
               </span>
@@ -498,7 +517,6 @@ const GoldenCircleContent = () => {
               <strong>
                 ${totalPrice.toFixed(2)}
               </strong>
-
             </div>
 
             {/* =================================================
@@ -524,13 +542,11 @@ const GoldenCircleContent = () => {
           <div className={styles.tripDetails}>
 
             <h2 className={styles.tripDetailsTitle}>
-
               <span className={styles.tripDetailsIcon}>
                 ✨
               </span>
 
               Trip Details
-
             </h2>
 
             <div className={styles.tripDetailsList}>
@@ -636,7 +652,6 @@ const GoldenCircleContent = () => {
               </div>
 
             </div>
-
           </div>
 
         </div>
@@ -649,7 +664,6 @@ const GoldenCircleContent = () => {
       <div className={styles.highlightGallery}>
 
         <div className={styles.highlightImage}>
-
           <Image
             src="/images/destinations/golden-circle/Golden Circle Trip 2.png"
             alt="Golden Circle over Iceland mountains"
@@ -657,11 +671,9 @@ const GoldenCircleContent = () => {
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
           />
-
         </div>
 
         <div className={styles.highlightImage}>
-
           <Image
             src="/images/destinations/golden-circle/Golden Circle Trip 3.png"
             alt="Golden Circle over Iceland landscape"
@@ -669,7 +681,6 @@ const GoldenCircleContent = () => {
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
           />
-
         </div>
 
       </div>

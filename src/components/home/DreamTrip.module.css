@@ -4,7 +4,7 @@
 
 .section {
   width: 100%;
-  padding: 48px 38px 0;
+  padding: 65px 38px 0;
   box-sizing: border-box;
 }
 
@@ -98,7 +98,7 @@
   margin: 0;
 
   font-family: "Outfit", sans-serif;
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 400;
   font-style: normal;
   line-height: 108%;
@@ -115,7 +115,7 @@
 
 .titleRegular {
   font-family: "Outfit", sans-serif;
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 400;
   font-style: normal;
   line-height: 108%;
@@ -131,7 +131,7 @@
 
 .dreamTrip {
   font-family: var(--font-parisienne), cursive;
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 400;
   font-style: normal;
   line-height: 108%;

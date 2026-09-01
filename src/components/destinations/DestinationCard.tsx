@@ -17,7 +17,10 @@ const DestinationCard = ({
   slug,
 }: DestinationCardProps) => {
   return (
-    <Link href={`/destinations/${slug}`} className={styles.cardLink}>
+    <Link
+      href={`/destinations/${slug}`}
+      className={styles.cardLink}
+    >
       <article className={styles.card}>
         <Image
           src={image}

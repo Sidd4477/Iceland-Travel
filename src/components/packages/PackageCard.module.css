@@ -6,7 +6,7 @@
   position: relative;
 
   width: 684px;
-  height: 588px;
+  height: 350px;
 
   padding: 24px;
 
@@ -35,7 +35,7 @@
   position: relative;
 
   width: 636px;
-  height: 378px;
+  height: 300px;
 
   flex-shrink: 0;
 
@@ -282,7 +282,7 @@
     width: 100%;
     height: auto;
 
-    min-height: 588px;
+    min-height: 350px;
   }
 
   .imageWrapper {
