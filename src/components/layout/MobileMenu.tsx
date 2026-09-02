@@ -11,10 +11,7 @@ interface MobileMenuProps {
   onClose: () => void;
 }
 
-const MobileMenu = ({
-  isOpen,
-  onClose,
-}: MobileMenuProps) => {
+const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   if (!isOpen) {
     return null;
   }
@@ -139,7 +136,7 @@ const MobileMenu = ({
           {/* PHOTO GALLERY */}
 
           <Link
-            href="/gallery"
+            href="/photo-gallery"
             className={styles.navLink}
             onClick={onClose}
           >
@@ -161,7 +158,7 @@ const MobileMenu = ({
 
               Click karne par:
               /online-booking
-              
+
               page open hoga aur menu close hoga.
           ================================================= */}
 
