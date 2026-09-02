@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
 import {
   CalendarDays,
   CircleDollarSign,
@@ -25,18 +26,30 @@ const PackageCard = ({
   duration,
   image,
 }: PackageCardProps) => {
-  /*
-   * =====================================================
-   * PACKAGE DETAIL ROUTES
-   * =====================================================
-   */
+  /* =====================================================
+     PACKAGE → DESTINATION ROUTES
+  ===================================================== */
 
   const packageRoutes: Record<string, string> = {
+    /* =========================
+       BLUE LAGOON
+    ========================= */
+
     "Blue Lagoon Spa Experience":
-      "/destinations/blue-lagoon",
+      "/destinations/blue-lagoon-spa-experience",
+
+
+    /* =========================
+       GLACIER HIKE
+    ========================= */
 
     "Glacier Hike Adventure":
-      "/destinations/glacier-hike",
+      "/destinations/glacier-hike-adventure",
+
+
+    /* =========================
+       GOLDEN CIRCLE
+    ========================= */
 
     "Golden Circle":
       "/destinations/golden-circle",
@@ -44,23 +57,49 @@ const PackageCard = ({
     "Golden Circle Package":
       "/destinations/golden-circle",
 
+
+    /* =========================
+       NORTHERN LIGHTS
+    ========================= */
+
     "Northern Lights":
       "/destinations/northern-lights",
 
     "Northern Lights Package":
       "/destinations/northern-lights",
 
-    Snaefellsnes:
+
+    /* =========================
+       SNAEFELLSNES
+    ========================= */
+
+    "Snæfellsnes":
+      "/destinations/snaefellsnes",
+
+    "Snaefellsnes":
+      "/destinations/snaefellsnes",
+
+    "Snæfellsnes Package":
       "/destinations/snaefellsnes",
 
     "Snaefellsnes Package":
       "/destinations/snaefellsnes",
 
-    Landmannalaugar:
+
+    /* =========================
+       LANDMANNALAUGAR
+    ========================= */
+
+    "Landmannalaugar":
       "/destinations/landmannalaugar",
 
     "Landmannalaugar Package":
       "/destinations/landmannalaugar",
+
+
+    /* =========================
+       SOUTH COAST
+    ========================= */
 
     "South Coast":
       "/destinations/south-coast",
@@ -68,95 +107,166 @@ const PackageCard = ({
     "South Coast Package":
       "/destinations/south-coast",
 
-    Thorsmork:
+
+    /* =========================
+       THORSMORK
+    ========================= */
+
+    "Thorsmörk":
+      "/destinations/thorsmork",
+
+    "Thorsmork":
+      "/destinations/thorsmork",
+
+    "Thorsmörk Package":
       "/destinations/thorsmork",
 
     "Thorsmork Package":
       "/destinations/thorsmork",
   };
 
-  /*
-   * =====================================================
-   * FALLBACK ROUTE
-   * =====================================================
-   */
+
+  /* =====================================================
+     FALLBACK SLUG GENERATOR
+  ===================================================== */
+
+  const createSlug = (value: string): string => {
+    return value
+      .trim()
+      .toLowerCase()
+      .replace(/package/g, "")
+      .replace(/æ/g, "ae")
+      .replace(/ö/g, "o")
+      .replace(/ä/g, "a")
+      .replace(/á/g, "a")
+      .replace(/é/g, "e")
+      .replace(/í/g, "i")
+      .replace(/ó/g, "o")
+      .replace(/ú/g, "u")
+      .replace(/ý/g, "y")
+      .replace(/ð/g, "d")
+      .replace(/þ/g, "th")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
+
+
+  /* =====================================================
+     FINAL DESTINATION ROUTE
+  ===================================================== */
 
   const packageRoute =
     packageRoutes[title] ||
-    `/destinations/${title
-      .toLowerCase()
-      .replace(/package/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")}`;
+    `/destinations/${createSlug(title)}`;
+
+
+  /* =====================================================
+     CARD
+  ===================================================== */
 
   return (
     <article className={styles.card}>
-      {/* =====================================================
+
+      {/* =================================================
           PACKAGE IMAGE
-      ===================================================== */}
+      ================================================= */}
+
       <div className={styles.imageWrapper}>
         <Image
           src={image}
           alt={title}
           fill
           className={styles.image}
-          sizes="636px"
+          sizes="
+            (max-width: 480px) 100vw,
+            (max-width: 768px) 100vw,
+            (max-width: 1024px) 50vw,
+            50vw
+          "
+          priority={false}
         />
       </div>
 
-      {/* =====================================================
+
+      {/* =================================================
           PACKAGE TITLE
-      ===================================================== */}
+      ================================================= */}
+
       <h2 className={styles.title}>
         {title}
       </h2>
 
-      {/* =====================================================
-          PACKAGE META
-      ===================================================== */}
+
+      {/* =================================================
+          PACKAGE META INFORMATION
+      ================================================= */}
+
       <div className={styles.meta}>
+
+        {/* =========================
+            LOCATION
+        ========================= */}
+
         <div className={styles.metaItem}>
           <MapPin
             className={styles.metaIcon}
             size={17}
             strokeWidth={1.5}
+            aria-hidden="true"
           />
 
           <span>{location}</span>
         </div>
+
+
+        {/* =========================
+            PRICE
+        ========================= */}
 
         <div className={styles.metaItem}>
           <CircleDollarSign
             className={styles.metaIcon}
             size={17}
             strokeWidth={1.5}
+            aria-hidden="true"
           />
 
           <span>{price}</span>
         </div>
+
+
+        {/* =========================
+            DURATION
+        ========================= */}
 
         <div className={styles.metaItem}>
           <CalendarDays
             className={styles.metaIcon}
             size={17}
             strokeWidth={1.5}
+            aria-hidden="true"
           />
 
           <span>{duration}</span>
         </div>
+
       </div>
 
-      {/* =====================================================
+
+      {/* =================================================
           VIEW PACKAGE DETAILS
-      ===================================================== */}
+      ================================================= */}
+
       <Link
         href={packageRoute}
         className={styles.detailsButton}
+        aria-label={`View details for ${title}`}
       >
         <span>
           View Package Details
         </span>
       </Link>
+
     </article>
   );
 };

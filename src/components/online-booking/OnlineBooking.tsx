@@ -23,7 +23,7 @@ const BookingPage = () => {
 
   /* =========================================================
      BOOKING DATA
-     ========================================================= */
+  ========================================================= */
 
   const destination = searchParams.get("destination") || "";
   const date = searchParams.get("date") || "";
@@ -225,8 +225,18 @@ const BookingPage = () => {
             />
           </Link>
 
-          <h1 className={styles.pageTitle}>
-            Confirm and pay
+          {/* =================================================
+              CONFIRM AND BOOK
+              Keep text on one single line
+          ================================================= */}
+
+          <h1
+            className={styles.pageTitle}
+            style={{
+              whiteSpace: "nowrap",
+            }}
+          >
+            Confirm and Book
           </h1>
 
         </div>

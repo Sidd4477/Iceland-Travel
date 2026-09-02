@@ -30,7 +30,7 @@
 
   margin: 0 auto;
 
-  padding: 100px 48px 80px;
+  padding: 140px 48px 80px;
 
   box-sizing: border-box;
 }
@@ -1699,9 +1699,9 @@
 .dateTimeModal {
   position: relative;
 
-  width: 566px;
+  width: 590px;
 
-  height: 398px;
+  height: 430px;
 
   box-sizing: border-box;
 
@@ -2090,6 +2090,15 @@
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.06);
 }
 
+.timeBox::placeholder {
+  color: #111111;
+  opacity: 1;
+}
+
+.timeBox:focus {
+  outline: none;
+}
+
 .timeBoxActive {
   background: #f8f8f8;
 
@@ -2314,7 +2323,7 @@
 
   right: 28px;
 
-  bottom: 18px;
+  bottom: 20px;
 
   height: 40px;
 

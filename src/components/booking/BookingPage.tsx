@@ -92,6 +92,8 @@ const BookingPage = () => {
   const [draftHour, setDraftHour] = useState(7);
   const [draftMinute, setDraftMinute] = useState(0);
   const [draftPeriod, setDraftPeriod] = useState<"AM" | "PM">("AM");
+  const [draftHourInput, setDraftHourInput] = useState("07");
+  const [draftMinuteInput, setDraftMinuteInput] = useState("00");
   const [clockStep, setClockStep] = useState<"hour" | "minute">("hour");
   const [isClockDragging, setIsClockDragging] = useState(false);
 
@@ -269,6 +271,12 @@ const BookingPage = () => {
     setDraftHour(parsed.hour);
     setDraftMinute(parsed.minute);
     setDraftPeriod(parsed.period);
+    setDraftHourInput(
+      String(parsed.hour % 12 || 12).padStart(2, "0")
+    );
+    setDraftMinuteInput(
+      String(parsed.minute).padStart(2, "0")
+    );
     setClockStep("hour");
     setIsDateTimeModalOpen(true);
   };
@@ -278,19 +286,93 @@ const BookingPage = () => {
     setIsClockDragging(false);
   };
 
+  /* =========================================================
+     MANUAL TIME INPUT
+
+     Hour input is always 12-hour based: 01 - 12.
+     Internally we still store the final time as 00 - 23.
+  ========================================================= */
+
+  const getNormalizedHour = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 2);
+
+    if (!digits) {
+      return getDisplayHour();
+    }
+
+    const numericHour = Math.min(12, Math.max(1, Number(digits)));
+
+    return numericHour;
+  };
+
+  const getNormalizedMinute = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 2);
+
+    if (!digits) {
+      return draftMinute;
+    }
+
+    return Math.min(59, Math.max(0, Number(digits)));
+  };
+
+  const applyHourInput = (value: string) => {
+    const numericHour = getNormalizedHour(value);
+
+    const nextHour =
+      draftPeriod === "PM"
+        ? numericHour === 12
+          ? 12
+          : numericHour + 12
+        : numericHour === 12
+          ? 0
+          : numericHour;
+
+    setDraftHour(nextHour);
+    setDraftHourInput(String(numericHour).padStart(2, "0"));
+  };
+
+  const applyMinuteInput = (value: string) => {
+    const numericMinute = getNormalizedMinute(value);
+
+    setDraftMinute(numericMinute);
+    setDraftMinuteInput(String(numericMinute).padStart(2, "0"));
+  };
+
   const saveDateTimeChanges = () => {
-    const normalizedHour = Math.min(
-      23,
-      Math.max(0, draftHour)
-    );
+    const displayHour = getNormalizedHour(draftHourInput);
+    const normalizedMinute = getNormalizedMinute(draftMinuteInput);
+
+    const normalizedHour =
+      draftPeriod === "PM"
+        ? displayHour === 12
+          ? 12
+          : displayHour + 12
+        : displayHour === 12
+          ? 0
+          : displayHour;
 
     const hourText = String(normalizedHour).padStart(2, "0");
-    const minuteText = String(draftMinute).padStart(2, "0");
+    const minuteText = String(normalizedMinute).padStart(2, "0");
+
+    setDraftHour(normalizedHour);
+    setDraftMinute(normalizedMinute);
+    setDraftHourInput(
+      String(displayHour).padStart(2, "0")
+    );
+    setDraftMinuteInput(minuteText);
 
     setSelectedDate(draftDate);
     setSelectedTime(`${hourText}:${minuteText}`);
     setIsDateTimeModalOpen(false);
     setIsClockDragging(false);
+  };
+
+  const normalizeDraftHour = (value: string) => {
+    applyHourInput(value);
+  };
+
+  const normalizeDraftMinute = (value: string) => {
+    applyMinuteInput(value);
   };
 
   const getDisplayHour = () => {
@@ -342,15 +424,16 @@ const BookingPage = () => {
             : selectedDisplayHour;
 
       setDraftHour(nextHour);
+      setDraftHourInput(String(selectedDisplayHour).padStart(2, "0"));
       return;
     }
 
     const minuteIndex =
       Math.round(angle / 6) % 60;
 
-    setDraftMinute(
-      Math.min(59, Math.round(minuteIndex / 5) * 5)
-    );
+    const nextMinute = Math.min(59, Math.round(minuteIndex / 5) * 5);
+    setDraftMinute(nextMinute);
+    setDraftMinuteInput(String(nextMinute).padStart(2, "0"));
   };
 
   const handleClockPointerDown = (
@@ -1134,40 +1217,59 @@ const BookingPage = () => {
               <div className={styles.clockPanel}>
 
                 <div className={styles.timeControls}>
-                  <button
-                    type="button"
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={2}
+                    aria-label="Hour"
                     className={`${styles.timeBox} ${
                       clockStep === "hour"
                         ? styles.timeBoxActive
                         : ""
                     }`}
-                    onClick={() =>
-                      setClockStep("hour")
-                    }
-                  >
-                    {String(getDisplayHour()).padStart(
-                      2,
-                      "0"
-                    )}
-                  </button>
+                    value={draftHourInput}
+                    onFocus={(event) => {
+                      setClockStep("hour");
+                      event.currentTarget.select();
+                    }}
+                    onChange={(event) => {
+                      const value = event.target.value
+                        .replace(/\D/g, "")
+                        .slice(0, 2);
+
+                      setDraftHourInput(value);
+                    }}
+                    onBlur={() => normalizeDraftHour(draftHourInput)}
+                  />
 
                   <span className={styles.timeColon}>
                     :
                   </span>
 
-                  <button
-                    type="button"
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={2}
+                    aria-label="Minutes"
                     className={`${styles.timeBox} ${
                       clockStep === "minute"
                         ? styles.timeBoxActive
                         : ""
                     }`}
-                    onClick={() =>
-                      setClockStep("minute")
-                    }
-                  >
-                    {String(draftMinute).padStart(2, "0")}
-                  </button>
+                    value={draftMinuteInput}
+                    onFocus={(event) => {
+                      setClockStep("minute");
+                      event.currentTarget.select();
+                    }}
+                    onChange={(event) => {
+                      const value = event.target.value
+                        .replace(/\D/g, "")
+                        .slice(0, 2);
+
+                      setDraftMinuteInput(value);
+                    }}
+                    onBlur={() => normalizeDraftMinute(draftMinuteInput)}
+                  />
 
                   <div className={styles.periodToggle}>
                     <button
@@ -1178,13 +1280,16 @@ const BookingPage = () => {
                           : styles.periodButton
                       }
                       onClick={() => {
-                        setDraftPeriod("AM");
+                        const displayHour =
+                          draftHour % 12 || 12;
 
-                        if (draftHour >= 12) {
-                          setDraftHour(
-                            draftHour - 12
-                          );
-                        }
+                        setDraftPeriod("AM");
+                        setDraftHour(
+                          displayHour === 12 ? 0 : displayHour
+                        );
+                        setDraftHourInput(
+                          String(displayHour).padStart(2, "0")
+                        );
                       }}
                     >
                       AM
@@ -1198,13 +1303,18 @@ const BookingPage = () => {
                           : styles.periodButton
                       }
                       onClick={() => {
-                        setDraftPeriod("PM");
+                        const displayHour =
+                          draftHour % 12 || 12;
 
-                        if (draftHour < 12) {
-                          setDraftHour(
-                            draftHour + 12
-                          );
-                        }
+                        setDraftPeriod("PM");
+                        setDraftHour(
+                          displayHour === 12
+                            ? 12
+                            : displayHour + 12
+                        );
+                        setDraftHourInput(
+                          String(displayHour).padStart(2, "0")
+                        );
                       }}
                     >
                       PM
