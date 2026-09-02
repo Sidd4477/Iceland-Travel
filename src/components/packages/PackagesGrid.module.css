@@ -36,12 +36,25 @@
 
   display: grid;
 
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
   column-gap: 20px;
+
   row-gap: 20px;
 
   box-sizing: border-box;
+}
+
+
+/* =========================================================
+   GRID ITEMS
+========================================================= */
+
+.grid > * {
+  min-width: 0;
+
+  max-width: 100%;
 }
 
 
@@ -50,13 +63,16 @@
 ========================================================= */
 
 @media (max-width: 1400px) {
+
   .section {
     padding-left: 40px;
+
     padding-right: 40px;
   }
 
   .grid {
     column-gap: 20px;
+
     row-gap: 20px;
   }
 }
@@ -67,6 +83,7 @@
 ========================================================= */
 
 @media (max-width: 1024px) {
+
   .section {
     margin-top: -50px;
 
@@ -76,9 +93,11 @@
   }
 
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
 
     column-gap: 18px;
+
     row-gap: 18px;
   }
 }
@@ -89,6 +108,7 @@
 ========================================================= */
 
 @media (max-width: 768px) {
+
   .section {
     margin-top: -40px;
 
@@ -98,7 +118,8 @@
   }
 
   .grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns:
+      minmax(0, 1fr);
 
     gap: 18px;
   }
@@ -110,6 +131,7 @@
 ========================================================= */
 
 @media (max-width: 480px) {
+
   .section {
     margin-top: -32px;
 
@@ -119,7 +141,8 @@
   }
 
   .grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns:
+      minmax(0, 1fr);
 
     gap: 16px;
   }
@@ -131,8 +154,10 @@
 ========================================================= */
 
 @media (max-width: 360px) {
+
   .section {
     padding-left: 12px;
+
     padding-right: 12px;
   }
 

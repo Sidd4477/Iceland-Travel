@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+
 import {
   CalendarDays,
   MapPin,
@@ -18,6 +20,7 @@ const packages = [
     price: "$100 / Tourist",
     duration: "1 Day",
     image: "/images/packages/Golden Circle Packages.png",
+    route: "/destinations/golden-circle",
   },
   {
     id: 2,
@@ -26,6 +29,7 @@ const packages = [
     price: "$100 / Tourist",
     duration: "1 Day",
     image: "/images/packages/Northern Lights Packages.png",
+    route: "/destinations/northern-lights",
   },
   {
     id: 3,
@@ -34,6 +38,7 @@ const packages = [
     price: "$100 / Tourist",
     duration: "1 Day",
     image: "/images/packages/Snaefellsnes Packages.png",
+    route: "/destinations/snaefellsnes",
   },
   {
     id: 4,
@@ -42,6 +47,7 @@ const packages = [
     price: "$100 / Tourist",
     duration: "1 Day",
     image: "/images/packages/Thorsmörk Packages.png",
+    route: "/destinations/thorsmork",
   },
 ];
 
@@ -58,19 +64,19 @@ const PopularPackages = () => {
           <h2 className={styles.title}>Our Packages</h2>
         </div>
 
-        <button
-          type="button"
+        <Link
+          href="/packages"
           className={styles.viewAllButton}
-          aria-label="View all destinations"
+          aria-label="View all packages"
         >
           <span className={styles.viewAllText}>
-            View all Destinations
+            View All Packages
           </span>
 
           <span className={styles.viewAllCircle}>
             <ArrowUpRight className={styles.viewAllIcon} />
           </span>
-        </button>
+        </Link>
       </div>
 
       {/* =========================================
@@ -112,12 +118,13 @@ const PopularPackages = () => {
             </div>
 
             {/* VIEW DETAILS */}
-            <button
-              type="button"
+            <Link
+              href={pkg.route}
               className={styles.detailsButton}
+              aria-label={`View package details for ${pkg.title}`}
             >
               View Package Details
-            </button>
+            </Link>
           </article>
         ))}
       </div>

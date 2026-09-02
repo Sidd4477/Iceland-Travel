@@ -38,14 +38,12 @@ const PackageCard = ({
     "Blue Lagoon Spa Experience":
       "/destinations/blue-lagoon-spa-experience",
 
-
     /* =========================
        GLACIER HIKE
     ========================= */
 
     "Glacier Hike Adventure":
       "/destinations/glacier-hike-adventure",
-
 
     /* =========================
        GOLDEN CIRCLE
@@ -57,7 +55,6 @@ const PackageCard = ({
     "Golden Circle Package":
       "/destinations/golden-circle",
 
-
     /* =========================
        NORTHERN LIGHTS
     ========================= */
@@ -67,7 +64,6 @@ const PackageCard = ({
 
     "Northern Lights Package":
       "/destinations/northern-lights",
-
 
     /* =========================
        SNAEFELLSNES
@@ -85,7 +81,6 @@ const PackageCard = ({
     "Snaefellsnes Package":
       "/destinations/snaefellsnes",
 
-
     /* =========================
        LANDMANNALAUGAR
     ========================= */
@@ -96,7 +91,6 @@ const PackageCard = ({
     "Landmannalaugar Package":
       "/destinations/landmannalaugar",
 
-
     /* =========================
        SOUTH COAST
     ========================= */
@@ -106,7 +100,6 @@ const PackageCard = ({
 
     "South Coast Package":
       "/destinations/south-coast",
-
 
     /* =========================
        THORSMORK
@@ -124,7 +117,6 @@ const PackageCard = ({
     "Thorsmork Package":
       "/destinations/thorsmork",
   };
-
 
   /* =====================================================
      FALLBACK SLUG GENERATOR
@@ -150,7 +142,6 @@ const PackageCard = ({
       .replace(/^-+|-+$/g, "");
   };
 
-
   /* =====================================================
      FINAL DESTINATION ROUTE
   ===================================================== */
@@ -158,7 +149,6 @@ const PackageCard = ({
   const packageRoute =
     packageRoutes[title] ||
     `/destinations/${createSlug(title)}`;
-
 
   /* =====================================================
      CARD
@@ -187,7 +177,6 @@ const PackageCard = ({
         />
       </div>
 
-
       {/* =================================================
           PACKAGE TITLE
       ================================================= */}
@@ -195,7 +184,6 @@ const PackageCard = ({
       <h2 className={styles.title}>
         {title}
       </h2>
-
 
       {/* =================================================
           PACKAGE META INFORMATION
@@ -218,7 +206,6 @@ const PackageCard = ({
           <span>{location}</span>
         </div>
 
-
         {/* =========================
             PRICE
         ========================= */}
@@ -233,7 +220,6 @@ const PackageCard = ({
 
           <span>{price}</span>
         </div>
-
 
         {/* =========================
             DURATION
@@ -251,7 +237,6 @@ const PackageCard = ({
         </div>
 
       </div>
-
 
       {/* =================================================
           VIEW PACKAGE DETAILS

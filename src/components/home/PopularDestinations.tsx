@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 import styles from "./PopularDestinations.module.css";
@@ -124,17 +125,18 @@ const PopularDestinations = () => {
         ========================================= */}
 
         <div className={styles.headerActions}>
-          <button
-            type="button"
+          <Link
+            href="/destinations"
             className={styles.viewButton}
             aria-label="View all destinations"
+            style={{ textDecoration: "none" }}
           >
             <span>View all Destinations</span>
 
             <span className={styles.viewArrow}>
               ↗
             </span>
-          </button>
+          </Link>
 
           <div className={styles.sliderButtons}>
             <button
