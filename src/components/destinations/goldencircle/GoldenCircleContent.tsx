@@ -13,13 +13,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./GoldenCircleContent.module.css";
 
 const GoldenCircleContent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   /* =====================================================
      PACKAGE PRICE
@@ -38,6 +39,119 @@ const GoldenCircleContent = () => {
   const timeInputRef = useRef<HTMLInputElement>(null);
 
   /* =====================================================
+     GUEST DROPDOWN
+  ===================================================== */
+
+  const [isGuestOpen, setIsGuestOpen] = useState(false);
+
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+  /* =====================================================
+     HOME SEARCH BAR VALUES
+     
+     Agar Home se query params ke through values aayi hain:
+     - destination
+     - date
+     - time
+     - adults
+     - children
+     - guests
+
+     To unko automatically form mein fill karna hai.
+
+     Agar query params nahi hain, to normal individual
+     destination-page flow same rahega.
+  ===================================================== */
+
+  useEffect(() => {
+    const destination = searchParams.get("destination");
+
+    /*
+      Sirf Golden Circle ke query data ko is page par
+      automatically apply karenge.
+    */
+    if (
+      destination &&
+      destination.trim().toLowerCase() !== "golden circle"
+    ) {
+      return;
+    }
+
+    const queryDate = searchParams.get("date");
+    const queryTime = searchParams.get("time");
+
+    const queryAdults = searchParams.get("adults");
+    const queryChildren = searchParams.get("children");
+    const queryGuests = searchParams.get("guests");
+
+    /* ===================================================
+       DATE
+    =================================================== */
+
+    if (queryDate) {
+      setDate(queryDate);
+    }
+
+    /* ===================================================
+       TIME
+    =================================================== */
+
+    if (queryTime) {
+      setTime(queryTime);
+    }
+
+    /* ===================================================
+       ADULTS
+    =================================================== */
+
+    if (queryAdults !== null) {
+      const parsedAdults = Number(queryAdults);
+
+      if (
+        Number.isFinite(parsedAdults) &&
+        parsedAdults >= 1
+      ) {
+        setAdults(parsedAdults);
+      }
+    }
+
+    /* ===================================================
+       CHILDREN
+    =================================================== */
+
+    if (queryChildren !== null) {
+      const parsedChildren = Number(queryChildren);
+
+      if (
+        Number.isFinite(parsedChildren) &&
+        parsedChildren >= 0
+      ) {
+        setChildren(parsedChildren);
+      }
+    } else if (
+      queryGuests !== null &&
+      queryAdults === null
+    ) {
+      /*
+        Fallback:
+        Agar sirf guests aaye hain aur adults nahi aaye,
+        to total guests ko adults maana jayega.
+      */
+
+      const parsedGuests = Number(queryGuests);
+
+      if (
+        Number.isFinite(parsedGuests) &&
+        parsedGuests >= 1
+      ) {
+        setAdults(parsedGuests);
+        setChildren(0);
+      }
+    }
+  }, [searchParams]);
+
+  /* =====================================================
      DATE + TIME PICKER FUNCTIONS
   ===================================================== */
 
@@ -48,15 +162,6 @@ const GoldenCircleContent = () => {
   const openTimePicker = () => {
     timeInputRef.current?.showPicker?.();
   };
-
-  /* =====================================================
-     GUEST DROPDOWN
-  ===================================================== */
-
-  const [isGuestOpen, setIsGuestOpen] = useState(false);
-
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
 
   /* =====================================================
      CALCULATED VALUES

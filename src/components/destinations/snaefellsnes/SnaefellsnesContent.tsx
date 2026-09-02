@@ -14,7 +14,7 @@ import {
   Users,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import styles from "./SnaefellsnesContent.module.css";
@@ -32,11 +32,139 @@ const SnaefellsnesContent = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
+  /* =====================================================
+     READ VALUES FROM HOME SEARCH URL
+
+     Example:
+
+     /destinations/snaefellsnes
+       ?destination=Snaefellsnes
+       &date=2026-09-18
+       &adults=2
+       &children=0
+       &guests=2
+
+     If values are present:
+     - Date gets auto-filled
+     - Adults get auto-filled
+     - Children get auto-filled
+
+     If values are NOT present:
+     - Existing individual page flow remains unchanged
+     - Date stays empty
+     - Adults stay 1
+     - Children stay 0
+  ===================================================== */
+
+  useEffect(() => {
+    const syncBookingValuesFromUrl = () => {
+      const params = new URLSearchParams(
+        window.location.search
+      );
+
+      const queryDate = params.get("date");
+      const queryTime = params.get("time");
+
+      const queryAdults = params.get("adults");
+      const queryChildren = params.get("children");
+      const queryGuests = params.get("guests");
+
+      /* ---------------------------------------------
+         DATE
+      --------------------------------------------- */
+
+      if (queryDate) {
+        setDate(queryDate);
+      }
+
+      /* ---------------------------------------------
+         TIME
+
+         Home currently doesn't send time,
+         but if it is ever sent, it will also
+         automatically fill here.
+      --------------------------------------------- */
+
+      if (queryTime) {
+        setTime(queryTime);
+      }
+
+      /* ---------------------------------------------
+         ADULTS
+      --------------------------------------------- */
+
+      if (queryAdults !== null) {
+        const parsedAdults = Number(queryAdults);
+
+        if (
+          Number.isFinite(parsedAdults) &&
+          parsedAdults >= 1
+        ) {
+          setAdults(parsedAdults);
+        }
+      }
+
+      /* ---------------------------------------------
+         CHILDREN
+      --------------------------------------------- */
+
+      if (queryChildren !== null) {
+        const parsedChildren = Number(queryChildren);
+
+        if (
+          Number.isFinite(parsedChildren) &&
+          parsedChildren >= 0
+        ) {
+          setChildren(parsedChildren);
+        }
+      }
+
+      /* ---------------------------------------------
+         FALLBACK
+
+         If adults/children are not available but
+         guests exists, keep the existing guest
+         behaviour as much as possible.
+      --------------------------------------------- */
+
+      if (
+        queryAdults === null &&
+        queryChildren === null &&
+        queryGuests !== null
+      ) {
+        const parsedGuests = Number(queryGuests);
+
+        if (
+          Number.isFinite(parsedGuests) &&
+          parsedGuests >= 1
+        ) {
+          setAdults(parsedGuests);
+          setChildren(0);
+        }
+      }
+    };
+
+    syncBookingValuesFromUrl();
+
+    // Also run once after the current navigation has settled.
+    const syncTimer = window.setTimeout(
+      syncBookingValuesFromUrl,
+      0
+    );
+
+    return () => {
+      window.clearTimeout(syncTimer);
+    };
+  }, []);
+
   const totalGuests = adults + children;
-  const totalPrice = totalGuests * pricePerPerson;
+  const totalPrice =
+    totalGuests * pricePerPerson;
 
   const decreaseAdults = () => {
-    setAdults((current) => Math.max(1, current - 1));
+    setAdults((current) =>
+      Math.max(1, current - 1)
+    );
   };
 
   const increaseAdults = () => {
@@ -44,7 +172,9 @@ const SnaefellsnesContent = () => {
   };
 
   const decreaseChildren = () => {
-    setChildren((current) => Math.max(0, current - 1));
+    setChildren((current) =>
+      Math.max(0, current - 1)
+    );
   };
 
   const increaseChildren = () => {
@@ -58,20 +188,48 @@ const SnaefellsnesContent = () => {
   const handleBookNow = () => {
     const params = new URLSearchParams();
 
-    params.set("destination", "Snaefellsnes");
-    params.set("price", String(pricePerPerson));
+    params.set(
+      "destination",
+      "Snaefellsnes"
+    );
+
+    params.set(
+      "price",
+      String(pricePerPerson)
+    );
+
     params.set("date", date);
+
     params.set("time", time);
-    params.set("adults", String(adults));
-    params.set("children", String(children));
-    params.set("guests", String(totalGuests));
-    params.set("total", String(totalPrice));
+
+    params.set(
+      "adults",
+      String(adults)
+    );
+
+    params.set(
+      "children",
+      String(children)
+    );
+
+    params.set(
+      "guests",
+      String(totalGuests)
+    );
+
+    params.set(
+      "total",
+      String(totalPrice)
+    );
+
     params.set(
       "image",
       "/images/destinations/snaefellsnes/Snaefellsnes%20Trip%201.png"
     );
 
-    router.push(`/booking?${params.toString()}`);
+    router.push(
+      `/booking?${params.toString()}`
+    );
   };
 
   return (
@@ -94,11 +252,13 @@ const SnaefellsnesContent = () => {
             <div className={styles.overview}>
 
               <h2 className={styles.sectionTitle}>
+
                 <span className={styles.titleIcon}>
                   🧭
                 </span>
 
                 Trip Overview
+
               </h2>
 
 
@@ -191,9 +351,11 @@ const SnaefellsnesContent = () => {
               </label>
 
               <div className={styles.whereInput}>
+
                 <span>
                   Snaefellsnes
                 </span>
+
               </div>
 
             </div>
@@ -436,9 +598,11 @@ const SnaefellsnesContent = () => {
               className={styles.bookButton}
               onClick={handleBookNow}
             >
+
               <span>
                 Book Now
               </span>
+
             </button>
 
           </aside>

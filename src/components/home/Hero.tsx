@@ -9,10 +9,15 @@ import {
   Users,
   X,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import styles from "./Hero.module.css";
 
-type ActivePopup = "destination" | "date" | "guests" | null;
+type ActivePopup =
+  | "destination"
+  | "date"
+  | "guests"
+  | null;
 
 const destinations = [
   "Northern Lights",
@@ -23,7 +28,18 @@ const destinations = [
   "Thorsmörk",
 ];
 
+const destinationSlugs: Record<string, string> = {
+  "Northern Lights": "northern-lights",
+  Snaefellsnes: "snaefellsnes",
+  "Golden Circle": "golden-circle",
+  Landmannalaugar: "landmannalaugar",
+  "South Coast": "south-coast",
+  "Thorsmörk": "thorsmork",
+};
+
 const Hero = () => {
+  const router = useRouter();
+
   /* =========================================================
      POPUP STATE
   ========================================================= */
@@ -265,7 +281,6 @@ const Hero = () => {
     );
 
     setSelectedDate(newDate);
-
     setActivePopup(null);
   };
 
@@ -314,7 +329,8 @@ const Hero = () => {
   ========================================================= */
 
   const openDatePopup = () => {
-    const current = selectedDate || new Date();
+    const current =
+      selectedDate || new Date();
 
     setCalendarMonth({
       year: current.getFullYear(),
@@ -360,17 +376,130 @@ const Hero = () => {
   };
 
   /* =========================================================
-     SEARCH
+     FORMAT DATE FOR URL
+     
+     Example:
+     2026-09-02
+  ========================================================= */
+
+  const getDateForUrl = () => {
+    if (!selectedDate) {
+      return "";
+    }
+
+    const year =
+      selectedDate.getFullYear();
+
+    const month = String(
+      selectedDate.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+      selectedDate.getDate()
+    ).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
+  /* =========================================================
+     SEARCH / REDIRECT
+     
+     Example:
+     Northern Lights
+     2 Adults
+     1 Child
+     02 Sep 2026
+
+     =>
+     /destinations/northern-lights
+     ?date=2026-09-02
+     &adults=2
+     &children=1
+     &guests=3
   ========================================================= */
 
   const handleSearch = () => {
-    console.log("Search Details:", {
-      destination: selectedDestination,
-      date: selectedDate,
-      adults,
-      children,
-      guests: adults + children,
-    });
+    /* ---------------------------------------------
+       Destination required
+    --------------------------------------------- */
+
+    if (!selectedDestination) {
+      setActivePopup("destination");
+      return;
+    }
+
+    /* ---------------------------------------------
+       Date required
+    --------------------------------------------- */
+
+    if (!selectedDate) {
+      openDatePopup();
+      return;
+    }
+
+    /* ---------------------------------------------
+       Destination slug
+    --------------------------------------------- */
+
+    const destinationSlug =
+      destinationSlugs[
+        selectedDestination
+      ] ||
+      selectedDestination
+        .trim()
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+    /* ---------------------------------------------
+       Selected date
+    --------------------------------------------- */
+
+    const date = getDateForUrl();
+
+    /* ---------------------------------------------
+       Total guests
+    --------------------------------------------- */
+
+    const totalGuests =
+      adults + children;
+
+    /* ---------------------------------------------
+       Create query parameters
+    --------------------------------------------- */
+
+    const params = new URLSearchParams();
+
+    params.set(
+      "destination",
+      selectedDestination
+    );
+
+    params.set("date", date);
+
+    params.set(
+      "adults",
+      String(adults)
+    );
+
+    params.set(
+      "children",
+      String(children)
+    );
+
+    params.set(
+      "guests",
+      String(totalGuests)
+    );
+
+    /* ---------------------------------------------
+       Redirect to particular destination page
+    --------------------------------------------- */
+
+    router.push(
+      `/destinations/${destinationSlug}?${params.toString()}`
+    );
   };
 
   /* =========================================================
@@ -387,6 +516,7 @@ const Hero = () => {
   return (
     <>
       <section className={styles.hero}>
+
         {/* =====================================================
             BACKGROUND VIDEO
         ===================================================== */}
@@ -416,6 +546,7 @@ const Hero = () => {
         ===================================================== */}
 
         <div className={styles.heroContent}>
+
           <h1 className={styles.title}>
             Explore the sights of
             <br />
@@ -437,6 +568,7 @@ const Hero = () => {
           ================================================= */}
 
           <div className={styles.searchBox}>
+
             {/* =================================================
                 DESTINATION
             ================================================= */}
@@ -570,6 +702,7 @@ const Hero = () => {
                 />
               </svg>
             </button>
+
           </div>
         </div>
       </section>
@@ -585,6 +718,7 @@ const Hero = () => {
           aria-modal="true"
           aria-label={popupTitle}
         >
+
           {/* ===================================================
               BACKDROP
           =================================================== */}
@@ -601,13 +735,17 @@ const Hero = () => {
           =================================================== */}
 
           <div className={styles.popupCard}>
+
             {/* =================================================
                 POPUP HEADER
             ================================================= */}
 
             <div className={styles.popupHeader}>
+
               <div className={styles.popupHeading}>
+
                 <div className={styles.popupIcon}>
+
                   {activePopup ===
                     "destination" && (
                     <MapPin
@@ -629,9 +767,11 @@ const Hero = () => {
                       strokeWidth={1.7}
                     />
                   )}
+
                 </div>
 
                 <div>
+
                   <span
                     className={
                       styles.popupEyebrow
@@ -647,7 +787,9 @@ const Hero = () => {
                   >
                     {popupTitle}
                   </h2>
+
                 </div>
+
               </div>
 
               {/* =================================================
@@ -665,6 +807,7 @@ const Hero = () => {
                   strokeWidth={1.7}
                 />
               </button>
+
             </div>
 
             {/* =================================================
@@ -678,6 +821,7 @@ const Hero = () => {
                   styles.popupContent
                 }
               >
+
                 <p
                   className={
                     styles.popupDescription
@@ -692,6 +836,7 @@ const Hero = () => {
                     styles.destinationGrid
                   }
                 >
+
                   {destinations.map(
                     (destination) => (
                       <button
@@ -711,6 +856,7 @@ const Hero = () => {
                           )
                         }
                       >
+
                         <span
                           className={
                             styles.destinationIcon
@@ -737,10 +883,13 @@ const Hero = () => {
                         >
                           →
                         </span>
+
                       </button>
                     )
                   )}
+
                 </div>
+
               </div>
             )}
 
@@ -754,11 +903,13 @@ const Hero = () => {
                   styles.popupContent
                 }
               >
+
                 <div
                   className={
                     styles.calendar
                   }
                 >
+
                   {/* =========================================
                       CALENDAR HEADER
                   ========================================= */}
@@ -768,6 +919,7 @@ const Hero = () => {
                       styles.calendarHeader
                     }
                   >
+
                     <button
                       type="button"
                       className={
@@ -805,6 +957,7 @@ const Hero = () => {
                         strokeWidth={1.8}
                       />
                     </button>
+
                   </div>
 
                   {/* =========================================
@@ -847,9 +1000,8 @@ const Hero = () => {
                   >
                     {calendarDays.map(
                       (day, index) => {
-                        if (
-                          day === null
-                        ) {
+
+                        if (day === null) {
                           return (
                             <span
                               key={`empty-${index}`}
@@ -864,17 +1016,13 @@ const Hero = () => {
                           isPastDate(day);
 
                         const selected =
-                          isSelectedDate(
-                            day
-                          );
+                          isSelectedDate(day);
 
                         return (
                           <button
                             key={day}
                             type="button"
-                            disabled={
-                              disabled
-                            }
+                            disabled={disabled}
                             className={`${
                               styles.calendarDay
                             } ${
@@ -898,6 +1046,7 @@ const Hero = () => {
                       }
                     )}
                   </div>
+
                 </div>
 
                 {/* =========================================
@@ -909,7 +1058,9 @@ const Hero = () => {
                     styles.calendarFooter
                   }
                 >
+
                   <div>
+
                     <span
                       className={
                         styles.calendarFooterLabel
@@ -927,6 +1078,7 @@ const Hero = () => {
                         ? formattedDate
                         : "No date selected"}
                     </strong>
+
                   </div>
 
                   <button
@@ -938,7 +1090,9 @@ const Hero = () => {
                   >
                     Done
                   </button>
+
                 </div>
+
               </div>
             )}
 
@@ -953,6 +1107,7 @@ const Hero = () => {
                   styles.popupContent
                 }
               >
+
                 <p
                   className={
                     styles.popupDescription
@@ -967,6 +1122,7 @@ const Hero = () => {
                     styles.guestList
                   }
                 >
+
                   {/* =========================================
                       ADULTS
                   ========================================= */}
@@ -976,11 +1132,13 @@ const Hero = () => {
                       styles.guestRow
                     }
                   >
+
                     <div
                       className={
                         styles.guestInfo
                       }
                     >
+
                       <div
                         className={
                           styles.guestAvatar
@@ -990,6 +1148,7 @@ const Hero = () => {
                       </div>
 
                       <div>
+
                         <strong
                           className={
                             styles.guestTitle
@@ -1005,7 +1164,9 @@ const Hero = () => {
                         >
                           Age 13 and above
                         </span>
+
                       </div>
+
                     </div>
 
                     <div
@@ -1013,6 +1174,7 @@ const Hero = () => {
                         styles.counter
                       }
                     >
+
                       <button
                         type="button"
                         className={
@@ -1049,7 +1211,9 @@ const Hero = () => {
                       >
                         +
                       </button>
+
                     </div>
+
                   </div>
 
                   {/* =========================================
@@ -1061,11 +1225,13 @@ const Hero = () => {
                       styles.guestRow
                     }
                   >
+
                     <div
                       className={
                         styles.guestInfo
                       }
                     >
+
                       <div
                         className={
                           styles.guestAvatar
@@ -1075,6 +1241,7 @@ const Hero = () => {
                       </div>
 
                       <div>
+
                         <strong
                           className={
                             styles.guestTitle
@@ -1090,7 +1257,9 @@ const Hero = () => {
                         >
                           Age 2–12
                         </span>
+
                       </div>
+
                     </div>
 
                     <div
@@ -1098,6 +1267,7 @@ const Hero = () => {
                         styles.counter
                       }
                     >
+
                       <button
                         type="button"
                         className={
@@ -1134,8 +1304,11 @@ const Hero = () => {
                       >
                         +
                       </button>
+
                     </div>
+
                   </div>
+
                 </div>
 
                 {/* =============================================
@@ -1147,7 +1320,9 @@ const Hero = () => {
                     styles.guestFooter
                   }
                 >
+
                   <div>
+
                     <span
                       className={
                         styles.calendarFooterLabel
@@ -1163,6 +1338,7 @@ const Hero = () => {
                     >
                       {guestText}
                     </strong>
+
                   </div>
 
                   <button
@@ -1174,9 +1350,12 @@ const Hero = () => {
                   >
                     Done
                   </button>
+
                 </div>
+
               </div>
             )}
+
           </div>
         </div>
       )}

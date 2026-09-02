@@ -169,13 +169,77 @@
 
   border: none;
 
+  outline: none;
+
   background: transparent;
+
+  border-radius: 24px;
 
   cursor: pointer;
 
   font-family: "Outfit", sans-serif;
 
   appearance: none;
+
+  -webkit-appearance: none;
+
+  transition: background-color 0.2s ease;
+
+  position: relative;
+
+  z-index: 0;
+}
+
+
+/* =========================================
+   SEARCH FIELD HOVER
+   FULL OUTER HEIGHT
+   NO WHITE SPACE
+========================================= */
+
+.searchField::before {
+  content: "";
+
+  position: absolute;
+
+  top: -11px;
+  bottom: -11px;
+
+  left: 0;
+  right: 0;
+
+  background: transparent;
+
+  border-radius: 24px;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  transition: background-color 0.2s ease;
+}
+
+
+/* =========================================
+   FIRST FIELD HOVER
+   EXTEND TO OUTER LEFT EDGE
+========================================= */
+
+.searchField:first-child::before {
+  left: -24px;
+
+  border-radius: 32px 24px 24px 32px;
+}
+
+
+/* =========================================
+   SEARCH FIELD HOVER
+========================================= */
+
+.searchField:hover::before {
+  background: #d0d0d0;
+
+  cursor: pointer;
 }
 
 
@@ -183,8 +247,8 @@
    ACTIVE SEARCH FIELD
 ========================================= */
 
-.activeSearchField {
-  opacity: 0.72;
+.activeSearchField::before {
+  background: #d0d0d0;
 }
 
 
@@ -293,14 +357,13 @@
 
 .searchButton:focus-visible {
   outline: 2px solid #ffffff;
+
   outline-offset: 2px;
 }
 
 
 /* =========================================
-   =========================================================
    FULL SCREEN POPUP
-   =========================================================
 ========================================= */
 
 .popupOverlay {

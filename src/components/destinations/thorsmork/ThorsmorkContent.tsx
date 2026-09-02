@@ -14,13 +14,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./ThorsmorkContent.module.css";
 
 const ThorsmorkContent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const pricePerPerson = 100;
 
@@ -29,6 +30,58 @@ const ThorsmorkContent = () => {
 
   const dateInputRef = useRef<HTMLInputElement>(null);
   const timeInputRef = useRef<HTMLInputElement>(null);
+
+  const [isGuestOpen, setIsGuestOpen] = useState(false);
+
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+
+  /* =====================================================
+     HOME PAGE → DESTINATION PAGE
+
+     Agar Home Page se values URL me aayi hain,
+     to form automatically fill hoga.
+
+     Example:
+     ?destination=Thorsmork
+     &date=2026-09-18
+     &adults=2
+     &children=1
+     &guests=3
+  ===================================================== */
+  useEffect(() => {
+    const urlDate = searchParams.get("date");
+    const urlTime = searchParams.get("time");
+    const urlAdults = searchParams.get("adults");
+    const urlChildren = searchParams.get("children");
+
+    if (urlDate) {
+      setDate(urlDate);
+    }
+
+    if (urlTime) {
+      setTime(urlTime);
+    }
+
+    if (urlAdults) {
+      const parsedAdults = Number(urlAdults);
+
+      if (Number.isFinite(parsedAdults) && parsedAdults >= 1) {
+        setAdults(parsedAdults);
+      }
+    }
+
+    if (urlChildren) {
+      const parsedChildren = Number(urlChildren);
+
+      if (Number.isFinite(parsedChildren) && parsedChildren >= 0) {
+        setChildren(parsedChildren);
+      }
+    }
+  }, [searchParams]);
+
+  const totalGuests = adults + children;
+  const totalPrice = totalGuests * pricePerPerson;
 
   const openDatePicker = () => {
     const input = dateInputRef.current;
@@ -55,14 +108,6 @@ const ThorsmorkContent = () => {
       input.click();
     }
   };
-
-  const [isGuestOpen, setIsGuestOpen] = useState(false);
-
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-
-  const totalGuests = adults + children;
-  const totalPrice = totalGuests * pricePerPerson;
 
   const decreaseAdults = () => {
     setAdults((current) => Math.max(1, current - 1));
@@ -257,7 +302,9 @@ const ThorsmorkContent = () => {
                 <span>{totalGuests}</span>
 
                 <ChevronDown
-                  className={isGuestOpen ? styles.chevronOpen : undefined}
+                  className={
+                    isGuestOpen ? styles.chevronOpen : undefined
+                  }
                 />
               </button>
 
@@ -286,7 +333,9 @@ const ThorsmorkContent = () => {
                         <Minus size={12} />
                       </button>
 
-                      <span className={styles.counterValue}>{adults}</span>
+                      <span className={styles.counterValue}>
+                        {adults}
+                      </span>
 
                       <button
                         type="button"
@@ -303,7 +352,9 @@ const ThorsmorkContent = () => {
 
                   <div className={styles.guestRow}>
                     <div className={styles.guestInfo}>
-                      <span className={styles.guestTitle}>Children</span>
+                      <span className={styles.guestTitle}>
+                        Children
+                      </span>
 
                       <span className={styles.guestSubtitle}>
                         Ages 2-12
@@ -320,7 +371,9 @@ const ThorsmorkContent = () => {
                         <Minus size={12} />
                       </button>
 
-                      <span className={styles.counterValue}>{children}</span>
+                      <span className={styles.counterValue}>
+                        {children}
+                      </span>
 
                       <button
                         type="button"
@@ -359,147 +412,102 @@ const ThorsmorkContent = () => {
           ========================================= */}
 
           <div className={styles.tripDetails}>
-
             <h2 className={styles.tripDetailsTitle}>
-
               <span className={styles.tripDetailsIcon}>
                 ✨
               </span>
-
               Trip Details
-
             </h2>
 
-
             <div className={styles.tripDetailsList}>
-
               {/* DURATION */}
 
               <div className={styles.tripDetailsRow}>
-
                 <div className={styles.tripDetailsLabel}>
-
                   <Clock3 />
 
                   <span>
                     Duration:
                   </span>
-
                 </div>
-
 
                 <strong>
                   1 Complete Day
                 </strong>
-
               </div>
-
 
               {/* VISITS */}
 
               <div className={styles.tripDetailsRow}>
-
                 <div className={styles.tripDetailsLabel}>
-
                   <CarFront />
 
                   <span>
                     Visits:
                   </span>
-
                 </div>
-
 
                 <strong>
                   All Days
                 </strong>
-
               </div>
-
 
               {/* GROUP SIZE */}
 
               <div className={styles.tripDetailsRow}>
-
                 <div className={styles.tripDetailsLabel}>
-
                   <Users />
 
                   <span>
                     Group Size:
                   </span>
-
                 </div>
-
 
                 <strong>
                   10 Travellers
                 </strong>
-
               </div>
-
 
               {/* PRICE */}
 
               <div className={styles.tripDetailsRow}>
-
                 <div className={styles.tripDetailsLabel}>
-
                   <Tag />
 
                   <span>
                     Price:
                   </span>
-
                 </div>
 
-
                 <strong className={styles.priceValue}>
-
                   $100
-
                   <span>
                     /per person
                   </span>
-
                 </strong>
-
               </div>
-
 
               {/* INCLUSIONS */}
 
               <div className={styles.tripDetailsRow}>
-
                 <div className={styles.tripDetailsLabel}>
-
                   <CircleAlert />
 
                   <span>
                     Inclusions:
                   </span>
-
                 </div>
 
-
                 <strong className={styles.inclusionsValue}>
-
                   Transportation, Tours,
-
                   <br />
-
                   Professional Guides
-
                 </strong>
-
               </div>
-
             </div>
-
-          </div>
-
           </div>
         </div>
+      </div>
 
       {/* =========================================
           HIGHLIGHT GALLERY

@@ -12,7 +12,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import styles from "./NorthernLightsContent.module.css";
@@ -43,18 +43,136 @@ const NorthernLightsContent = () => {
   const [children, setChildren] = useState(0);
 
   /* =====================================================
+     READ VALUES FROM URL
+
+     Example:
+
+     /destinations/northern-lights
+       ?destination=Northern+Lights
+       &date=2026-09-18
+       &adults=2
+       &children=0
+       &guests=2
+
+     Home Search se aaye values:
+     - Destination
+     - Date
+     - Time
+     - Adults
+     - Children
+
+     Individual page par directly aane par:
+     - Date empty
+     - Time empty
+     - Adults 1
+     - Children 0
+  ===================================================== */
+
+  useEffect(() => {
+    const params = new URLSearchParams(
+      window.location.search
+    );
+
+    /* ===================================================
+       DATE
+    =================================================== */
+
+    const queryDate = params.get("date");
+
+    if (queryDate) {
+      setDate(queryDate);
+    }
+
+    /* ===================================================
+       TIME
+    =================================================== */
+
+    const queryTime = params.get("time");
+
+    if (queryTime) {
+      setTime(queryTime);
+    }
+
+    /* ===================================================
+       ADULTS
+    =================================================== */
+
+    const queryAdults = params.get("adults");
+
+    if (queryAdults !== null) {
+      const parsedAdults = Number(queryAdults);
+
+      if (
+        Number.isFinite(parsedAdults) &&
+        parsedAdults >= 1
+      ) {
+        setAdults(parsedAdults);
+      }
+    }
+
+    /* ===================================================
+       CHILDREN
+    =================================================== */
+
+    const queryChildren = params.get("children");
+
+    if (queryChildren !== null) {
+      const parsedChildren = Number(queryChildren);
+
+      if (
+        Number.isFinite(parsedChildren) &&
+        parsedChildren >= 0
+      ) {
+        setChildren(parsedChildren);
+      }
+    }
+
+    /* ===================================================
+       FALLBACK FOR GUESTS
+
+       Agar old URL mein sirf guests aa raha hai:
+       guests = total guests
+
+       Toh adults mein total guests set
+       aur children = 0.
+    =================================================== */
+
+    const queryGuests = params.get("guests");
+
+    if (
+      queryAdults === null &&
+      queryChildren === null &&
+      queryGuests !== null
+    ) {
+      const parsedGuests = Number(queryGuests);
+
+      if (
+        Number.isFinite(parsedGuests) &&
+        parsedGuests >= 1
+      ) {
+        setAdults(parsedGuests);
+        setChildren(0);
+      }
+    }
+  }, []);
+
+  /* =====================================================
      CALCULATED VALUES
   ===================================================== */
 
   const totalGuests = adults + children;
-  const totalPrice = totalGuests * pricePerPerson;
+
+  const totalPrice =
+    totalGuests * pricePerPerson;
 
   /* =====================================================
      ADULT COUNTER
   ===================================================== */
 
   const decreaseAdults = () => {
-    setAdults((current) => Math.max(1, current - 1));
+    setAdults((current) =>
+      Math.max(1, current - 1)
+    );
   };
 
   const increaseAdults = () => {
@@ -66,7 +184,9 @@ const NorthernLightsContent = () => {
   ===================================================== */
 
   const decreaseChildren = () => {
-    setChildren((current) => Math.max(0, current - 1));
+    setChildren((current) =>
+      Math.max(0, current - 1)
+    );
   };
 
   const increaseChildren = () => {
@@ -75,7 +195,6 @@ const NorthernLightsContent = () => {
 
   /* =====================================================
      BOOK NOW
-     PASS ALL SELECTED VALUES TO BOOKING PAGE
   ===================================================== */
 
   const handleBookNow = () => {
@@ -85,39 +204,63 @@ const NorthernLightsContent = () => {
        DESTINATION
     =================================================== */
 
-    params.set("destination", "Northern Lights");
+    params.set(
+      "destination",
+      "Northern Lights"
+    );
 
     /* ===================================================
        PRICE PER PERSON
     =================================================== */
 
-    params.set("price", String(pricePerPerson));
+    params.set(
+      "price",
+      String(pricePerPerson)
+    );
 
     /* ===================================================
        DATE
     =================================================== */
 
-    params.set("date", date);
+    if (date) {
+      params.set("date", date);
+    }
 
     /* ===================================================
        TIME
     =================================================== */
 
-    params.set("time", time);
+    if (time) {
+      params.set("time", time);
+    }
 
     /* ===================================================
        GUEST DETAILS
     =================================================== */
 
-    params.set("adults", String(adults));
-    params.set("children", String(children));
-    params.set("guests", String(totalGuests));
+    params.set(
+      "adults",
+      String(adults)
+    );
+
+    params.set(
+      "children",
+      String(children)
+    );
+
+    params.set(
+      "guests",
+      String(totalGuests)
+    );
 
     /* ===================================================
        TOTAL PRICE
     =================================================== */
 
-    params.set("total", String(totalPrice));
+    params.set(
+      "total",
+      String(totalPrice)
+    );
 
     /* ===================================================
        BOOKING IMAGE
@@ -130,10 +273,11 @@ const NorthernLightsContent = () => {
 
     /* ===================================================
        REDIRECT TO BOOKING PAGE
-       ALL VALUES ARE INCLUDED IN QUERY STRING
     =================================================== */
 
-    router.push(`/booking?${params.toString()}`);
+    router.push(
+      `/booking?${params.toString()}`
+    );
   };
 
   return (
@@ -157,6 +301,7 @@ const NorthernLightsContent = () => {
               </h2>
 
               <div className={styles.description}>
+
                 <p>
                   This Northern Lights journey introduces you
                   to Iceland’s breathtaking night skies,
@@ -172,9 +317,11 @@ const NorthernLightsContent = () => {
                   and dancing Northern Lights create a journey
                   that feels truly magical and unforgettable.
                 </p>
+
               </div>
 
               <div className={styles.overviewImage}>
+
                 <Image
                   src="/images/destinations/northern-lights/Trip%201.png"
                   alt="Northern Lights experience"
@@ -183,6 +330,7 @@ const NorthernLightsContent = () => {
                   className={styles.image}
                   sizes="(max-width: 900px) 100vw, 876px"
                 />
+
               </div>
 
             </div>
@@ -199,6 +347,7 @@ const NorthernLightsContent = () => {
             ================================================= */}
 
             <div className={styles.bookingPrice}>
+
               <strong>
                 ${pricePerPerson}
               </strong>
@@ -206,6 +355,7 @@ const NorthernLightsContent = () => {
               <span>
                 /per person
               </span>
+
             </div>
 
             <div className={styles.divider} />
@@ -215,6 +365,7 @@ const NorthernLightsContent = () => {
             ================================================= */}
 
             <div className={styles.formField}>
+
               <label className={styles.fieldLabel}>
                 Where
               </label>
@@ -224,6 +375,7 @@ const NorthernLightsContent = () => {
                   Northern Lights
                 </span>
               </div>
+
             </div>
 
             {/* =================================================
@@ -235,11 +387,13 @@ const NorthernLightsContent = () => {
               {/* DATE */}
 
               <div className={styles.halfField}>
+
                 <label className={styles.fieldLabel}>
                   Date
                 </label>
 
                 <div className={styles.inputWrapper}>
+
                   <input
                     type="date"
                     value={date}
@@ -249,17 +403,21 @@ const NorthernLightsContent = () => {
                     className={styles.input}
                     aria-label="Date"
                   />
+
                 </div>
+
               </div>
 
               {/* TIME */}
 
               <div className={styles.halfField}>
+
                 <label className={styles.fieldLabel}>
                   Time
                 </label>
 
                 <div className={styles.inputWrapper}>
+
                   <input
                     type="time"
                     value={time}
@@ -269,7 +427,9 @@ const NorthernLightsContent = () => {
                     className={styles.input}
                     aria-label="Time"
                   />
+
                 </div>
+
               </div>
 
             </div>
@@ -295,6 +455,7 @@ const NorthernLightsContent = () => {
                 aria-expanded={isGuestOpen}
                 aria-haspopup="dialog"
               >
+
                 <span>
                   {totalGuests}
                 </span>
@@ -306,6 +467,7 @@ const NorthernLightsContent = () => {
                       : undefined
                   }
                 />
+
               </button>
 
               {/* =================================================
@@ -315,19 +477,21 @@ const NorthernLightsContent = () => {
               {isGuestOpen && (
                 <div className={styles.guestDropdown}>
 
-                  {/* =================================================
-                      ADULTS
-                  ================================================= */}
+                  {/* ADULTS */}
 
                   <div className={styles.guestRow}>
 
                     <div className={styles.guestInfo}>
 
-                      <span className={styles.guestTitle}>
+                      <span
+                        className={styles.guestTitle}
+                      >
                         Adults
                       </span>
 
-                      <span className={styles.guestSubtitle}>
+                      <span
+                        className={styles.guestSubtitle}
+                      >
                         Ages 13 or above
                       </span>
 
@@ -337,21 +501,33 @@ const NorthernLightsContent = () => {
 
                       <button
                         type="button"
-                        className={styles.counterButton}
-                        onClick={decreaseAdults}
+                        className={
+                          styles.counterButton
+                        }
+                        onClick={
+                          decreaseAdults
+                        }
                         aria-label="Decrease adults"
                       >
                         <Minus size={12} />
                       </button>
 
-                      <span className={styles.counterValue}>
+                      <span
+                        className={
+                          styles.counterValue
+                        }
+                      >
                         {adults}
                       </span>
 
                       <button
                         type="button"
-                        className={styles.counterButton}
-                        onClick={increaseAdults}
+                        className={
+                          styles.counterButton
+                        }
+                        onClick={
+                          increaseAdults
+                        }
                         aria-label="Increase adults"
                       >
                         <Plus size={12} />
@@ -361,19 +537,21 @@ const NorthernLightsContent = () => {
 
                   </div>
 
-                  {/* =================================================
-                      CHILDREN
-                  ================================================= */}
+                  {/* CHILDREN */}
 
                   <div className={styles.guestRow}>
 
                     <div className={styles.guestInfo}>
 
-                      <span className={styles.guestTitle}>
+                      <span
+                        className={styles.guestTitle}
+                      >
                         Children
                       </span>
 
-                      <span className={styles.guestSubtitle}>
+                      <span
+                        className={styles.guestSubtitle}
+                      >
                         Ages 2-12
                       </span>
 
@@ -383,21 +561,33 @@ const NorthernLightsContent = () => {
 
                       <button
                         type="button"
-                        className={styles.counterButton}
-                        onClick={decreaseChildren}
+                        className={
+                          styles.counterButton
+                        }
+                        onClick={
+                          decreaseChildren
+                        }
                         aria-label="Decrease children"
                       >
                         <Minus size={12} />
                       </button>
 
-                      <span className={styles.counterValue}>
+                      <span
+                        className={
+                          styles.counterValue
+                        }
+                      >
                         {children}
                       </span>
 
                       <button
                         type="button"
-                        className={styles.counterButton}
-                        onClick={increaseChildren}
+                        className={
+                          styles.counterButton
+                        }
+                        onClick={
+                          increaseChildren
+                        }
                         aria-label="Increase children"
                       >
                         <Plus size={12} />
@@ -450,9 +640,17 @@ const NorthernLightsContent = () => {
 
           <div className={styles.tripDetails}>
 
-            <h2 className={styles.tripDetailsTitle}>
+            <h2
+              className={
+                styles.tripDetailsTitle
+              }
+            >
 
-              <span className={styles.tripDetailsIcon}>
+              <span
+                className={
+                  styles.tripDetailsIcon
+                }
+              >
                 ✨
               </span>
 
@@ -460,19 +658,32 @@ const NorthernLightsContent = () => {
 
             </h2>
 
-            <div className={styles.tripDetailsList}>
+            <div
+              className={
+                styles.tripDetailsList
+              }
+            >
 
-              {/* =================================================
-                  DURATION
-              ================================================= */}
+              {/* DURATION */}
 
-              <div className={styles.tripDetailsRow}>
+              <div
+                className={
+                  styles.tripDetailsRow
+                }
+              >
 
-                <div className={styles.tripDetailsLabel}>
+                <div
+                  className={
+                    styles.tripDetailsLabel
+                  }
+                >
+
                   <Clock3 />
+
                   <span>
                     Duration:
                   </span>
+
                 </div>
 
                 <strong>
@@ -481,17 +692,26 @@ const NorthernLightsContent = () => {
 
               </div>
 
-              {/* =================================================
-                  VISITS
-              ================================================= */}
+              {/* VISITS */}
 
-              <div className={styles.tripDetailsRow}>
+              <div
+                className={
+                  styles.tripDetailsRow
+                }
+              >
 
-                <div className={styles.tripDetailsLabel}>
+                <div
+                  className={
+                    styles.tripDetailsLabel
+                  }
+                >
+
                   <CarFront />
+
                   <span>
                     Visits:
                   </span>
+
                 </div>
 
                 <strong>
@@ -500,17 +720,26 @@ const NorthernLightsContent = () => {
 
               </div>
 
-              {/* =================================================
-                  GROUP SIZE
-              ================================================= */}
+              {/* GROUP SIZE */}
 
-              <div className={styles.tripDetailsRow}>
+              <div
+                className={
+                  styles.tripDetailsRow
+                }
+              >
 
-                <div className={styles.tripDetailsLabel}>
+                <div
+                  className={
+                    styles.tripDetailsLabel
+                  }
+                >
+
                   <Users />
+
                   <span>
                     Group Size:
                   </span>
+
                 </div>
 
                 <strong>
@@ -519,39 +748,59 @@ const NorthernLightsContent = () => {
 
               </div>
 
-              {/* =================================================
-                  PRICE
-              ================================================= */}
+              {/* PRICE */}
 
-              <div className={styles.tripDetailsRow}>
+              <div
+                className={
+                  styles.tripDetailsRow
+                }
+              >
 
-                <div className={styles.tripDetailsLabel}>
+                <div
+                  className={
+                    styles.tripDetailsLabel
+                  }
+                >
+
                   <Tag />
+
                   <span>
                     Price:
                   </span>
+
                 </div>
 
                 <strong>
                   $100
+
                   <small>
                     /per person
                   </small>
+
                 </strong>
 
               </div>
 
-              {/* =================================================
-                  INCLUSIONS
-              ================================================= */}
+              {/* INCLUSIONS */}
 
-              <div className={styles.tripDetailsRow}>
+              <div
+                className={
+                  styles.tripDetailsRow
+                }
+              >
 
-                <div className={styles.tripDetailsLabel}>
+                <div
+                  className={
+                    styles.tripDetailsLabel
+                  }
+                >
+
                   <CircleAlert />
+
                   <span>
                     Inclusions:
                   </span>
+
                 </div>
 
                 <strong>
@@ -573,9 +822,18 @@ const NorthernLightsContent = () => {
           HIGHLIGHT GALLERY
       ===================================================== */}
 
-      <div className={styles.highlightGallery}>
+      <div
+        className={
+          styles.highlightGallery
+        }
+      >
 
-        <div className={styles.highlightImage}>
+        <div
+          className={
+            styles.highlightImage
+          }
+        >
+
           <Image
             src="/images/destinations/northern-lights/Trip%202.png"
             alt="Northern Lights over Iceland mountains"
@@ -583,9 +841,15 @@ const NorthernLightsContent = () => {
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
           />
+
         </div>
 
-        <div className={styles.highlightImage}>
+        <div
+          className={
+            styles.highlightImage
+          }
+        >
+
           <Image
             src="/images/destinations/northern-lights/Trip%203.png"
             alt="Northern Lights over Iceland landscape"
@@ -593,6 +857,7 @@ const NorthernLightsContent = () => {
             className={styles.image}
             sizes="(max-width: 900px) 100vw, 661px"
           />
+
         </div>
 
       </div>

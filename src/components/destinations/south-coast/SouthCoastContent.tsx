@@ -14,21 +14,246 @@ import {
   Users,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./SouthCoastContent.module.css";
 
 const SouthCoastContent = () => {
+  const router = useRouter();
+
   const [isGuestOpen, setIsGuestOpen] = useState(false);
 
   const [adults, setAdults] = useState(3);
   const [children, setChildren] = useState(0);
 
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
   const pricePerPerson = 100;
+
+  /* =====================================================
+     AUTO FILL FROM HOME SEARCH URL
+
+     Example:
+
+     /destinations/south-coast
+     ?destination=South+Coast
+     &date=2026-09-18
+     &adults=2
+     &children=0
+     &guests=2
+
+     If values are present:
+     - Date gets auto-filled
+     - Adults get auto-filled
+     - Children get auto-filled
+
+     If values are NOT present:
+     - Existing individual page flow remains unchanged
+     - Date stays empty
+     - Adults stay 3
+     - Children stay 0
+  ===================================================== */
+
+  useEffect(() => {
+    const syncBookingValuesFromUrl = () => {
+      const params = new URLSearchParams(
+        window.location.search
+      );
+
+      const queryDate = params.get("date");
+      const queryTime = params.get("time");
+
+      const queryAdults = params.get("adults");
+      const queryChildren = params.get("children");
+      const queryGuests = params.get("guests");
+
+      /* ---------------------------------------------
+         DATE
+      --------------------------------------------- */
+
+      if (queryDate) {
+        setDate(queryDate);
+      }
+
+      /* ---------------------------------------------
+         TIME
+      --------------------------------------------- */
+
+      if (queryTime) {
+        setTime(queryTime);
+      }
+
+      /* ---------------------------------------------
+         ADULTS
+      --------------------------------------------- */
+
+      if (queryAdults !== null) {
+        const parsedAdults = Number(queryAdults);
+
+        if (
+          Number.isFinite(parsedAdults) &&
+          parsedAdults >= 1
+        ) {
+          setAdults(parsedAdults);
+        }
+      }
+
+      /* ---------------------------------------------
+         CHILDREN
+      --------------------------------------------- */
+
+      if (queryChildren !== null) {
+        const parsedChildren = Number(queryChildren);
+
+        if (
+          Number.isFinite(parsedChildren) &&
+          parsedChildren >= 0
+        ) {
+          setChildren(parsedChildren);
+        }
+      }
+
+      /* ---------------------------------------------
+         FALLBACK
+
+         If adults/children are not available but
+         guests exists, use guests as adults.
+      --------------------------------------------- */
+
+      if (
+        queryAdults === null &&
+        queryChildren === null &&
+        queryGuests !== null
+      ) {
+        const parsedGuests = Number(queryGuests);
+
+        if (
+          Number.isFinite(parsedGuests) &&
+          parsedGuests >= 1
+        ) {
+          setAdults(parsedGuests);
+          setChildren(0);
+        }
+      }
+    };
+
+    /*
+      Read immediately after component mounts.
+    */
+    syncBookingValuesFromUrl();
+
+    /*
+      Run once again after navigation settles.
+      This helps when Next.js client navigation
+      has just updated the URL.
+    */
+    const syncTimer = window.setTimeout(
+      syncBookingValuesFromUrl,
+      0
+    );
+
+    return () => {
+      window.clearTimeout(syncTimer);
+    };
+  }, []);
 
   const totalGuests = adults + children;
 
-  const totalPrice = totalGuests * pricePerPerson;
+  const totalPrice =
+    totalGuests * pricePerPerson;
+
+  /* =====================================================
+     BOOK NOW
+
+     Pass all selected values to Booking Page.
+  ===================================================== */
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams();
+
+    /* ---------------------------------------------
+       DESTINATION
+    --------------------------------------------- */
+
+    params.set(
+      "destination",
+      "South Coast"
+    );
+
+    /* ---------------------------------------------
+       PRICE PER PERSON
+    --------------------------------------------- */
+
+    params.set(
+      "price",
+      String(pricePerPerson)
+    );
+
+    /* ---------------------------------------------
+       DATE
+    --------------------------------------------- */
+
+    params.set(
+      "date",
+      date
+    );
+
+    /* ---------------------------------------------
+       TIME
+    --------------------------------------------- */
+
+    params.set(
+      "time",
+      time
+    );
+
+    /* ---------------------------------------------
+       GUEST DETAILS
+    --------------------------------------------- */
+
+    params.set(
+      "adults",
+      String(adults)
+    );
+
+    params.set(
+      "children",
+      String(children)
+    );
+
+    params.set(
+      "guests",
+      String(totalGuests)
+    );
+
+    /* ---------------------------------------------
+       TOTAL PRICE
+    --------------------------------------------- */
+
+    params.set(
+      "total",
+      String(totalPrice)
+    );
+
+    /* ---------------------------------------------
+       BOOKING IMAGE
+    --------------------------------------------- */
+
+    params.set(
+      "image",
+      "/images/destinations/south-coast/South Coast Trip 1.png"
+    );
+
+    /* ---------------------------------------------
+       REDIRECT TO BOOKING PAGE
+    --------------------------------------------- */
+
+    router.push(
+      `/booking?${params.toString()}`
+    );
+  };
 
   return (
     <section className={styles.section}>
@@ -188,6 +413,10 @@ const SouthCoastContent = () => {
                     type="date"
                     className={styles.input}
                     aria-label="Date"
+                    value={date}
+                    onChange={(event) =>
+                      setDate(event.target.value)
+                    }
                   />
 
                   <CalendarDays
@@ -216,6 +445,10 @@ const SouthCoastContent = () => {
                     type="time"
                     className={styles.input}
                     aria-label="Time"
+                    value={time}
+                    onChange={(event) =>
+                      setTime(event.target.value)
+                    }
                   />
 
                   <Clock3
@@ -245,7 +478,9 @@ const SouthCoastContent = () => {
               <button
                 type="button"
                 className={styles.guestInput}
-                onClick={() => setIsGuestOpen((prev) => !prev)}
+                onClick={() =>
+                  setIsGuestOpen((prev) => !prev)
+                }
               >
 
                 <span>
@@ -323,7 +558,9 @@ const SouthCoastContent = () => {
                         type="button"
                         className={styles.counterButton}
                         onClick={() =>
-                          setAdults((value) => value + 1)
+                          setAdults((value) =>
+                            value + 1
+                          )
                         }
                         aria-label="Increase adults"
                       >
@@ -389,7 +626,9 @@ const SouthCoastContent = () => {
                         type="button"
                         className={styles.counterButton}
                         onClick={() =>
-                          setChildren((value) => value + 1)
+                          setChildren((value) =>
+                            value + 1
+                          )
                         }
                         aria-label="Increase children"
                       >
@@ -437,6 +676,7 @@ const SouthCoastContent = () => {
             <button
               type="button"
               className={styles.bookButton}
+              onClick={handleBookNow}
             >
 
               <span>
@@ -571,10 +811,13 @@ const SouthCoastContent = () => {
 
 
                 <strong className={styles.priceValue}>
+
                   $100
+
                   <span>
                     /per person
                   </span>
+
                 </strong>
 
               </div>
@@ -601,9 +844,11 @@ const SouthCoastContent = () => {
 
 
                 <strong className={styles.inclusionsValue}>
+
                   Transportation, Tours,
                   <br />
                   Professional Guides
+
                 </strong>
 
               </div>

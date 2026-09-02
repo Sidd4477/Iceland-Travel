@@ -6,10 +6,11 @@
   position: relative;
 
   width: 100%;
-  max-width: 100%;
+  max-width: 636px;
   min-width: 0;
 
-  height: 350px;
+  height: auto;
+  min-height: 350px;
 
   padding: 24px;
 
@@ -308,10 +309,6 @@
 ========================================================= */
 
 .detailsButton:hover {
-  /*
-    Screenshot wala hover colour
-  */
-
   background: #7d7d6d;
 
   color: #ffffff;
@@ -334,16 +331,24 @@
 
 
 /* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1401px) {
+
+  .card {
+    width: 100%;
+    max-width: 636px;
+  }
+
+}
+
+
+/* =========================================================
    LAPTOP
 ========================================================= */
 
 @media (max-width: 1400px) {
-
-  /*
-    Original desktop values ko change nahi kiya.
-    Sirf card ko content ke according expand karne diya
-    taaki image + title + meta + button cut na ho.
-  */
 
   .card {
     width: 100%;
@@ -364,6 +369,7 @@
   .detailsButton {
     width: 100%;
   }
+
 }
 
 
@@ -375,6 +381,8 @@
 
   .card {
     width: 100%;
+
+    max-width: 100%;
 
     min-height: auto;
 
@@ -432,6 +440,7 @@
 
     padding: 9px 30px;
   }
+
 }
 
 
@@ -509,6 +518,7 @@
 
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.10);
   }
+
 }
 
 
@@ -565,6 +575,7 @@
 
     text-decoration: none !important;
   }
+
 }
 
 
@@ -603,4 +614,5 @@
 
     font-size: 13px;
   }
+
 }

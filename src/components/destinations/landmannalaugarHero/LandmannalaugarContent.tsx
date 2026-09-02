@@ -14,13 +14,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./LandmannalaugarContent.module.css";
 
 const LandmannalaugarContent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const pricePerPerson = 100;
 
@@ -60,6 +61,41 @@ const LandmannalaugarContent = () => {
 
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+
+  /* =====================================================
+     AUTO FILL FROM URL
+  ===================================================== */
+
+  useEffect(() => {
+    const urlDate = searchParams.get("date");
+    const urlTime = searchParams.get("time");
+    const urlAdults = searchParams.get("adults");
+    const urlChildren = searchParams.get("children");
+
+    if (urlDate) {
+      setDate(urlDate);
+    }
+
+    if (urlTime) {
+      setTime(urlTime);
+    }
+
+    if (urlAdults) {
+      const parsedAdults = Number(urlAdults);
+
+      if (Number.isFinite(parsedAdults) && parsedAdults >= 1) {
+        setAdults(parsedAdults);
+      }
+    }
+
+    if (urlChildren) {
+      const parsedChildren = Number(urlChildren);
+
+      if (Number.isFinite(parsedChildren) && parsedChildren >= 0) {
+        setChildren(parsedChildren);
+      }
+    }
+  }, [searchParams]);
 
   const totalGuests = adults + children;
   const totalPrice = totalGuests * pricePerPerson;
