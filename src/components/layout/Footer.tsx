@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 
 import styles from "./Footer.module.css";
 
@@ -85,13 +84,32 @@ const Footer = () => {
                   BEGIN YOUR JOURNEY BUTTON
               ========================================= */}
 
-              <a href="/online-booking" className={styles.journeyButton}>
+              <a
+                href="/online-booking"
+                className={styles.journeyButton}
+              >
                 <span className={styles.journeyText}>
                   Begin Your Journey
                 </span>
 
                 <span className={styles.journeyCircle}>
-                  <ArrowUpRight className={styles.journeyIcon} />
+                  <svg
+                    className={styles.journeyIcon}
+                    width="16.5"
+                    height="22.5"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 11L11 3M4 3H11V10"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </span>
               </a>
             </div>
@@ -125,6 +143,7 @@ const Footer = () => {
 
             <div className={styles.legalLinks}>
               <a href="/privacy-policy">Privacy Policy</a>
+
               <a href="/terms-and-conditions">
                 Terms &amp; Conditions
               </a>

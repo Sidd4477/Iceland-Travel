@@ -7,7 +7,6 @@ import {
   CalendarDays,
   MapPin,
   CircleDollarSign,
-  ArrowUpRight,
 } from "lucide-react";
 
 import styles from "./PopularPackages.module.css";
@@ -74,7 +73,23 @@ const PopularPackages = () => {
           </span>
 
           <span className={styles.viewAllCircle}>
-            <ArrowUpRight className={styles.viewAllIcon} />
+            <svg
+              className={styles.viewAllIcon}
+              width="16.5"
+              height="20.5"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 11L11 3M4 3H11V10"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </span>
         </Link>
       </div>
@@ -84,7 +99,10 @@ const PopularPackages = () => {
       ========================================= */}
       <div className={styles.packagesGrid}>
         {packages.map((pkg) => (
-          <article className={styles.packageCard} key={pkg.id}>
+          <article
+            className={styles.packageCard}
+            key={pkg.id}
+          >
             {/* IMAGE */}
             <div className={styles.imageWrapper}>
               <Image
@@ -97,7 +115,9 @@ const PopularPackages = () => {
             </div>
 
             {/* TITLE */}
-            <h3 className={styles.packageTitle}>{pkg.title}</h3>
+            <h3 className={styles.packageTitle}>
+              {pkg.title}
+            </h3>
 
             {/* META INFORMATION */}
             <div className={styles.packageMeta}>

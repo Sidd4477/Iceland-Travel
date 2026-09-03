@@ -312,19 +312,16 @@
 ========================================= */
 
 .arrow {
-  width: 24px;
-  height: 24px;
+  width: 16.5px;
+  height: 18px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-family: Arial, sans-serif;
+  flex-shrink: 0;
 
-  font-size: 22px;
-  font-weight: 300;
-
-  line-height: 1;
+  stroke-width: 1.8;
 
   color: #ffffff;
 

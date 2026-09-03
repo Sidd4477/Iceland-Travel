@@ -44,7 +44,23 @@ const DiscoverIceland = () => {
             </span>
 
             <span className={styles.buttonCircle}>
-              <span className={styles.arrow}>↗</span>
+              <svg
+                className={styles.arrow}
+                width="16.5"
+                height="18"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 11L11 3M4 3H11V10"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
           </Link>
         </div>

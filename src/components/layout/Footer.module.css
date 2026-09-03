@@ -414,21 +414,23 @@
 
 /* =========================================
    BUTTON ARROW
-   FIGMA:
-   Width: 13.5px
-   Height: 13.5px
+   SAME SVG ARROW AS PREVIOUS SECTION
+   WIDTH: 16.5px
+   HEIGHT: 22.5px
+   STROKE: 1.8px
 ========================================= */
 
 .journeyIcon {
-  width: 20px !important;
-  height: 20px !important;
+  width: 16.5px !important;
+  height: 22.5px !important;
 
-  min-width: 20px;
-  min-height: 20px;
+  display: block;
 
   flex-shrink: 0;
 
-  stroke-width: 1.6;
+  overflow: visible;
+
+  stroke-width: 1.8;
 
   color: #ffffff;
 }
@@ -484,7 +486,7 @@
   font-style: normal;
   line-height: 24px;
   letter-spacing: -0.02em;
-  
+
   color: #ffffff;
 
   text-decoration: none;

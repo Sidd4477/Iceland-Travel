@@ -204,11 +204,11 @@
 .imageWrapper {
   position: absolute;
 
-  top: 60px;
+  top: 95px;
   left: 104px;
 
   width: 372px;
-  height: 451px;
+  height: 400px;
 
   border-radius: 24px;
 
@@ -330,7 +330,7 @@
 .navigation {
   position: absolute;
 
-  top: 90px;
+  top: 105px;
   left: 1050px;
 
   width: 202px;
@@ -404,7 +404,7 @@
 .socials {
   position: absolute;
 
-  top: 550px;
+  top: 560px;
   left: 1050px;
 
   width: 184px;
