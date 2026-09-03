@@ -722,3 +722,30 @@
     transition: none;
   }
 }
+
+
+/* =========================================================
+   MAC / TALL DESKTOP VIEWPORT FIT
+   Original values above remain unchanged.
+   Only vertical positioning is proportionally fitted for
+   taller desktop/Mac viewports so the image does not sit
+   visually against the top.
+========================================================= */
+
+@media (min-width: 1201px) and (min-height: 800px) {
+  .imageWrapper {
+    top: clamp(95px, 10.56vh, 124px);
+  }
+
+  .contactInfo {
+    top: clamp(540px, 60vh, 648px);
+  }
+
+  .navigation {
+    top: clamp(105px, 11.67vh, 135px);
+  }
+
+  .socials {
+    top: clamp(560px, 62.22vh, 700px);
+  }
+}
