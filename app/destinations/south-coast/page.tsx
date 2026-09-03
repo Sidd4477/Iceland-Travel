@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import SouthCoastHero from "@/components/destinations/south-coast/SouthCoastHero";
 import SouthCoastContent from "@/components/destinations/south-coast/SouthCoastContent";
 import PopularDestinations from "@/components/destinations/northern-lights/PopularDestinations";
@@ -5,7 +7,9 @@ import PopularDestinations from "@/components/destinations/northern-lights/Popul
 const SouthCoastPage = () => {
   return (
     <main>
-      <SouthCoastHero />
+      <Suspense fallback={null}>
+        <SouthCoastHero />
+      </Suspense>
 
       <SouthCoastContent />
 
