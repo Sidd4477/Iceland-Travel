@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import GlacierHikeAdventureContent from "@/components/destinations/glacier-hike-adventure/GlacierHikeAdventureContent";
 import GlacierHikeAdventureHero from "@/components/destinations/glacier-hike-adventure/GlacierHikeAdventureHero";
 
@@ -5,11 +7,15 @@ import PopularDestinations from "@/components/destinations/northern-lights/Popul
 
 const GlacierHikeAdventurePage = () => {
   return (
-    <main>
-      <GlacierHikeAdventureHero />
+    <Suspense fallback={null}>
+      <main>
+        <GlacierHikeAdventureHero />
+
         <GlacierHikeAdventureContent />
-        <PopularDestinations/>
-    </main>
+
+        <PopularDestinations />
+      </main>
+    </Suspense>
   );
 };
 

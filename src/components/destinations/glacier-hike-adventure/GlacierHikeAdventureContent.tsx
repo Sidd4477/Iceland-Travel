@@ -14,13 +14,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./GlacierHikeAdventureContent.module.css";
 
 const GlacierHikeAdventureContent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const pricePerPerson = 80;
 
@@ -60,6 +61,114 @@ const GlacierHikeAdventureContent = () => {
 
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+
+  /* =====================================================
+     HOME PAGE -> DESTINATION PAGE AUTOFILL
+
+     Home Page se query params ke through jo values aati hain,
+     unko isi destination ke booking form me automatically
+     fill kiya jayega.
+
+     Supported:
+     - destination
+     - date
+     - time
+     - adults
+     - children
+     - guests
+  ===================================================== */
+
+  useEffect(() => {
+    const destination = searchParams.get("destination");
+
+    const normalizedDestination =
+      destination?.trim().toLowerCase();
+
+    /*
+      Home Page ka destination label:
+      "Glacier Hike Adventure"
+
+      Agar destination param kisi aur package ka hai,
+      to is page par uska data apply nahi hoga.
+    */
+    if (
+      destination &&
+      normalizedDestination !== "glacier hike adventure"
+    ) {
+      return;
+    }
+
+    const queryDate = searchParams.get("date");
+    const queryTime = searchParams.get("time");
+    const queryAdults = searchParams.get("adults");
+    const queryChildren = searchParams.get("children");
+    const queryGuests = searchParams.get("guests");
+
+    /* ===================================================
+       DATE
+    =================================================== */
+
+    if (queryDate) {
+      setDate(queryDate);
+    }
+
+    /* ===================================================
+       TIME
+    =================================================== */
+
+    if (queryTime) {
+      setTime(queryTime);
+    }
+
+    /* ===================================================
+       ADULTS
+    =================================================== */
+
+    if (queryAdults !== null) {
+      const parsedAdults = Number(queryAdults);
+
+      if (
+        Number.isFinite(parsedAdults) &&
+        parsedAdults >= 1
+      ) {
+        setAdults(parsedAdults);
+      }
+    }
+
+    /* ===================================================
+       CHILDREN
+    =================================================== */
+
+    if (queryChildren !== null) {
+      const parsedChildren = Number(queryChildren);
+
+      if (
+        Number.isFinite(parsedChildren) &&
+        parsedChildren >= 0
+      ) {
+        setChildren(parsedChildren);
+      }
+    } else if (
+      queryGuests !== null &&
+      queryAdults === null
+    ) {
+      /*
+        Fallback:
+        Agar Home Page sirf guests bhej raha hai aur
+        adults nahi bhej raha, to guests ko adults maana jayega.
+      */
+
+      const parsedGuests = Number(queryGuests);
+
+      if (
+        Number.isFinite(parsedGuests) &&
+        parsedGuests >= 1
+      ) {
+        setAdults(parsedGuests);
+        setChildren(0);
+      }
+    }
+  }, [searchParams]);
 
   const totalGuests = adults + children;
   const totalPrice = totalGuests * pricePerPerson;

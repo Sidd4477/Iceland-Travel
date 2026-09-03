@@ -12,30 +12,35 @@ const destinations = [
     title: "Aurora Borealis",
     subtitle: "Northern Lights",
     image: "/images/destinations/Aurora Borealis.png",
+    href: "/destinations/northern-lights",
   },
   {
     id: 2,
     title: "Snaefellsnes",
     subtitle: "Northern Lights",
     image: "/images/destinations/Snaefellsnes.png",
+    href: "/destinations/snaefellsnes",
   },
   {
     id: 3,
     title: "Golden circle",
     subtitle: "Northern Lights",
     image: "/images/destinations/Golden circle.png",
+    href: "/destinations/golden-circle",
   },
   {
     id: 4,
     title: "Thorsmörk",
     subtitle: "Northern Lights",
     image: "/images/destinations/Thorsmörk.png",
+    href: "/destinations/thorsmork",
   },
   {
     id: 5,
     title: "Landmannalaugar",
     subtitle: "Northern Lights",
     image: "/images/destinations/Landmannalaugar.png",
+    href: "/destinations/landmannalaugar",
   },
 ];
 
@@ -91,8 +96,7 @@ const PopularDestinations = () => {
 
     const distance = event.clientX - dragStartX.current;
 
-    sliderRef.current.scrollLeft =
-      scrollStart.current - distance;
+    sliderRef.current.scrollLeft = scrollStart.current - distance;
   };
 
   const stopDragging = () => {
@@ -182,9 +186,12 @@ const PopularDestinations = () => {
         onMouseLeave={stopDragging}
       >
         {destinations.map((destination) => (
-          <article
+          <Link
+            href={destination.href}
             className={styles.card}
             key={destination.id}
+            aria-label={`View ${destination.title}`}
+            draggable={false}
           >
             <Image
               src={destination.image}
@@ -206,7 +213,7 @@ const PopularDestinations = () => {
                 {destination.title}
               </h3>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
     </section>

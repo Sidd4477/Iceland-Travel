@@ -25,7 +25,9 @@
 
   display: grid;
 
-  grid-template-columns: minmax(0, 876px) 412px;
+  grid-template-columns:
+    minmax(0, 876px)
+    412px;
 
   column-gap: 56px;
 
@@ -62,6 +64,7 @@
   width: 100%;
 
   grid-column: 1;
+
   grid-row: 1;
 }
 
@@ -82,6 +85,7 @@
   font-family: "Outfit", sans-serif;
 
   font-size: 32px;
+
   font-weight: 500;
 
   line-height: 108%;
@@ -96,6 +100,7 @@
   display: inline-flex;
 
   align-items: center;
+
   justify-content: center;
 
   font-size: 29px;
@@ -128,6 +133,7 @@
   font-family: "Outfit", sans-serif;
 
   font-size: 18px;
+
   font-weight: 300;
 
   line-height: 120%;
@@ -252,7 +258,9 @@
 
   display: grid;
 
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns:
+    auto
+    minmax(0, 1fr);
 
   column-gap: 12px;
 
@@ -509,7 +517,8 @@
 
   display: grid;
 
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
   gap: 8px;
 }
@@ -565,18 +574,61 @@
 }
 
 
-.inputIcon {
+/* =========================================
+   NATIVE DATE/TIME ICON HIDE
+   CUSTOM ICON WILL HANDLE CLICK
+========================================= */
+
+.input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   CLICKABLE INPUT ICON BUTTON
+========================================= */
+
+.inputIconButton {
   position: absolute;
 
   right: 10px;
 
   top: 50%;
 
+  width: 24px;
+
+  height: 24px;
+
+  padding: 0;
+
+  transform: translateY(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   INPUT ICON
+========================================= */
+
+.inputIcon {
   width: 16px;
 
   height: 16px;
-
-  transform: translateY(-50%);
 
   pointer-events: none;
 
@@ -893,7 +945,9 @@
 
   display: grid;
 
-  grid-template-columns: 661px 661px;
+  grid-template-columns:
+    661px
+    661px;
 
   gap: 22px;
 
@@ -935,7 +989,8 @@
 
   .stickyArea {
     grid-template-columns:
-      minmax(0, 1fr) 360px;
+      minmax(0, 1fr)
+      360px;
 
     column-gap: 36px;
   }
@@ -952,6 +1007,7 @@
   .highlightImage {
     width: 100%;
   }
+
 }
 
 
@@ -970,7 +1026,8 @@
 
   .stickyArea {
     grid-template-columns:
-      minmax(0, 1fr) 360px;
+      minmax(0, 1fr)
+      360px;
 
     column-gap: 36px;
   }
@@ -990,6 +1047,7 @@
   .guestDropdown {
     width: 100%;
   }
+
 }
 
 
@@ -1083,6 +1141,7 @@
 
     margin-top: 8px;
   }
+
 }
 
 
@@ -1214,4 +1273,5 @@
 
     padding-right: 16px;
   }
+
 }

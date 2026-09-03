@@ -26,6 +26,8 @@ const destinations = [
   "Landmannalaugar",
   "South Coast",
   "Thorsmörk",
+  "Blue Lagoon Spa",
+  "Glacier Hike Adventure",
 ];
 
 const destinationSlugs: Record<string, string> = {
@@ -35,6 +37,8 @@ const destinationSlugs: Record<string, string> = {
   Landmannalaugar: "landmannalaugar",
   "South Coast": "south-coast",
   "Thorsmörk": "thorsmork",
+  "Blue Lagoon Spa": "blue-lagoon-spa-experience",
+  "Glacier Hike Adventure": "glacier-hike-adventure",
 };
 
 const Hero = () => {

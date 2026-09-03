@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Parisienne } from "next/font/google";
+import { useRouter } from "next/navigation";
 import styles from "./DreamTrip.module.css";
 
 const parisienne = Parisienne({
@@ -11,6 +12,12 @@ const parisienne = Parisienne({
 });
 
 const DreamTripBanner = () => {
+  const router = useRouter();
+
+  const handleExplorePlans = () => {
+    router.push("/packages");
+  };
+
   return (
     <section className={`${styles.section} ${parisienne.variable}`}>
       <div className={styles.banner}>
@@ -38,7 +45,11 @@ const DreamTripBanner = () => {
             unforgettable experiences.
           </p>
 
-          <button type="button" className={styles.exploreButton}>
+          <button
+            type="button"
+            className={styles.exploreButton}
+            onClick={handleExplorePlans}
+          >
             Explore Plans
           </button>
         </div>
