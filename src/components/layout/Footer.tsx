@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import styles from "./Footer.module.css";
 
@@ -59,13 +60,31 @@ const Footer = () => {
               <h3 className={styles.columnTitle}>Main Page</h3>
 
               <nav className={styles.footerLinks}>
-                <a href="/">Home</a>
-                <a href="/about">About Us</a>
-                <a href="/services">Services</a>
-                <a href="/gallery">Photo Gallery</a>
-                <a href="/pricelist">Pricelist</a>
-                <a href="/online-booking">Online Booking</a>
-                <a href="/contact">Contact</a>
+                <Link href="/">Home</Link>
+
+                <Link href="/about-us">
+                  About Us
+                </Link>
+
+                <Link href="/destinations">
+                  Services
+                </Link>
+
+                <Link href="/photo-gallery">
+                  Photo Gallery
+                </Link>
+
+                <Link href="/packages">
+                  Pricelist
+                </Link>
+
+                <Link href="/online-booking">
+                  Online Booking
+                </Link>
+
+                <Link href="/contact">
+                  Contact
+                </Link>
               </nav>
             </div>
 
@@ -84,7 +103,7 @@ const Footer = () => {
                   BEGIN YOUR JOURNEY BUTTON
               ========================================= */}
 
-              <a
+              <Link
                 href="/online-booking"
                 className={styles.journeyButton}
               >
@@ -111,7 +130,7 @@ const Footer = () => {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* =========================================
@@ -142,20 +161,17 @@ const Footer = () => {
             ========================================= */}
 
             <div className={styles.legalLinks}>
-              <a href="/privacy-policy">Privacy Policy</a>
+              <Link href="/privacy-policy">
+                Privacy Policy
+              </Link>
 
-              <a href="/terms-and-conditions">
+              <Link href="/terms-and-conditions">
                 Terms &amp; Conditions
-              </a>
+              </Link>
             </div>
 
             {/* =========================================
                 BRAND NAME
-                FIGMA:
-                Width: 1198px
-                Height: 65px
-                Top: 5107px
-                Left: 115px
             ========================================= */}
 
             <div className={styles.brandName}>

@@ -22,7 +22,7 @@ const DreamTripBanner = () => {
     <section className={`${styles.section} ${parisienne.variable}`}>
       <div className={styles.banner}>
         <Image
-          src="/images/backgrounds/Dream Trip Banner.png"
+          src="/images/backgrounds/Dream Trip Banner V2.png"
           alt="Dream Trip"
           fill
           priority

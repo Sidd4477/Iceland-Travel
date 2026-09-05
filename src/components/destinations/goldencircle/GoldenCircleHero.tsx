@@ -7,7 +7,7 @@ const GoldenCircleHero = () => {
   return (
     <section className={styles.hero}>
       <Image
-        src="/images/destinations/golden-circle/Golden Circle Hero.png"
+        src="/images/destinations/golden-circle/Golden Circle Hero v1.png"
         alt="Golden Circle"
         fill
         priority

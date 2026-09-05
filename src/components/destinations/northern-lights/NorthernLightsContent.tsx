@@ -371,9 +371,11 @@ const NorthernLightsContent = () => {
               </label>
 
               <div className={styles.whereInput}>
+
                 <span>
                   Northern Lights
                 </span>
+
               </div>
 
             </div>

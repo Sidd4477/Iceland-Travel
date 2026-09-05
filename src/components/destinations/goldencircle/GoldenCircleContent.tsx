@@ -345,7 +345,7 @@ const GoldenCircleContent = () => {
 
               <div className={styles.overviewImage}>
                 <Image
-                  src="/images/destinations/golden-circle/Golden Circle Trip 1.png"
+                  src="/images/destinations/golden-circle/Golden Circle Trip 1 v1.png"
                   alt="Golden Circle experience"
                   fill
                   priority
@@ -770,7 +770,7 @@ const GoldenCircleContent = () => {
 
         <div className={styles.highlightImage}>
           <Image
-            src="/images/destinations/golden-circle/Golden Circle Trip 2.png"
+            src="/images/destinations/golden-circle/Golden Circle Trip 2 v1.png"
             alt="Golden Circle over Iceland mountains"
             fill
             className={styles.image}
@@ -780,7 +780,7 @@ const GoldenCircleContent = () => {
 
         <div className={styles.highlightImage}>
           <Image
-            src="/images/destinations/golden-circle/Golden Circle Trip 3.png"
+            src="/images/destinations/golden-circle/Golden Circle Trip 3 v1.png"
             alt="Golden Circle over Iceland landscape"
             fill
             className={styles.image}

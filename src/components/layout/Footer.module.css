@@ -175,6 +175,11 @@
   width: 89px;
 
   box-sizing: border-box;
+
+  /* FIX:
+     Keeps Main Page links above
+     the centerContent layer */
+  z-index: 10;
 }
 
 
@@ -476,10 +481,12 @@
 
   margin: 0;
   padding: 0;
+
   display: flex;
   align-items: center;
 
   gap: 70px;
+
   font-family: "Outfit", sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -608,6 +615,7 @@
   white-space: nowrap;
 
   box-sizing: border-box;
+
   margin-bottom: 60px;
 }
 

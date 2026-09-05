@@ -9,7 +9,7 @@ import styles from "./PopularDestinations.module.css";
 const destinations = [
   {
     id: 1,
-    slug: "northern-lights",
+    slug: "Northern Lights",
     title: "Aurora Borealis",
     subtitle: "Northern Lights",
     image: "/images/destinations/Aurora Borealis.png",
@@ -18,21 +18,21 @@ const destinations = [
     id: 2,
     slug: "snaefellsnes",
     title: "Snaefellsnes",
-    subtitle: "Northern Lights",
+    subtitle: "Iceland’s most stunning place",
     image: "/images/destinations/Snaefellsnes.png",
   },
   {
     id: 3,
     slug: "golden-circle",
     title: "Golden circle",
-    subtitle: "Northern Lights",
-    image: "/images/destinations/Golden circle.png",
+    subtitle: "For Wonderers",
+    image: "/images/destinations/Golden circle v1.png",
   },
   {
     id: 4,
     slug: "thorsmork",
     title: "Thorsmörk",
-    subtitle: "Northern Lights",
+    subtitle: "Nature excel here",
     image: "/images/destinations/Thorsmörk.png",
   },
   {
@@ -194,7 +194,22 @@ const PopularDestinations = () => {
             </span>
 
             <span className={styles.viewArrow}>
-              ↗
+              <svg
+                width="16"
+                height="18"
+                viewBox="0 0 16 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 16L14 2M6 2H14V10"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
           </button>
 

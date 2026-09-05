@@ -565,6 +565,25 @@
 }
 
 
+/* =========================================
+   DATE + TIME NATIVE ICON POSITION
+   ONLY CHANGE:
+   Move browser icons closer
+   to the right border.
+========================================= */
+
+.input[type="date"]::-webkit-calendar-picker-indicator,
+.input[type="time"]::-webkit-calendar-picker-indicator {
+  margin-right: -30px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   INPUT ICON
+========================================= */
+
 .inputIcon {
   position: absolute;
 
@@ -948,6 +967,7 @@
   .highlightImage {
     width: 100%;
   }
+
 }
 
 
@@ -986,6 +1006,7 @@
   .guestDropdown {
     width: 100%;
   }
+
 }
 
 
@@ -1079,6 +1100,7 @@
 
     margin-top: 8px;
   }
+
 }
 
 
@@ -1210,4 +1232,5 @@
 
     padding-right: 16px;
   }
+
 }

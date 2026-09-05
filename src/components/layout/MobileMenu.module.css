@@ -8,7 +8,9 @@
   inset: 0;
 
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
+
+  min-height: 100vh;
 
   z-index: 20000;
 
@@ -16,13 +18,6 @@
 
   box-sizing: border-box;
 
-  display: flex;
-
-  /*
-   * IMPORTANT:
-   * Transparent rakha gaya hai taaki backdrop
-   * actual page ko blur kar sake.
-   */
   background: transparent;
 
   animation: overlayIn 0.25s ease forwards;
@@ -31,8 +26,6 @@
 
 /* =========================================================
    BACKDROP
-   =========================================================
-   Ye layer actual page ke content ko cover karegi.
 ========================================================= */
 
 .backdrop {
@@ -47,11 +40,6 @@
 
   box-sizing: border-box;
 
-  /*
-   * EXTREME DARK OVERLAY
-   * Background text ko complete hide karne ke liye
-   * 95% dark + blur (jahan support ho)
-   */
   background: rgba(10, 15, 15, 0.92);
 
   backdrop-filter: blur(60px) saturate(0.2);
@@ -59,9 +47,6 @@
 
   pointer-events: auto;
 
-  /*
-   * Extra visual softening
-   */
   transform: translateZ(0);
 
   will-change: backdrop-filter;
@@ -78,7 +63,7 @@
   z-index: 1;
 
   width: 100%;
-  height: 100%;
+  height: 100dvh;
 
   min-width: 0;
   min-height: 0;
@@ -87,19 +72,10 @@
 
   overflow: hidden;
 
-  /*
-   * GLASS / WATER EFFECT
-   *
-   * Background ko translucent rakha gaya hai
-   * taaki soft glass effect visible rahe.
-   */
   background: rgba(70, 75, 75, 0.3);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
-  /*
-   * Glass blur - jahan support ho
-   */
   backdrop-filter: blur(20px) saturate(0.4);
   -webkit-backdrop-filter: blur(20px) saturate(0.4);
 
@@ -107,21 +83,26 @@
 
   animation: menuIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
-  /*
-   * Extra rendering optimization
-   */
   transform: translateZ(0);
 
   will-change: transform;
 }
 
-/* Water / Glass Shine Effect */
+
+/* =========================================================
+   WATER / GLASS SHINE EFFECT
+========================================================= */
+
 .menu::before {
   content: '';
+
   position: absolute;
+
   inset: 0;
+
   z-index: -1;
-  background: 
+
+  background:
     radial-gradient(
       ellipse at 30% 20%,
       rgba(255, 255, 255, 0.08) 0%,
@@ -132,16 +113,25 @@
       rgba(255, 255, 255, 0.04) 0%,
       transparent 40%
     );
+
   pointer-events: none;
 }
 
-/* Extra water ripple effect */
+
+/* =========================================================
+   EXTRA WATER RIPPLE EFFECT
+========================================================= */
+
 .menu::after {
   content: '';
+
   position: absolute;
+
   inset: 0;
+
   z-index: -1;
-  background: 
+
+  background:
     repeating-linear-gradient(
       45deg,
       transparent 0px,
@@ -151,6 +141,7 @@
       transparent 41px,
       transparent 80px
     );
+
   pointer-events: none;
 }
 
@@ -189,6 +180,7 @@
   z-index: 20;
 }
 
+
 .closeButton svg {
   width: 32px;
   height: 32px;
@@ -218,6 +210,7 @@
 
   z-index: 5;
 }
+
 
 .menuImage {
   position: absolute !important;
@@ -390,6 +383,7 @@
     transform 0.2s ease;
 }
 
+
 .navLink:hover {
   opacity: 0.7;
 
@@ -446,9 +440,11 @@
   transition: opacity 0.2s ease;
 }
 
+
 .socialLink:hover {
   opacity: 1;
 }
+
 
 .socialLink svg {
   width: 24px;
@@ -471,6 +467,7 @@
     opacity: 1;
   }
 }
+
 
 @keyframes menuIn {
   from {
@@ -532,6 +529,30 @@
 
 
 /* =========================================================
+   1024 SCREEN
+   ONLY CONTENT 10px DOWN
+========================================================= */
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .imageWrapper {
+    top: 160px;
+  }
+
+  .contactInfo {
+    top: 640px;
+  }
+
+  .navigation {
+    top: 160px;
+  }
+
+  .socials {
+    top: 660px;
+  }
+}
+
+
+/* =========================================================
    TABLET / SMALL LAPTOP
 ========================================================= */
 
@@ -578,6 +599,8 @@
 
 @media (max-width: 768px) {
   .menu {
+    height: 100dvh;
+
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -725,27 +748,69 @@
 
 
 /* =========================================================
-   MAC / TALL DESKTOP VIEWPORT FIT
-   Original values above remain unchanged.
-   Only vertical positioning is proportionally fitted for
-   taller desktop/Mac viewports so the image does not sit
-   visually against the top.
+   DESKTOP HEIGHT RESPONSIVE FIT
 ========================================================= */
 
-@media (min-width: 1201px) and (min-height: 800px) {
+@media (min-width: 1201px) {
   .imageWrapper {
-    top: clamp(95px, 10.56vh, 124px);
+    top: 10.56dvh;
   }
 
   .contactInfo {
-    top: clamp(540px, 60vh, 648px);
+    top: 60dvh;
   }
 
   .navigation {
-    top: clamp(105px, 11.67vh, 135px);
+    top: 11.67dvh;
   }
 
   .socials {
-    top: clamp(560px, 62.22vh, 700px);
+    top: 62.22dvh;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP HEIGHT SAFETY
+========================================================= */
+
+@media (min-width: 1201px) and (max-height: 700px) {
+  .imageWrapper {
+    top: 95px;
+  }
+
+  .contactInfo {
+    top: 540px;
+  }
+
+  .navigation {
+    top: 105px;
+  }
+
+  .socials {
+    top: 560px;
+  }
+}
+
+
+/* =========================================================
+   VERY TALL DESKTOP / MAC
+========================================================= */
+
+@media (min-width: 1201px) and (min-height: 1000px) {
+  .imageWrapper {
+    top: 10.56dvh;
+  }
+
+  .contactInfo {
+    top: 60dvh;
+  }
+
+  .navigation {
+    top: 11.67dvh;
+  }
+
+  .socials {
+    top: 62.22dvh;
   }
 }

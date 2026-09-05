@@ -25,7 +25,7 @@ const destinations = [
     id: 3, 
     title: "Golden circle", 
     subtitle: "For Wonderers", 
-    image: "/images/destinations/Golden circle.png", 
+    image: "/images/destinations/Golden circle v1.png", 
     href: "/destinations/golden-circle", 
   }, 
   { 
