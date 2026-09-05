@@ -17,7 +17,7 @@ const destinations = [
   {
     name: "Golden Circle",
     slug: "golden-circle",
-    image: "/images/destinations/Golden circle v1.png",
+    image: "/images/destinations/Golden Circle v1.png",
     price: "$100",
   },
   {
