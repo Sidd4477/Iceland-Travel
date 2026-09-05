@@ -1,10 +1,15 @@
 "use client";
 
+import Image from "next/image";
+
 import styles from "./DestinationsHero.module.css";
 
 const DestinationsHero = () => {
   return (
     <section className={styles.hero}>
+      {/* =========================
+          BACKGROUND VIDEO
+      ========================= */}
       <video
         className={styles.heroVideo}
         autoPlay
@@ -19,6 +24,18 @@ const DestinationsHero = () => {
           type="video/mp4"
         />
       </video>
+
+      {/* =========================
+          VIDEO WRAPPER
+      ========================= */}
+      <Image
+        src="/images/destinations/Destination Video Wrapper.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={styles.videoWrapper}
+      />
 
       <div className={styles.heroOverlay} />
 

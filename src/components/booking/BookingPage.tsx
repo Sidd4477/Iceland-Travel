@@ -626,10 +626,50 @@ const BookingPage = () => {
      SUBMIT
   ========================================================= */
 
-  const handleConfirmAndPay = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
+const handleConfirmAndPay = async (
+  event: React.FormEvent<HTMLFormElement>
+) => {
+  event.preventDefault();
+
+  try {
+    const response = await fetch("/api/booking", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        phone,
+
+        destination,
+
+        date: selectedDate,
+        time: selectedTime,
+
+        adults: activeAdults,
+        children: activeChildren,
+        guests: activeGuests,
+
+        pricePerPerson: safePricePerPerson,
+        basePrice,
+        taxes,
+        total: activeTotal,
+
+        image: bookingImage,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.message || "Booking submission failed."
+      );
+    }
 
     console.log("Booking Details:", {
       firstName,
@@ -652,8 +692,18 @@ const BookingPage = () => {
 
       image: bookingImage,
     });
-  };
 
+    alert(
+      "Booking submitted successfully. A confirmation email has been sent and your booking notification has been sent to WhatsApp."
+    );
+  } catch (error) {
+    console.error("Booking submission error:", error);
+
+    alert(
+      "Something went wrong while submitting your booking. Please try again."
+    );
+  }
+};
   return (
     <main className={styles.page}>
 
@@ -687,7 +737,7 @@ const BookingPage = () => {
           </Link>
 
           <h1 className={styles.pageTitle}>
-            Confirm and pay
+            Confirm and Book
           </h1>
 
         </div>
@@ -842,7 +892,7 @@ const BookingPage = () => {
                 className={styles.confirmButton}
               >
                 <span>
-                  Confirm and Pay
+                  Confirm and Book 
                 </span>
               </button>
 

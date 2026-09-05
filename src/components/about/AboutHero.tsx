@@ -1,11 +1,15 @@
 "use client";
 
+import Image from "next/image";
+
 import styles from "./AboutHero.module.css";
 
 const AboutHero = () => {
   return (
     <section className={styles.hero}>
-      {/* Background Video */}
+      {/* =========================
+          BACKGROUND VIDEO
+      ========================= */}
       <video
         className={styles.video}
         autoPlay
@@ -22,10 +26,27 @@ const AboutHero = () => {
         Your browser does not support the video tag.
       </video>
 
-      {/* Dark / Cinematic Overlay */}
+      {/* =========================
+          EXPORTED VIDEO WRAPPER
+      ========================= */}
+      <Image
+        src="/images/videos/About us Video Wrapper.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={styles.videoWrapper}
+        aria-hidden="true"
+      />
+
+      {/* =========================
+          DARK / CINEMATIC OVERLAY
+      ========================= */}
       <div className={styles.overlay} />
 
-      {/* Hero Content */}
+      {/* =========================
+          HERO CONTENT
+      ========================= */}
       <div className={styles.content}>
         <h1 className={styles.title}>About our Enthusiasm</h1>
 

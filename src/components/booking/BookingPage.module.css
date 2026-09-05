@@ -108,34 +108,27 @@
 ========================================================= */
 
 .pageTitle {
-  width: 282px;
-  margin-top:20px;
+  width: max-content;
+  margin-top: 20px;
   height: 43px;
 
   margin: 0;
-
   padding: 0;
 
   box-sizing: border-box;
 
   display: flex;
-
   align-items: center;
 
   color: #111111;
-
   font-family: "Outfit", sans-serif;
-
   font-size: 40px;
-
   font-weight: 500;
-
   font-style: normal;
-
   line-height: 108%;
-
   letter-spacing: -0.03em;
 
+  white-space: nowrap;
 }
 
 

@@ -8,16 +8,33 @@ const PackagesHero = () => {
   return (
     <section className={styles.hero}>
       {/* =====================================================
-          BACKGROUND IMAGE
+          HERO IMAGE WRAPPER
       ===================================================== */}
-      <Image
-        src="/images/packages/Packages Hero v2.png"
-        alt="Iceland tour packages"
-        fill
-        priority
-        sizes="100vw"
-        className={styles.heroImage}
-      />
+      <div className={styles.heroImageWrapper}>
+        {/* =====================================================
+            BACKGROUND IMAGE
+        ===================================================== */}
+        <Image
+          src="/images/packages/Packages Hero v2.png"
+          alt="Iceland tour packages"
+          fill
+          priority
+          sizes="100vw"
+          className={styles.heroImage}
+        />
+
+        {/* =====================================================
+            HERO WRAPPER IMAGE
+        ===================================================== */}
+        <Image
+          src="/images/packages/Packages Wrapper.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.wrapperImage}
+        />
+      </div>
 
       {/* =====================================================
           DARK / CINEMATIC OVERLAY
