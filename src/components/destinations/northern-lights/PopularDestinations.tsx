@@ -26,7 +26,7 @@ const destinations = [
     slug: "golden-circle",
     title: "Golden circle",
     subtitle: "For Wonderers",
-    image: "/images/destinations/Golden circle v1.png",
+    image: "/images/destinations/Golden Circle v1.png",
   },
   {
     id: 4,
